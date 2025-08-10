@@ -33,7 +33,7 @@ export async function getBlocks(pageId: string): Promise<NotionBlock[]> {
   let cursor: string | undefined = undefined;
   do {
     const res = await notion.blocks.children.list({ block_id: pageId, start_cursor: cursor });
-    blocks.push(...(res.results as NotionBlock[]));
+    blocks.push(...(Array.isArray(res.results) ? res.results.map(b => b as NotionBlock) : []));
     cursor = res.has_more ? res.next_cursor ?? undefined : undefined;
   } while (cursor);
   return blocks;

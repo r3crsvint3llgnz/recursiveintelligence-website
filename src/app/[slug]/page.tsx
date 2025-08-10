@@ -14,7 +14,6 @@ type NotionComponent = {
   };
 };
 
-type ParamArg = { slug: string } | Promise<{ slug: string }>;
 
 async function getComponentBySlug(slug: string): Promise<NotionComponent | null> {
   const base = getBaseUrl();
@@ -33,15 +32,8 @@ async function getComponentBySlug(slug: string): Promise<NotionComponent | null>
   }
 }
 
-export default async function Page({ params }: { params: ParamArg }) {
-  // Support Next 14 and 15 param shapes
-  let slug: string;
-  if ("then" in params && typeof params.then === "function") {
-    const p = await (params as Promise<{ slug: string }>);
-    slug = p.slug;
-  } else {
-    slug = (params as { slug: string }).slug;
-  }
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   if (!slug) return notFound();
   if (slug.toLowerCase() === "footer") return notFound();
 

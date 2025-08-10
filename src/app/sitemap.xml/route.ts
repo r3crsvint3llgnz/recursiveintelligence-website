@@ -1,4 +1,4 @@
-import { getBaseUrl } from "../../lib/baseUrl";
+import { getBaseUrl } from "@/lib/baseUrl";
 
 export async function GET() {
   const base = getBaseUrl();

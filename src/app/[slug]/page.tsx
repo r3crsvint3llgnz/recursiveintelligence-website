@@ -48,7 +48,7 @@ export default async function Page({ params }: { params: ParamArg }) {
   const component = await getComponentBySlug(slug);
   if (!component) return notFound();
 
-  let blocks: unknown[] | null = null;
+  let blocks: import("../../lib/notion").NotionBlock[] | null = null;
   try {
     blocks = await getBlocks(component.id);
   } catch (e) {

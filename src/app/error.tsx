@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Error({
-  error,
+  _error,
   reset,
 }: {
-  error: Error & { digest?: string };
+  _error: Error & { digest?: string };
   reset: () => void;
 }) {
   return (
@@ -22,12 +24,12 @@ export default function Error({
         >
           Try Again
         </button>
-        <a
+        <Link
           href="/"
           className="inline-block px-6 py-3 bg-gray-800 hover:bg-gray-700 text-sky-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-lg transition-colors"
         >
           Go Home
-        </a>
+        </Link>
       </div>
     </div>
   );

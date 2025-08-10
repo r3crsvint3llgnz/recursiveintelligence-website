@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { getBaseUrl } from "../lib/baseUrl";
 import FooterCTA from "../components/FooterCTA";
@@ -45,7 +46,7 @@ function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-black z-50 px-4 py-3 border-b border-gray-800">
       <div className="max-w-3xl mx-auto flex items-center justify-between">
-        <a
+        <Link
           href="/"
           className="flex items-center gap-2 font-bold"
         >
@@ -53,7 +54,7 @@ function Header() {
           <span className={`${spaceGrotesk.variable} font-space-grotesk tracking-tight text-lg text-gray-100 hover:text-sky-400 transition-colors`}>
             RecursiveIntelligence.io
           </span>
-        </a>
+        </Link>
         <NavTabs />
       </div>
     </header>
@@ -68,12 +69,12 @@ function Footer() {
       <div className="max-w-3xl mx-auto px-4 text-center text-sm text-gray-400">
         <p>
           © {currentYear} Recursive Intelligence —{" "}
-          <a 
+          <Link 
             href="/privacy" 
             className="text-sky-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             Privacy
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

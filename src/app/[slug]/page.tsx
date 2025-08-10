@@ -35,15 +35,20 @@ async function getComponentBySlug(slug: string): Promise<NotionComponent | null>
 
 export default async function Page({ params }: { params: ParamArg }) {
   // Support Next 14 and 15 param shapes
-  const p = (params as any)?.then ? await (params as Promise<{ slug: string }>) : (params as { slug: string });
-  const slug = p.slug;
+  let slug: string;
+  if ("then" in params && typeof params.then === "function") {
+    const p = await (params as Promise<{ slug: string }>);
+    slug = p.slug;
+  } else {
+    slug = (params as { slug: string }).slug;
+  }
   if (!slug) return notFound();
   if (slug.toLowerCase() === "footer") return notFound();
 
   const component = await getComponentBySlug(slug);
   if (!component) return notFound();
 
-  let blocks: any[] | null = null;
+  let blocks: unknown[] | null = null;
   try {
     blocks = await getBlocks(component.id);
   } catch (e) {

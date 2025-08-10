@@ -11,12 +11,11 @@ export async function GET(request: Request) {
     const databaseId = process.env.NOTION_DATABASE_ID!;
 
     // Always exclude Draft status
-    let filter: any = {
-      property: "Status",
-      status: { does_not_equal: "Draft" }
-    };
+    let filter:
+      | { property: string; status: { does_not_equal: string } }
+      | { and: { property: string; status: { does_not_equal: string } }[] }
+      | { and: [{ property: string; status: { does_not_equal: string } }, { property: string; rich_text: { contains: string } }] };
 
-    // If slug is provided, use rich_text contains for tolerant matching
     if (slug) {
       filter = {
         and: [
@@ -29,6 +28,11 @@ export async function GET(request: Request) {
             rich_text: { contains: slug }
           }
         ]
+      };
+    } else {
+      filter = {
+        property: "Status",
+        status: { does_not_equal: "Draft" }
       };
     }
 
@@ -51,7 +55,7 @@ export async function GET(request: Request) {
         }
       }
     );
-  } catch (error: any) {
+  } catch (error) {
     console.error("Notion API error:", error);
     return NextResponse.json(
       { results: [], error: "Server error" },

@@ -25,7 +25,7 @@ interface BlockData {
 export interface NotionBlock {
   id?: string;
   type: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export async function getBlocks(pageId: string): Promise<NotionBlock[]> {

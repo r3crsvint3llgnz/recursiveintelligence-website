@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Setup
+
+1. Copy `.env.example` to `.env.local` and fill in your values.
+2. **Do not commit `.env.local`.**
+3. On Vercel, add the same variables in Project Settings → Environment Variables (Production + Preview).
+
 ## Getting Started
 
 First, run the development server:

@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Hugger orange glow -->
+    <radialGradient id="g1" cx="0.15" cy="0.18" r="0.7">
+      <stop offset="0" stop-color="#FFAA00" stop-opacity="0.18"></stop>
+      <stop offset="0.55" stop-color="#FFAA00" stop-opacity="0.08"></stop>
+      <stop offset="1" stop-color="#FFAA00" stop-opacity="0"></stop>
+    </radialGradient>
+    <!-- Very light vignette -->
+    <radialGradient id="vig" cx="0.5" cy="0.5" r="0.95">
+      <stop offset="0.70" stop-color="#00000000"></stop>
+      <stop offset="1" stop-color="#00000020"></stop>
+    </radialGradient>
+  </defs>
+
+  <!-- transparent base -->
+  <rect width="1200" height="600" fill="none"></rect>
+  <!-- soft orange glow -->
+  <rect width="1200" height="600" fill="url(#g1)"></rect>
+  <!-- faint vignette -->
+  <rect width="1200" height="600" fill="url(#vig)"></rect>
+</svg>

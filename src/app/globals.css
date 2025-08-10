@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root{
+  --ri-bg:#000000;            /* true black */
+  --ri-fg:#f5f7fa;
+  --ri-muted:#9aa3ae;
+  --ri-accent:#ffaa00;        /* Hugger orange */
+  --ri-accent-700:#cc8800;    /* darker rim */
+}
+body{ background-color:var(--ri-bg); color:var(--ri-fg); }
+
+/* Accent ring + border */
+.ri-accent-ring:focus-visible{ outline:2px solid var(--ri-accent); outline-offset:2px; }
+.ri-accent-border{ border-color: color-mix(in oklab, var(--ri-accent) 60%, black); }
+
+/* Subtle diagonal stripe bar */
+.ri-stripe{
+  height:6px; border-radius:9999px;
+  background: repeating-linear-gradient(135deg,
+    color-mix(in oklab, var(--ri-accent) 92%, white) 0 8px,
+    transparent 8px 16px);
+  opacity:.35;
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+}
+
+/* Thin accent divider (optional use) */
+.ri-divider{ height:1px; background:linear-gradient(90deg,transparent,var(--ri-accent),transparent); opacity:.35; }
+
+/* Frosted glass panel */
+.glass{
+  background: rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding:24px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Font utilities for Space Grotesk headings */
+.font-space-grotesk {
+  font-family: var(--font-space-grotesk);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Subtle orange glow behind hero headline */
+.ri-hero {
+  position: relative;
+  isolation: isolate;
+  background-image: url("/src/lib/hero-glow.svg");
+  background-repeat: no-repeat;
+  background-size: 1400px 700px;
+  background-position: center -60px;
 }
+.ri-hero > * { position: relative; z-index: 1; }

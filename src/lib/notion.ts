@@ -33,14 +33,14 @@ export async function getBlocks(pageId: string): Promise<NotionBlock[]> {
   let cursor: string | undefined = undefined;
   do {
     const res = await notion.blocks.children.list({ block_id: pageId, start_cursor: cursor });
-    blocks.push(...res.results as NotionBlock[]);
+    blocks.push(...(res.results as NotionBlock[]));
     cursor = res.has_more ? res.next_cursor ?? undefined : undefined;
   } while (cursor);
   return blocks;
 }
 
 function txt(n: BlockData) {
-  return (n?.rich_text ?? []).map((t: RichText) => t?.plain_text ?? "").join("");
+  return (n?.rich_text ?? []).map((t) => t?.plain_text ?? "").join("");
 }
 
 export function renderBlocks(blocks: NotionBlock[]) {

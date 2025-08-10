@@ -1,6 +1,11 @@
-import { getBaseUrl } from "../lib/baseUrl";
+import { getBaseUrl } from "../../lib/baseUrl";
 
-export function GET() {
+export async function GET() {
   const base = getBaseUrl();
-  return new Response(`User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml`);
+  const body = `User-agent: *
+Allow: /
+Sitemap: ${base}/sitemap.xml`;
+  return new Response(body, {
+    headers: { "content-type": "text/plain; charset=utf-8" },
+  });
 }

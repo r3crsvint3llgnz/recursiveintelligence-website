@@ -11,17 +11,14 @@ export default function AboutPage() {
       <section className="space-y-2">
         <h2 className="text-2xl font-semibold">Vision</h2>
         <p className="text-gray-200">
-          Delight customers through more human interaction, amplified by intelligent
-          systems that create value neither could alone.
+          Delight customers through more human interaction, amplified by intelligent systems that create value neither could alone.
         </p>
       </section>
 
       <section className="space-y-2 mt-8">
         <h2 className="text-2xl font-semibold">Mission</h2>
         <p className="text-gray-200">
-          Translate a fast-moving AI landscape into actionable strategy and adaptive
-          systems so people can focus on creativity and care while machines provide
-          structure and orchestration.
+          Translate a fast-moving AI landscape into actionable strategy and adaptive systems so people can focus on creativity and care while machines provide structure and orchestration.
         </p>
       </section>
 

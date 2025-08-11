@@ -1,4 +1,37 @@
-@import "tailwindcss";
+@import "tailwindcss";:root{
+  --ri-accent:#FFAA00;
+  --ri-accent-700:#b87400;
+}
+
+/* Subtle page glow (top center) */
+.ri-page-bg{ position:relative; }
+.ri-page-bg::before{
+  content:"";
+  position:absolute; inset:0 auto auto 50%;
+  width:1200px; height:420px; transform:translateX(-50%);
+  pointer-events:none; filter:blur(32px); opacity:.10;
+  background: radial-gradient(600px 240px at 50% 0%,
+    color-mix(in oklab, var(--ri-accent) 28%, transparent) 0%,
+    transparent 60%);
+}
+
+/* Accent underline for main headings */
+.ri-heading{ position:relative; padding-bottom:.5rem; }
+.ri-heading::after{
+  content:""; position:absolute; left:0; bottom:0; height:3px; width:96px;
+  border-radius:9999px;
+  background: linear-gradient(90deg, var(--ri-accent), transparent);
+}
+
+/* Section divider */
+.ri-section{
+  margin-top:2rem; padding-top:2rem;
+  border-top:1px solid color-mix(in oklab, white 12%, transparent);
+}
+
+/* Accent list markers */
+.ri-list li::marker{ color:var(--ri-accent); }
+
 
 :root{
   --ri-bg:#000000;            /* true black */

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <title>Recursive Intelligence — R³ mark (unboxed, light bg)</title>
+  <rect width="64" height="64" fill="#ffffff"/>
+  <!-- Stem -->
+  <rect x="14" y="12" width="10" height="40" rx="2" fill="#000000"/>
+  <!-- Bowl -->
+  <rect x="24" y="12" width="20" height="16" rx="8" fill="#000000"/>
+  <!-- Leg -->
+  <polygon points="24,32 42,52 34,52 24,40" fill="#000000"/>
+  <!-- Superscript 3 -->
+  <text x="46" y="18" font-family="Space Grotesk, Inter, Segoe UI, Roboto, Arial, sans-serif"
+        font-size="14" font-weight="700" fill="#FFAA00">3</text>
+</svg>

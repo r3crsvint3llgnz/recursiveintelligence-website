@@ -75,6 +75,15 @@ function Footer() {
           >
             Privacy
           </Link>
+          {" | "}
+          <a
+            href="https://hachyderm.io/@r3crsvint3llgnz"
+            rel="me"
+            className="text-sky-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            target="_blank"
+          >
+            Mastodon
+          </a>
         </p>
       </div>
     </footer>
@@ -88,6 +97,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="me" href="https://hachyderm.io/@r3crsvint3llgnz" />
+      </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-inter bg-black text-gray-100 antialiased min-h-screen`}
       >

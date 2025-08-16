@@ -14,6 +14,15 @@ export default function FooterCTA() {
       >
         Substack
       </a>
+      <a
+        href="https://hachyderm.io/@r3crsvint3llgnz"
+        target="_blank"
+        rel="me noopener noreferrer"
+        className="inline-flex items-center px-4 py-2 rounded-md border border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-black transition-colors font-semibold text-base"
+        style={{ textDecoration: "none" }}
+      >
+        Mastodon
+      </a>
     </div>
   );
 }

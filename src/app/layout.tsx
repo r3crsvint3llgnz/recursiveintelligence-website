@@ -51,7 +51,7 @@ function Header() {
           className="flex items-center gap-2 font-bold"
         >
           <R3IMarkFinal size={20} />
-          <span className={`${spaceGrotesk.variable} font-space-grotesk tracking-tight text-lg text-gray-100 hover:text-sky-400 transition-colors`}>
+          <span className={`${spaceGrotesk.variable} font-space-grotesk tracking-tight text-lg text-gray-100 hover:text-[color:var(--ri-accent)] transition-colors`}>
             RecursiveIntelligence.io
           </span>
         </Link>
@@ -63,23 +63,32 @@ function Header() {
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const gardenUrl =
+    process.env.NEXT_PUBLIC_GARDEN_URL ??
+    "https://recursiveintelligence.xyz/";
   
   return (
     <footer className="mt-16 py-8 border-t border-gray-800">
       <div className="max-w-3xl mx-auto px-4 text-center text-sm text-gray-400">
         <p>
           © {currentYear} Recursive Intelligence —{" "}
-          <Link 
-            href="/privacy" 
-            className="text-sky-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          >
+          <Link href="/privacy" className="ri-link">
             Privacy
           </Link>
           {" | "}
           <a
+            href={gardenUrl}
+            className="ri-link"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Recursive Garden (Lab)
+          </a>
+          {" | "}
+          <a
             href="https://hachyderm.io/@r3crsvint3llgnz"
             rel="me"
-            className="text-sky-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="ri-link"
             target="_blank"
           >
             Mastodon

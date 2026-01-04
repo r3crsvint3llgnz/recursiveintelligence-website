@@ -1,7 +1,4 @@
-@import "tailwindcss";:root{
-  --ri-accent:#FFAA00;
-  --ri-accent-700:#b87400;
-}
+@import "tailwindcss";
 
 /* Subtle page glow (top center) */
 .ri-page-bg{ position:relative; }
@@ -32,19 +29,30 @@
 /* Accent list markers */
 .ri-list li::marker{ color:var(--ri-accent); }
 
-
 :root{
-  --ri-bg:#000000;            /* true black */
-  --ri-fg:#f5f7fa;
-  --ri-muted:#9aa3ae;
-  --ri-accent:#ffaa00;        /* Hugger orange */
-  --ri-accent-700:#cc8800;    /* darker rim */
+  --ri-bg:#000000;
+  --ri-fg:#e0e0e0;
+  --ri-muted:#a5adbb;
+  --ri-accent:#ff6600;
+  --ri-accent-700:#ff8533;
+  --ri-info:#36a7af;
+  --ri-warning:#f5c42e;
+  --ri-danger:#b43c3c;
 }
 body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 
 /* Accent ring + border */
 .ri-accent-ring:focus-visible{ outline:2px solid var(--ri-accent); outline-offset:2px; }
 .ri-accent-border{ border-color: color-mix(in oklab, var(--ri-accent) 60%, black); }
+.ri-link{
+  color:var(--ri-accent);
+  text-decoration:none;
+}
+.ri-link:hover{ color:var(--ri-accent-700); }
+.ri-link:focus-visible{
+  outline:2px solid var(--ri-accent);
+  outline-offset:2px;
+}
 
 /* Subtle diagonal stripe bar */
 .ri-stripe{

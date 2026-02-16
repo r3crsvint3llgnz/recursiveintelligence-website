@@ -15,7 +15,7 @@ The Recursive Intelligence website is a **modern, well-built Next.js 15 consulti
 - Professional design with cohesive orange-on-black theme
 - Fast static site with excellent SEO foundation
 - Clear value proposition and service offerings
-- Deployed on Vercel
+- Deployed on AWS Amplify at recursiveintelligence.io
 
 ### ⚠️ Critical Issues
 1. **Security:** 3 npm vulnerabilities (1 critical RCE in Next.js)
@@ -132,14 +132,14 @@ Final preparations:
 ### Year 1 Operating Costs
 
 **Minimal Setup:**
-- Vercel Hosting: $0-240/year (Hobby or Pro)
+- AWS Amplify Hosting: ~$0-15/year (free tier + minimal traffic)
+- Domain: Already owned (recursiveintelligence.io)
 - Newsletter: $90-300/year (Buttondown or ConvertKit)
-- Domain renewal: $15/year
-- **Total: $105-555/year**
+- **Total: $90-315/year**
 
-**With AWS Application Demos:**
-- Add AWS resources: $600-2,400/year
-- **Total: $705-2,955/year**
+**With Additional AWS Application Demos:**
+- Add AWS demo resources: $600-2,400/year
+- **Total: $690-2,715/year**
 
 **Optional Add-ons:**
 - Analytics (Plausible): $108/year

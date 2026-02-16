@@ -33,10 +33,23 @@ The Recursive Intelligence website is a **Next.js 15-based consulting website** 
 - **Email integration** via `mailto:` links (no backend)
 
 ### Build & Deployment
-- **Target Platform:** Vercel
+- **Target Platform:** AWS Amplify
+- **Domain:** recursiveintelligence.io (already configured)
 - **Build Tool:** Next.js standard build
+- **CI/CD:** Automatic deployment on git push
+- **SSL/TLS:** Managed via AWS Certificate Manager
+- **DNS:** Route 53
 - **Linting:** ESLint with Next.js config
 - **No test infrastructure** currently
+
+**AWS Amplify Advantages:**
+- Native AWS integration (perfect for planned AWS demos)
+- Free tier covers typical static site usage
+- Automatic SSL certificate management
+- Built-in CI/CD pipeline
+- CloudWatch integration for monitoring
+- Easy subdomain configuration for future demos
+- No vendor lock-in concerns (already in AWS ecosystem)
 
 ---
 
@@ -327,8 +340,8 @@ recursiveintelligence-website/
 - [ ] Clean up unused assets
 - [ ] Add `.env.example`
 - [ ] Add basic test infrastructure
-- [ ] Set up CI/CD (GitHub Actions)
-- [ ] Add analytics (Vercel Analytics or Plausible)
+- [ ] Set up CI/CD with AWS Amplify build settings
+- [ ] Add analytics (CloudWatch RUM or Plausible)
 
 ### Phase 2: Content Infrastructure (Weeks 2-3)
 - [ ] Choose and implement CMS (recommendation: MDX or Notion)
@@ -398,7 +411,7 @@ recursiveintelligence-website/
 - **Disqus** - Full-featured but privacy concerns
 
 ### For Analytics
-- **Vercel Analytics** ⭐ RECOMMENDED - Built-in, privacy-friendly
+- **CloudWatch RUM** ⭐ RECOMMENDED - AWS native, integrates with Amplify
 - **Plausible** - Privacy-first, $9/mo
 - **Google Analytics 4** - Free but privacy concerns
 
@@ -441,21 +454,27 @@ recursiveintelligence-website/
 
 ### Platform Costs (Annual)
 
-**Minimal Setup (Current + Analytics):**
-- Vercel Hosting: **$0** (Hobby) or **$240** (Pro)
-- Domain: **$15**
-- **Total: $15-255/year**
+**Current Hosting:**
+- AWS Amplify: ~$0-15/year (free tier covers typical usage)
+- Domain: Already owned (recursiveintelligence.io)
+- **Current: ~$0-15/year**
+
+**Minimal Setup (Current + Newsletter + Analytics):**
+- AWS Amplify: ~$15/year (beyond free tier)
+- Newsletter (Buttondown): $90/year
+- Analytics (Plausible): $108/year (optional, can use CloudWatch)
+- **Total: $105-213/year**
 
 **Full Content Platform:**
-- Vercel Hosting: **$240** (Pro for analytics)
-- Newsletter (ConvertKit): **$300** (1,000 subscribers)
-- Email (Google Workspace): **$72** (optional)
-- CMS (Sanity): **$0** (free tier) or **$180** (Growth)
-- **Total: $612-792/year**
+- AWS Amplify: ~$15/year
+- Newsletter (ConvertKit): $300/year (1,000 subscribers)
+- CMS (Sanity): $0 (free tier) or $180 (Growth) - optional
+- Analytics: $0 (CloudWatch) or $108 (Plausible)
+- **Total: $315-603/year**
 
 **With AWS Demos:**
-- Add **$50-200/month** for AWS resources
-- **Total: $1,200-3,200/year** (including above)
+- Add $50-200/month for additional AWS resources (Lambda, DynamoDB, API Gateway, etc.)
+- **Total: $915-2,803/year** (including above)
 
 ---
 

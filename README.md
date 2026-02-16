@@ -64,7 +64,7 @@ recursiveintelligence-website/
 - **Language:** TypeScript 5 (strict mode)
 - **Styling:** Tailwind CSS 4 with custom design system
 - **Fonts:** Google Fonts (Inter, Space Grotesk)
-- **Deployment:** Vercel
+- **Deployment:** AWS Amplify at recursiveintelligence.io
 
 ## 📖 Documentation
 
@@ -128,20 +128,49 @@ See [QUICK_START.md](./QUICK_START.md) for details on current vulnerabilities.
 
 ## 🚢 Deployment
 
-The site is deployed on Vercel. To deploy:
+The site is deployed on AWS Amplify at **recursiveintelligence.io**. To deploy:
 
-1. Push to the `main` branch
-2. Vercel will automatically build and deploy
-3. Environment variables must be set in Vercel project settings
+1. Push to the `main` branch (or configured branch)
+2. AWS Amplify will automatically build and deploy
+3. Environment variables must be set in AWS Amplify console → Environment Variables
+
+### AWS Amplify Build Settings
+
+Current build configuration (stored in AWS Amplify console):
+```yaml
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+```
 
 ### Environment Variables
 
-Required environment variables:
-- `NEXT_PUBLIC_SITE_URL` - Your production domain
+Required environment variables (set in AWS Amplify console):
+- `NEXT_PUBLIC_SITE_URL` - Your production domain (recursiveintelligence.io)
 - `NEXT_PUBLIC_GARDEN_URL` - Lab/experiments site URL
 - `NODE_ENV` - Environment (production/development)
 
 See [.env.example](./.env.example) for complete list.
+
+### Custom Domain
+
+The domain **recursiveintelligence.io** is configured in AWS Amplify with:
+- SSL/TLS certificate via AWS Certificate Manager
+- DNS managed through Route 53
+- Automatic redirects (www → apex)
 
 ## 📝 Content Management
 

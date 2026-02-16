@@ -93,27 +93,27 @@ NEXT_PUBLIC_GARDEN_URL=https://recursiveintelligence.xyz
 **Estimated Time:** 1 hour
 
 **Tasks:**
-- [ ] Enable Vercel Analytics (if on Vercel Pro) OR
-- [ ] Set up Plausible Analytics
+- [ ] Set up CloudWatch RUM (AWS native) OR
+- [ ] Set up Plausible Analytics (privacy-focused alternative)
 - [ ] Add analytics script to `layout.tsx`
 - [ ] Configure goals/events
 - [ ] Test in production
 
-**Vercel Analytics (Recommended if on Pro):**
+**CloudWatch RUM (Recommended for AWS Amplify):**
 ```tsx
 // src/app/layout.tsx
-import { Analytics } from '@vercel/analytics/react';
+// Add CloudWatch RUM script from AWS console
+// Or use AWS SDK for server-side tracking
+```
 
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  );
-}
+**Alternative - Plausible Analytics:**
+```tsx
+// src/app/layout.tsx
+<Script
+  defer
+  data-domain="recursiveintelligence.io"
+  src="https://plausible.io/js/script.js"
+/>
 ```
 
 ### 1.4 Environment Setup
@@ -123,8 +123,8 @@ export default function RootLayout({ children }) {
 **Tasks:**
 - [ ] Document local development setup
 - [ ] Create development workflow guide
-- [ ] Set up environment variables in Vercel
-- [ ] Test deployment pipeline
+- [ ] Set up environment variables in AWS Amplify console
+- [ ] Test deployment pipeline via git push
 
 **Deliverables:**
 - ✅ Zero security vulnerabilities
@@ -833,12 +833,12 @@ export default {
 ### Budget
 
 **Year 1 Costs:**
-- Hosting (Vercel Pro): $240
+- Hosting (AWS Amplify): ~$15
 - Newsletter (ConvertKit): $300
-- Domain renewal: $15
-- Analytics (Plausible): $0-108
+- Domain: Already owned
+- Analytics (CloudWatch): $0-108
 - AWS demos: $600-2,400
-- **Total: $1,155-3,063**
+- **Total: $915-2,723**
 
 **Optional:**
 - Stock photos (Unsplash Pro): $0-120
@@ -875,9 +875,9 @@ Track key decisions here:
 **Date: [TBD]**
 - [ ] CMS Choice: _________
 - [ ] Newsletter Platform: _________
-- [ ] Analytics: _________
+- [ ] Analytics: CloudWatch RUM / Plausible / Other: _________
 - [ ] Comments System: _________
-- [ ] Hosting: Vercel / AWS / Other: _________
+- [ ] Hosting: AWS Amplify (current)
 
 ---
 

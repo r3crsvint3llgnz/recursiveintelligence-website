@@ -53,7 +53,7 @@ npm audit
 - [ ] Fix security vulnerabilities
 - [ ] Remove `/src/notion-backup/`
 - [ ] Add `.env.example`
-- [ ] Set up analytics (Vercel or Plausible)
+- [ ] Set up analytics (CloudWatch RUM or Plausible)
 
 ### Week 2: Blog Setup
 - [ ] Install Contentlayer + MDX
@@ -93,14 +93,14 @@ npm audit
 ## Estimated Costs (Year 1)
 
 **Minimal:**
-- Vercel Hosting: $0-240
+- AWS Amplify Hosting: $0-15
+- Domain: Already owned
 - Newsletter: $90-300
-- Domain: $15
-- **Total: $105-555/year**
+- **Total: $90-315/year**
 
 **With AWS Demos:**
 - Add $600-2,400/year for AWS resources
-- **Total: $705-2,955/year**
+- **Total: $690-2,715/year**
 
 ## Key Files to Create
 

@@ -104,8 +104,8 @@ This repository now contains a comprehensive assessment of the Recursive Intelli
 - **3-6 months (Part-time)** - Same as 7-week, flexible schedule
 
 ### Question 2: What's the budget?
-- **$105-555/year** - Blog and newsletter only (minimal)
-- **$705-2,955/year** - Include AWS application demos
+- **$90-315/year** - Blog and newsletter only (minimal)
+- **$690-2,715/year** - Include AWS application demos
 
 ### Question 3: Content management approach?
 - **MDX** ⭐ Recommended - Git-based, fast, developer-friendly
@@ -250,23 +250,24 @@ This repository now contains a comprehensive assessment of the Recursive Intelli
 ### Year 1 Costs
 
 **Minimal Setup:**
-- Vercel Hobby: $0/year
+- AWS Amplify: $0-15/year
+- Domain: Already owned (recursiveintelligence.io)
 - Buttondown: $90/year
-- Domain: $15/year
-- **Total: $105/year**
+- **Total: $90-105/year**
 
 **Recommended Setup:**
-- Vercel Pro: $240/year (includes analytics)
+- AWS Amplify: ~$15/year
+- Domain: Already owned
 - ConvertKit: $300/year (better for creators)
-- Domain: $15/year
-- **Total: $555/year**
+- CloudWatch RUM: $0/year (included in AWS free tier)
+- **Total: $315/year**
 
 **With AWS Demos:**
 - Add estimated AWS costs: $600-2,400/year
-- **Total: $1,155-2,955/year**
+- **Total: $915-2,715/year**
 
 ### Optional Additions:
-- Plausible Analytics: $108/year (if not using Vercel Pro)
+- Plausible Analytics: $108/year (alternative to CloudWatch)
 - Google Workspace: $72/year (professional email)
 - Stock photos: $0-120/year (Unsplash Pro)
 

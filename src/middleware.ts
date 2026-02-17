@@ -1,15 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone();
-  if (url.pathname === "/contact") {
-    url.pathname = "/";
-    return NextResponse.redirect(url, 308);
-  }
+export function middleware(_req: NextRequest) {
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/contact"],
+  matcher: [],
 };

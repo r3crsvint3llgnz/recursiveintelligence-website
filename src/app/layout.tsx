@@ -125,6 +125,33 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Build CloudWatch RUM script with proper region handling
+  const rumRegion = process.env.NEXT_PUBLIC_AWS_RUM_REGION || 'us-east-1';
+  const rumScript = `
+    (function(n,i,v,r,s,c,x,z){
+      x=window.AwsRumClient={q:[],n:n,i:i,v:v,r:r,c:c};
+      window[n]=function(c,p){x.q.push({c:c,p:p});};
+      z=document.createElement('script');
+      z.async=true;
+      z.src=s;
+      document.head.insertBefore(z,document.head.getElementsByTagName('script')[0]);
+    })(
+      'cwr',
+      '${process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID}',
+      '1.0.0',
+      '${rumRegion}',
+      'https://client.rum.${rumRegion}.amazonaws.com/1.0.2/cwr.js',
+      {
+        sessionSampleRate: 1,
+        identityPoolId: '${process.env.NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID}',
+        endpoint: "https://dataplane.rum.${rumRegion}.amazonaws.com",
+        telemetries: ["performance","errors","http"],
+        allowCookies: true,
+        enableXRay: false
+      }
+    );
+  `;
+
   return (
     <html lang="en">
       <head>
@@ -135,32 +162,7 @@ export default function RootLayout({
             <Script
               id="cloudwatch-rum"
               strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-          (function(n,i,v,r,s,c,x,z){
-            x=window.AwsRumClient={q:[],n:n,i:i,v:v,r:r,c:c};
-            window[n]=function(c,p){x.q.push({c:c,p:p});};
-            z=document.createElement('script');
-            z.async=true;
-            z.src=s;
-            document.head.insertBefore(z,document.head.getElementsByTagName('script')[0]);
-          })(
-            'cwr',
-            '${process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID}',
-            '1.0.0',
-            '${process.env.NEXT_PUBLIC_AWS_RUM_REGION || 'us-east-1'}',
-            'https://client.rum.${process.env.NEXT_PUBLIC_AWS_RUM_REGION || 'us-east-1'}.amazonaws.com/1.0.2/cwr.js',
-            {
-              sessionSampleRate: 1,
-              identityPoolId: '${process.env.NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID}',
-              endpoint: "https://dataplane.rum.${process.env.NEXT_PUBLIC_AWS_RUM_REGION || 'us-east-1'}.amazonaws.com",
-              telemetries: ["performance","errors","http"],
-              allowCookies: true,
-              enableXRay: false
-            }
-          );
-        `,
-              }}
+              dangerouslySetInnerHTML={{ __html: rumScript }}
             />
           )}
       </head>

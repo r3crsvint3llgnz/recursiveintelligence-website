@@ -24,22 +24,42 @@ export const metadata: Metadata = {
       ? (process.env.NEXT_PUBLIC_SITE_URL ?? getBaseUrl())
       : getBaseUrl()
   ),
-  title: "Recursive Intelligence",
-  description: "AI-first consulting to turn capability into operating reality.",
+  title: {
+    default: "Recursive Intelligence | AI, Systems Thinking, Philosophy of Mind",
+    template: "%s | Recursive Intelligence",
+  },
+  description:
+    "Exploring AI, systems thinking, and philosophy of mind. Research, experiments, and learning in public by Seth Robins.",
+  keywords: [
+    "AI research",
+    "systems thinking",
+    "philosophy of mind",
+    "artificial intelligence",
+    "consciousness",
+    "machine learning",
+    "AWS",
+    "agent systems",
+  ],
+  authors: [{ name: "Seth Robins" }],
+  creator: "Seth Robins",
   openGraph: {
-    title: "Recursive Intelligence",
-    description: "AI-first consulting to turn capability into operating reality.",
-    url: "/",
-    siteName: "Recursive Intelligence",
     type: "website",
+    locale: "en_US",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    title: "Recursive Intelligence",
+    description: "Exploring AI, systems thinking, and philosophy of mind.",
+    siteName: "Recursive Intelligence",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Recursive Intelligence",
+    description: "Exploring AI, systems thinking, and philosophy of mind.",
+    creator: "@r3crsvint3llgnz",
   },
   robots: {
     index: true,
     follow: true,
   },
-  icons: {
-    icon: "/favicon.svg"
-  }
 };
 
 function Header() {

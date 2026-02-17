@@ -21,16 +21,15 @@ export function genPageMetadata({
     openGraph: {
       title: `${title} | ${siteMetadata.title}`,
       description: description || siteMetadata.description,
-      url: './',
       siteName: siteMetadata.title,
-      images: image ? [image] : [siteMetadata.socialBanner],
+      images: image ? [image] : (siteMetadata.socialBanner ? [siteMetadata.socialBanner] : []),
       locale: siteMetadata.locale,
       type: 'website',
     },
     twitter: {
       title: `${title} | ${siteMetadata.title}`,
       card: 'summary_large_image',
-      images: image ? [image] : [siteMetadata.socialBanner],
+      images: image ? [image] : (siteMetadata.socialBanner ? [siteMetadata.socialBanner] : []),
     },
     ...rest,
   }

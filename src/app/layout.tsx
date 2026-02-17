@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_SITE_URL,
+    url: process.env.NEXT_PUBLIC_SITE_URL || getBaseUrl(),
     title: "Recursive Intelligence",
     description: "Exploring AI, systems thinking, and philosophy of mind.",
     siteName: "Recursive Intelligence",
@@ -130,7 +130,8 @@ export default function RootLayout({
       <head>
         <link rel="me" href="https://hachyderm.io/@r3crsvint3llgnz" />
         {process.env.NODE_ENV === "production" &&
-          process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID && (
+          process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID &&
+          process.env.NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID && (
             <Script
               id="cloudwatch-rum"
               strategy="afterInteractive"
@@ -148,7 +149,7 @@ export default function RootLayout({
             '${process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID}',
             '1.0.0',
             '${process.env.NEXT_PUBLIC_AWS_RUM_REGION || 'us-east-1'}',
-            'https://client.rum.us-east-1.amazonaws.com/1.0.2/cwr.js',
+            'https://client.rum.${process.env.NEXT_PUBLIC_AWS_RUM_REGION || 'us-east-1'}.amazonaws.com/1.0.2/cwr.js',
             {
               sessionSampleRate: 1,
               identityPoolId: '${process.env.NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID}',

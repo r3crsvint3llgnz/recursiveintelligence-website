@@ -20,8 +20,10 @@ export default function AboutPage() {
           in AI, in minds, in organizations.
         </p>
 
+        <hr className="ri-divider" />
+
         <section>
-          <h2 className="text-2xl font-bold mb-4">What You&apos;ll Find Here</h2>
+          <h2 className="ri-heading text-2xl font-bold mb-6">What You&apos;ll Find Here</h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold mb-1">Original Research &amp; Writing</h3>
@@ -64,8 +66,10 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <hr className="ri-divider" />
+
         <section>
-          <h2 className="text-2xl font-bold mb-4">Why This Exists</h2>
+          <h2 className="ri-heading text-2xl font-bold mb-6">Why This Exists</h2>
           <p className="text-gray-400 mb-3">
             This is <strong className="text-gray-200">learning in public</strong>. I&apos;m an autistic systems
             thinker with a full-time job elsewhere, and this is my independent
@@ -79,9 +83,11 @@ export default function AboutPage() {
           <p className="text-gray-500 text-sm mt-3">Think of it as a self-sustaining research lab.</p>
         </section>
 
+        <hr className="ri-divider" />
+
         <section>
-          <h2 className="text-2xl font-bold mb-4">Connect</h2>
-          <ul className="space-y-2 text-gray-400">
+          <h2 className="ri-heading text-2xl font-bold mb-6">Connect</h2>
+          <ul className="ri-list space-y-2 text-gray-400">
             <li>
               <strong className="text-gray-200">Digital Garden:</strong>{" "}
               <a href="https://recursiveintelligence.xyz" className="text-orange-400 hover:underline">

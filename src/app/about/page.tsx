@@ -1,3 +1,11 @@
+import { genPageMetadata } from '../seo'
+
+export const metadata = genPageMetadata({
+  title: 'About',
+  description:
+    'Seth Robins — exploring AI, systems thinking, and philosophy of mind.',
+})
+
 export const dynamic = "force-static";
 export const revalidate = false;
 

@@ -4,7 +4,7 @@ export async function GET() {
   const base = getBaseUrl();
 
   // Static pages for MVP; expand later if needed
-  const paths = ["/", "/services", "/about"];
+  const paths = ["/", "/about"];
 
   const urls = paths
     .map((p) => `<url><loc>${base}${p}</loc></url>`)

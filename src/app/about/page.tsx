@@ -90,13 +90,13 @@ export default function AboutPage() {
           <ul className="ri-list space-y-2 text-gray-400">
             <li>
               <strong className="text-gray-200">Digital Garden:</strong>{" "}
-              <a href="https://recursiveintelligence.xyz" className="text-orange-400 hover:underline">
+              <a href="https://recursiveintelligence.xyz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 recursiveintelligence.xyz
               </a>
             </li>
             <li>
               <strong className="text-gray-200">Substack:</strong>{" "}
-              <a href="https://substack.com/@r3crsvint3llgnz" className="text-orange-400 hover:underline">
+              <a href="https://substack.com/@r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 @r3crsvint3llgnz
               </a>
             </li>
@@ -105,20 +105,21 @@ export default function AboutPage() {
               <a
                 href="https://hachyderm.io/@r3crsvint3llgnz"
                 className="text-orange-400 hover:underline"
-                rel="me"
+                target="_blank"
+                rel="me noopener noreferrer"
               >
                 @r3crsvint3llgnz
               </a>
             </li>
             <li>
               <strong className="text-gray-200">GitHub:</strong>{" "}
-              <a href="https://github.com/r3crsvint3llgnz" className="text-orange-400 hover:underline">
+              <a href="https://github.com/r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 r3crsvint3llgnz
               </a>
             </li>
             <li>
               <strong className="text-gray-200">Support:</strong>{" "}
-              <a href="https://buymeacoffee.com/sethrobinsw" className="text-orange-400 hover:underline">
+              <a href="https://buymeacoffee.com/sethrobinsw" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 Buy Me a Coffee
               </a>
             </li>

@@ -86,6 +86,14 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   animation: ri-fade-up 0.5s ease-out both;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .ri-fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @theme inline {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
@@ -100,7 +108,7 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 .ri-hero {
   position: relative;
   isolation: isolate;
-  background-image: url("/src/lib/hero-glow.svg");
+  background-image: url("/hero-glow.svg");
   background-repeat: no-repeat;
   background-size: 1400px 700px;
   background-position: center -60px;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { getBaseUrl } from "../lib/baseUrl";
 import FooterCTA from "../components/FooterCTA";
@@ -24,22 +25,42 @@ export const metadata: Metadata = {
       ? (process.env.NEXT_PUBLIC_SITE_URL ?? getBaseUrl())
       : getBaseUrl()
   ),
-  title: "Recursive Intelligence",
-  description: "AI-first consulting to turn capability into operating reality.",
+  title: {
+    default: "Recursive Intelligence | AI, Systems Thinking, Philosophy of Mind",
+    template: "%s | Recursive Intelligence",
+  },
+  description:
+    "Exploring AI, systems thinking, and philosophy of mind. Research, experiments, and learning in public by Seth Robins.",
+  keywords: [
+    "AI research",
+    "systems thinking",
+    "philosophy of mind",
+    "artificial intelligence",
+    "consciousness",
+    "machine learning",
+    "AWS",
+    "agent systems",
+  ],
+  authors: [{ name: "Seth Robins" }],
+  creator: "Seth Robins",
   openGraph: {
-    title: "Recursive Intelligence",
-    description: "AI-first consulting to turn capability into operating reality.",
-    url: "/",
-    siteName: "Recursive Intelligence",
     type: "website",
+    locale: "en_US",
+    url: process.env.NEXT_PUBLIC_SITE_URL || getBaseUrl(),
+    title: "Recursive Intelligence",
+    description: "Exploring AI, systems thinking, and philosophy of mind.",
+    siteName: "Recursive Intelligence",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Recursive Intelligence",
+    description: "Exploring AI, systems thinking, and philosophy of mind.",
+    creator: "@r3crsvint3llgnz",
   },
   robots: {
     index: true,
     follow: true,
   },
-  icons: {
-    icon: "/favicon.svg"
-  }
 };
 
 function Header() {
@@ -104,10 +125,46 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Build CloudWatch RUM script with proper region handling
+  const rumRegion = process.env.NEXT_PUBLIC_AWS_RUM_REGION || 'us-east-1';
+  const rumScript = `
+    (function(n,i,v,r,s,c,x,z){
+      x=window.AwsRumClient={q:[],n:n,i:i,v:v,r:r,c:c};
+      window[n]=function(c,p){x.q.push({c:c,p:p});};
+      z=document.createElement('script');
+      z.async=true;
+      z.src=s;
+      document.head.insertBefore(z,document.head.getElementsByTagName('script')[0]);
+    })(
+      'cwr',
+      '${process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID}',
+      '1.0.0',
+      '${rumRegion}',
+      'https://client.rum.${rumRegion}.amazonaws.com/1.0.2/cwr.js',
+      {
+        sessionSampleRate: 1,
+        identityPoolId: '${process.env.NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID}',
+        endpoint: "https://dataplane.rum.${rumRegion}.amazonaws.com",
+        telemetries: ["performance","errors","http"],
+        allowCookies: true,
+        enableXRay: false
+      }
+    );
+  `;
+
   return (
     <html lang="en">
       <head>
         <link rel="me" href="https://hachyderm.io/@r3crsvint3llgnz" />
+        {process.env.NODE_ENV === "production" &&
+          process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID &&
+          process.env.NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID && (
+            <Script
+              id="cloudwatch-rum"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{ __html: rumScript }}
+            />
+          )}
       </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-inter bg-black text-gray-100 antialiased min-h-screen`}

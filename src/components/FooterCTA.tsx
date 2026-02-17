@@ -27,6 +27,14 @@ function MastodonIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function LinktreeIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M13.51 6.11l4.74-4.74 2.12 2.12-4.74 4.74h6.52v3H15.6l4.74 4.74-2.12 2.12-6.22-6.22-6.22 6.22-2.12-2.12L8.4 11.23H1.85v-3h6.52L3.63 3.49l2.12-2.12 4.74 4.74V0h3v6.11zM10.51 13.23v10.77h3V13.23h-3z" />
+    </svg>
+  );
+}
+
 function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -69,28 +77,32 @@ export default function FooterCTA() {
   const emailHref = buildMailto();
 
   return (
-    <div className="mt-16 flex justify-center gap-4">
-      <LinkBtn href={emailHref} label="Let’s talk">
+    <div className="mt-16 flex flex-wrap justify-center gap-3">
+      <LinkBtn href={emailHref} label="Email">
         <MailIcon className="w-4 h-4" />
       </LinkBtn>
 
-      <LinkBtn href="https://r3crsvint3llgnz.substack.com/" label="Ideas in progress">
+      <LinkBtn href="https://r3crsvint3llgnz.substack.com/" label="Substack">
         <SubstackIcon className="w-4 h-4" />
       </LinkBtn>
 
       <LinkBtn
         href="https://hachyderm.io/@r3crsvint3llgnz"
         rel="me noopener noreferrer"
-        label="Join the conversation"
+        label="Mastodon"
       >
         <MastodonIcon className="w-4 h-4" />
       </LinkBtn>
 
       <LinkBtn
         href="https://github.com/r3crsvint3llgnz/recursive-prompting"
-        label="Recursive Prompting"
+        label="GitHub"
       >
         <GitHubIcon className="w-4 h-4" />
+      </LinkBtn>
+
+      <LinkBtn href="https://linktr.ee/r3crsvint3llgnz" label="Linktree">
+        <LinktreeIcon className="w-4 h-4" />
       </LinkBtn>
     </div>
   );

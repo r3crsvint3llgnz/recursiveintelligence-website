@@ -1,65 +1,139 @@
+import { genPageMetadata } from '../seo'
+
+export const metadata = genPageMetadata({
+  title: 'About',
+  description:
+    'Seth Robins — exploring AI, systems thinking, and philosophy of mind.',
+})
+
 export const dynamic = "force-static";
 export const revalidate = false;
 
 export default function AboutPage() {
   return (
-    <main className="ri-page-bg max-w-3xl mx-auto py-12 px-4">
-      <h1 className="ri-heading text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
-        About Recursive Intelligence
-      </h1>
+    <main className="max-w-3xl mx-auto py-12 px-4">
+      <h1 className="text-4xl font-extrabold tracking-tight mb-8">About</h1>
 
-      <section className="space-y-2">
-        <h2 className="text-2xl font-semibold">Vision</h2>
-        <p className="text-gray-200">
-          Delight customers through more human interaction, amplified by intelligent systems that create value neither could alone.
+      <div className="space-y-10 text-gray-200">
+        <p className="text-xl">
+          I&apos;m Seth Robins. I explore how intelligence emerges from systems —
+          in AI, in minds, in organizations.
         </p>
-      </section>
 
-      <section className="ri-section space-y-2">
-        <h2 className="text-2xl font-semibold">Mission</h2>
-        <p className="text-gray-200">
-          Translate a fast-moving AI landscape into actionable strategy and adaptive systems so people can focus on creativity and care while machines provide structure and orchestration.
-        </p>
-      </section>
+        <hr className="ri-divider" />
 
-      <section className="ri-section">
-        <h2 className="text-2xl font-semibold">Core values</h2>
-        <ul className="ri-list list-disc ml-6 text-gray-200 space-y-1.5 mt-2">
-          <li>Clarity over hype</li>
-          <li>People first, always</li>
-          <li>Recursion as a practice</li>
-          <li>Intelligence is emergent</li>
-          <li>Teach the system to teach</li>
-          <li>Thoughtful agnosticism</li>
-        </ul>
-      </section>
+        <section>
+          <h2 className="ri-heading text-2xl font-bold mb-6">What You&apos;ll Find Here</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-1">Original Research &amp; Writing</h3>
+              <p className="text-gray-400 text-sm">
+                Long-form articles exploring AI systems, philosophy of mind, and
+                industrial intelligence. I publish as ideas develop.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-1">AI/ML Briefs</h3>
+              <p className="text-gray-400 text-sm">
+                Twice-daily curated research summaries. An automated system
+                analyzes ~50 AI/ML articles every 12 hours and generates
+                synthesized briefs.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-1">AWS Experiments</h3>
+              <p className="text-gray-400 text-sm">
+                Projects I&apos;m building to explore ideas — agent frameworks,
+                industrial automation prototypes, and research tools.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-1">The Recursive Garden</h3>
+              <p className="text-gray-400 text-sm">
+                My{" "}
+                <a
+                  href="https://recursiveintelligence.xyz"
+                  className="text-orange-400 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  digital garden
+                </a>{" "}
+                is where messy thinking happens — notes, experiments, and
+                experimental fiction.
+              </p>
+            </div>
+          </div>
+        </section>
 
-      <section className="ri-section">
-        <h2 className="text-2xl font-semibold">Who this is for</h2>
-        <ul className="ri-list list-disc ml-6 text-gray-200 space-y-1.5 mt-2">
-          <li>Individuals and small teams who want expert guidance and fast validation</li>
-          <li>Small to mid businesses exploring automation and agent workflows</li>
-          <li>Education partners adopting safe, human-centered AI</li>
-        </ul>
-      </section>
+        <hr className="ri-divider" />
 
-      <section className="ri-section">
-        <h2 className="text-2xl font-semibold">How we work</h2>
-        <ul className="ri-list list-disc ml-6 text-gray-200 space-y-1.5 mt-2">
-          <li>Start small, ship fast, measure what matters</li>
-          <li>Identify a minimal, high-impact stack (no tool sprawl)</li>
-          <li>Document decisions and tradeoffs so leadership stays aligned</li>
-        </ul>
-      </section>
+        <section>
+          <h2 className="ri-heading text-2xl font-bold mb-6">Why This Exists</h2>
+          <p className="text-gray-400 mb-3">
+            This is <strong className="text-gray-200">learning in public</strong>. I&apos;m an autistic systems
+            thinker with a full-time job elsewhere, and this is my independent
+            research platform.
+          </p>
+          <p className="text-gray-400">
+            Revenue from small digital products and support helps fund AWS costs
+            for experiments, new hardware for AI research, time to develop open
+            tools, and the knowledge infrastructure I&apos;m building.
+          </p>
+          <p className="text-gray-500 text-sm mt-3">Think of it as a self-sustaining research lab.</p>
+        </section>
 
-      <section className="ri-section">
-        <h2 className="text-2xl font-semibold">Availability & guardrails</h2>
-        <ul className="ri-list list-disc ml-6 text-gray-200 space-y-1.5 mt-2">
-          <li>Limited monthly capacity to preserve quality</li>
-          <li>We avoid conflicts of interest between client engagements</li>
-          <li>No proprietary information is shared across clients</li>
-        </ul>
-      </section>
+        <hr className="ri-divider" />
+
+        <section>
+          <h2 className="ri-heading text-2xl font-bold mb-6">Connect</h2>
+          <ul className="ri-list space-y-2 text-gray-400">
+            <li>
+              <strong className="text-gray-200">Digital Garden:</strong>{" "}
+              <a href="https://recursiveintelligence.xyz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                recursiveintelligence.xyz
+              </a>
+            </li>
+            <li>
+              <strong className="text-gray-200">Substack:</strong>{" "}
+              <a href="https://substack.com/@r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                @r3crsvint3llgnz
+              </a>
+            </li>
+            <li>
+              <strong className="text-gray-200">Mastodon:</strong>{" "}
+              <a
+                href="https://hachyderm.io/@r3crsvint3llgnz"
+                className="text-orange-400 hover:underline"
+                target="_blank"
+                rel="me noopener noreferrer"
+              >
+                @r3crsvint3llgnz
+              </a>
+            </li>
+            <li>
+              <strong className="text-gray-200">GitHub:</strong>{" "}
+              <a href="https://github.com/r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                r3crsvint3llgnz
+              </a>
+            </li>
+            <li>
+              <strong className="text-gray-200">Support:</strong>{" "}
+              <a href="https://buymeacoffee.com/sethrobinsw" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                Buy Me a Coffee
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section className="border-l-4 border-orange-500 pl-4 py-2">
+          <p className="text-xs text-gray-500">
+            <strong className="text-gray-400">Disclaimer:</strong> This is a personal research project
+            representing my independent views. I am employed full-time elsewhere;
+            this site is not affiliated with my employer.
+          </p>
+        </section>
+      </div>
     </main>
   );
 }

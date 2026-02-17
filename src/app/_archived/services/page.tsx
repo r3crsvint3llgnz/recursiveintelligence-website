@@ -1,3 +1,9 @@
+/**
+ * ARCHIVED — This page is not routed (Next.js App Router excludes _prefixed dirs).
+ * Kept for reference only. Contains stale consulting-era content.
+ * Safe to delete in a future cleanup pass.
+ */
+
 export const dynamic = "force-static";
 export const revalidate = false;
 

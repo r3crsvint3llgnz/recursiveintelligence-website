@@ -1,0 +1,40 @@
+import type { Metadata } from 'next'
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const siteMetadata = require('../../data/siteMetadata')
+
+interface PageSEOProps {
+  title: string
+  description?: string
+  image?: string
+  // Allow any additional metadata fields
+  [key: string]: unknown
+}
+
+export function genPageMetadata({
+  title,
+  description,
+  image,
+  ...rest
+}: PageSEOProps): Metadata {
+  const imageArray = image 
+    ? [image] 
+    : (siteMetadata.socialBanner ? [siteMetadata.socialBanner] : [])
+
+  return {
+    title,
+    openGraph: {
+      title: `${title} | ${siteMetadata.title}`,
+      description: description || siteMetadata.description,
+      siteName: siteMetadata.title,
+      images: imageArray,
+      locale: siteMetadata.locale,
+      type: 'website',
+    },
+    twitter: {
+      title: `${title} | ${siteMetadata.title}`,
+      card: 'summary_large_image',
+      images: imageArray,
+    },
+    ...rest,
+  }
+}

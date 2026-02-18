@@ -26,7 +26,7 @@ export async function GET(): Promise<Response> {
     .map((post) => {
       const postUrl = `${SITE_URL}/blog/${post.slug}`
       const pubDate = new Date(post.date).toUTCString()
-      const categories = post.tags
+      const categories = (post.tags ?? [])
         .map((tag) => `    <category>${escapeXml(tag)}</category>`)
         .join('\n')
 
@@ -49,7 +49,7 @@ ${categories}
     <description>${escapeXml(SITE_DESCRIPTION)}</description>
     <language>en</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
-    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="${escapeXml(SITE_URL)}/feed.xml" rel="self" type="application/rss+xml" />
 ${items}
   </channel>
 </rss>`

@@ -49,7 +49,7 @@ export default async function BriefsPage() {
         <ol className="space-y-6 list-none p-0">
           {briefs.map((brief) => (
             <li key={brief.id}>
-              <article className="glass hover:bg-white/[0.06] transition-colors border-l-[3px] border-[color:var(--ri-accent)]">
+              <article className="glass transition-colors border-l-[3px] border-[color:var(--ri-accent)]">
                 {/* Title row */}
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <Link
@@ -59,7 +59,7 @@ export default async function BriefsPage() {
                     {brief.title}
                   </Link>
                   {brief.category && (
-                    <span className="shrink-0 self-start text-xs font-semibold px-2 py-0.5 rounded-full bg-[color:var(--ri-accent)] text-black">
+                    <span className="shrink-0 self-start text-xs font-semibold px-2 py-0.5 rounded-full bg-[color:var(--ri-accent)] text-[color:var(--ri-bg)]">
                       {brief.category}
                     </span>
                   )}

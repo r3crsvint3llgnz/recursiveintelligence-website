@@ -1,0 +1,32 @@
+---
+title: "Hello, World: The Recursive Intelligence Blog"
+description: "Introducing the Recursive Intelligence blog — a space for ideas on AI, systems thinking, and the craft of working with language models."
+date: 2026-02-17
+tags: ["meta", "launch"]
+featured: true
+access: public
+---
+
+## Why a Blog?
+
+Recursive Intelligence has always been about working carefully with language models — not just using them, but understanding what makes a prompt work, why a system behaves unexpectedly, and how to build pipelines that stay coherent over time. A lot of that knowledge lives in notebooks, conversation logs, and internal documents. This blog is where it surfaces.
+
+## What to Expect
+
+Posts here will cover prompt engineering methodology, architecture decisions for LLM-integrated systems, and occasional deep dives into specific tools or patterns. When something breaks in an interesting way, we will write about that too. The goal is precision over volume: fewer posts, more depth.
+
+> "The map is not the territory — but a good map, built recursively, gets closer with every iteration."
+
+## A Note on the Stack
+
+This site is built with Next.js and processes posts through [contentlayer2](https://github.com/timlrx/contentlayer2), which means every MDX file is type-checked against a schema at build time. That constraint is intentional: structured frontmatter makes content queryable and keeps the rendering layer honest.
+
+```ts
+// Every post resolves a slug and reading time at build time
+computedFields: {
+  slug: { resolve: (post) => post._raw.flattenedPath.replace(/^blog\//, '') },
+  readingTime: { resolve: (post) => Math.ceil(post.body.raw.split(/\s+/).length / 200) },
+}
+```
+
+More soon.

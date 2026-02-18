@@ -9,6 +9,8 @@
     "lint": "eslint src/"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.992.0",
+    "@aws-sdk/lib-dynamodb": "^3.992.0",
     "@tailwindcss/typography": "^0.5.19",
     "contentlayer2": "^0.5.8",
     "next": "^16.1.6",

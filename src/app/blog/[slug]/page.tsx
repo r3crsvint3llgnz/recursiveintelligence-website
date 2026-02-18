@@ -5,7 +5,9 @@ import { allPosts } from "contentlayer/generated";
 import MDXContent from "../../../components/MDXContent";
 
 export function generateStaticParams() {
-  return allPosts.map((post) => ({ slug: post.slug }));
+  return allPosts
+    .filter((post) => post.access === "public")
+    .map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -47,7 +49,7 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const post = allPosts.find((p) => p.slug === slug);
 
-  if (!post) {
+  if (!post || post.access !== "public") {
     return notFound();
   }
 

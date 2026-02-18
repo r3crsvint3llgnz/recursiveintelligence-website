@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getBriefs } from "@/lib/briefs";
+import { getBriefs, isTableNotProvisionedError } from "@/lib/briefs";
 import type { Brief } from "@/types/brief";
 
 export const dynamic = "force-dynamic";
@@ -23,9 +23,13 @@ export default async function BriefsPage() {
 
   try {
     briefs = await getBriefs();
-  } catch {
-    // DynamoDB table may not yet be provisioned in dev — render empty state.
-    briefs = [];
+  } catch (err) {
+    if (isTableNotProvisionedError(err)) {
+      // Table not yet provisioned in this environment — render empty state.
+      briefs = [];
+    } else {
+      throw err;
+    }
   }
 
   return (

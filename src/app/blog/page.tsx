@@ -23,7 +23,7 @@ const ACCESS_LABELS: Record<string, string> = {
 
 export default function BlogPage() {
   const posts = allPosts
-    .slice()
+    .filter((p) => p.access === "public")
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (

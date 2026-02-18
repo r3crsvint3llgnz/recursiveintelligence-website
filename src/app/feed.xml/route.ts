@@ -1,6 +1,6 @@
 import { allPosts } from 'contentlayer/generated'
+import { getBaseUrl } from '@/lib/baseUrl'
 
-const SITE_URL = 'https://www.recursiveintelligence.com'
 const SITE_TITLE = 'Recursive Intelligence'
 const SITE_DESCRIPTION =
   'AI strategy, research, and tools for the intelligent enterprise'
@@ -10,9 +10,12 @@ function escapeXml(text: string): string {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
 }
 
 export async function GET(): Promise<Response> {
+  const SITE_URL = getBaseUrl()
   const publicPosts = allPosts
     .filter((post) => post.access === 'public')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -33,7 +36,7 @@ export async function GET(): Promise<Response> {
       return `  <item>
     <title>${escapeXml(post.title)}</title>
     <link>${escapeXml(postUrl)}</link>
-    <description><![CDATA[${post.description}]]></description>
+    <description>${escapeXml(post.description)}</description>
     <pubDate>${pubDate}</pubDate>
     <guid isPermaLink="true">${escapeXml(postUrl)}</guid>
 ${categories}

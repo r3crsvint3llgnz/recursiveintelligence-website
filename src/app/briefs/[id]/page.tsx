@@ -6,6 +6,11 @@ import type { BriefItem } from "@/types/brief";
 
 export const dynamic = "force-dynamic";
 
+function isSafeUrl(url: string): boolean {
+  const lower = url.toLowerCase();
+  return lower.startsWith("http:") || lower.startsWith("https:");
+}
+
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {
     year: "numeric",
@@ -96,7 +101,7 @@ export default async function BriefDetailPage({
         <ol className="space-y-3 ri-list pl-6 list-decimal">
           {brief.items.map((item: BriefItem, index: number) => (
             <li key={index} className="text-[color:var(--ri-fg)] leading-relaxed">
-              {item.url ? (
+              {item.url && isSafeUrl(item.url) ? (
                 <a
                   href={item.url}
                   target="_blank"

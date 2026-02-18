@@ -74,7 +74,7 @@ export default function BlogPage() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-gray-300 leading-relaxed mb-4">
+                  <p className="text-sm text-[color:var(--ri-fg)] leading-relaxed mb-4">
                     {post.description}
                   </p>
 

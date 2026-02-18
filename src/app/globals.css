@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Subtle page glow (top center) */
 .ri-page-bg{ position:relative; }

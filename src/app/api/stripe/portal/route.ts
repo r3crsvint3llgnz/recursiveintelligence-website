@@ -2,9 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { getActiveSession, getSessionRecord } from '@/lib/sessions'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-
 export async function POST(req: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
   const baseUrl   = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
   const sessionId = req.cookies.get('ri_session')?.value
 

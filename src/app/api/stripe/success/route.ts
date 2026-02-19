@@ -3,11 +3,10 @@ import Stripe from 'stripe'
 import { randomUUID } from 'crypto'
 import { createSession } from '@/lib/sessions'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-
 export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
   const checkoutSessionId = req.nextUrl.searchParams.get('checkout_session_id')
 

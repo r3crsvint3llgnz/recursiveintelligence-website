@@ -49,6 +49,15 @@ export async function getSessionRecord(sessionId: string): Promise<SessionRecord
   return result.Item ? (result.Item as SessionRecord) : null
 }
 
+export async function getSessionBySubscriptionId(
+  stripeCustomerId: string,
+  stripeSubscriptionId: string
+): Promise<SessionRecord | null> {
+  // Check if a session already exists for this customer+subscription combination
+  const sessions = await getSessionsByCustomerId(stripeCustomerId)
+  return sessions.find((s) => s.stripe_subscription_id === stripeSubscriptionId) ?? null
+}
+
 export async function getSessionsByCustomerId(
   stripeCustomerId: string
 ): Promise<SessionRecord[]> {

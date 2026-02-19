@@ -20,6 +20,9 @@ export function isSafeUrl(raw: string): boolean {
   // Block all bare IPv4 addresses (covers public IPs, RFC-1918, and link-local)
   if (BARE_IPV4.test(host)) return false
 
+  // Block all IPv6 addresses (any hostname with brackets)
+  if (host.includes('[') || host.includes(']')) return false
+
   // Must have at least one dot (blocks single-label names like "internal")
   if (!host.includes('.')) return false
 

@@ -6,18 +6,10 @@ import { getBrief } from '@/lib/briefs'
 import { getActiveSession } from '@/lib/sessions'
 import { BriefBody } from '@/components/BriefBody'
 import { genPageMetadata } from '../../seo'
+import { isSafeUrl } from '@/lib/isSafeUrl'
 import type { BriefItem } from '@/types/brief'
 
 export const dynamic = 'force-dynamic'
-
-function isSafeExternalUrl(url: string): boolean {
-  try {
-    const u = new URL(url)
-    return u.protocol === 'https:'
-  } catch {
-    return false
-  }
-}
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -117,7 +109,7 @@ export default async function BriefDetailPage({
         <ol className="space-y-4 list-none p-0">
           {brief.items.map((item: BriefItem, index: number) => (
             <li key={index} className="glass">
-              {isSafeExternalUrl(item.url) ? (
+              {isSafeUrl(item.url) ? (
                 <a
                   href={item.url}
                   target="_blank"

@@ -30,6 +30,16 @@ describe('isSafeUrl', () => {
   it('rejects 0.0.0.0', () =>
     expect(isSafeUrl('https://0.0.0.0/')).toBe(false))
 
+  // IPv6 addresses (all blocked)
+  it('rejects IPv6 link-local', () =>
+    expect(isSafeUrl('https://[fe80::1]/')).toBe(false))
+  it('rejects IPv6 unique local', () =>
+    expect(isSafeUrl('https://[fc00::1]/')).toBe(false))
+  it('rejects IPv6 site-local (deprecated)', () =>
+    expect(isSafeUrl('https://[fec0::1]/')).toBe(false))
+  it('rejects IPv6 public address', () =>
+    expect(isSafeUrl('https://[2001:4860:4860::8888]/')).toBe(false))
+
   // RFC-1918 and bare IPs (all blocked by bare-IP regex)
   it('rejects 10.x.x.x', () =>
     expect(isSafeUrl('https://10.0.0.1/')).toBe(false))

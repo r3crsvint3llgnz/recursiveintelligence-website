@@ -62,7 +62,7 @@ src/
     EmailCTA.tsx        # Email CTA component
     brand/              # SVG brand mark components
   lib/
-    baseUrl.ts          # NEXT_PUBLIC_SITE_URL → Vercel URL → localhost fallback
+    baseUrl.ts          # NEXT_PUBLIC_SITE_URL → localhost fallback (set in Amplify env vars)
     email.ts            # mailto: URI builder
 
 data/

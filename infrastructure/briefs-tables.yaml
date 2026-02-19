@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: DynamoDB tables for the recursiveintelligence.io briefs feature
+
+Resources:
+  BriefsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: briefs
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: entity_type
+          AttributeType: S
+        - AttributeName: date
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: entity_type-date-index
+          KeySchema:
+            - AttributeName: entity_type
+              KeyType: HASH
+            - AttributeName: date
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+
+  BriefSessionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: brief_sessions
+      BillingMode: PAY_PER_REQUEST
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      AttributeDefinitions:
+        - AttributeName: session_id
+          AttributeType: S
+        - AttributeName: stripe_customer_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: session_id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: stripe_customer_id-index
+          KeySchema:
+            - AttributeName: stripe_customer_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
+Outputs:
+  BriefsTableName:
+    Value: !Ref BriefsTable
+    Export:
+      Name: briefs-table-name
+
+  BriefSessionsTableName:
+    Value: !Ref BriefSessionsTable
+    Export:
+      Name: brief-sessions-table-name

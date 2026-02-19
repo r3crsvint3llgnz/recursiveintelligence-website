@@ -3,7 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const items = [
-  { href: "/about",    label: "About" }
+  { href: "/about",    label: "About" },
+  { href: "/briefs",   label: "Briefs" },
 ];
 
 export default function NavTabs(){

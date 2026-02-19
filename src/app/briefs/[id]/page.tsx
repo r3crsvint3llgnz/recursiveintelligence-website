@@ -95,6 +95,12 @@ export default async function BriefDetailPage({
         </div>
       </div>
 
+      {brief.category === 'AI/ML' && (
+        <p className="text-[color:var(--ri-muted)] text-sm font-medium tracking-wide mb-8 italic">
+          Making the Future Evenly Distributed.
+        </p>
+      )}
+
       <p className="text-[color:var(--ri-fg)] text-base leading-relaxed mb-10 max-w-2xl">
         {brief.summary}
       </p>

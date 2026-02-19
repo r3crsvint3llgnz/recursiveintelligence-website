@@ -28,7 +28,7 @@ export default function ResearchApplied() {
         {research.map((item) => (
           <li
             key={item.title}
-            className="glass border-l-4 border-[color:var(--ri-accent)] rounded-l-none"
+            className="glass border-l-4 border-[color:var(--ri-accent)]"
           >
             <h3 className="text-lg font-semibold text-[color:var(--ri-fg)] mb-1">
               {item.title}

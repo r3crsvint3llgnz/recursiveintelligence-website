@@ -191,20 +191,27 @@ See `.env.example` for documentation. Create `.env.local` for local dev (gitigno
 Amplify is configured with `NODE_VERSION=20` (npm 10.x) via a branch environment variable.
 The build spec runs `npm ci`, which is strict about lock file consistency.
 
-**Always regenerate `package-lock.json` using Node 20 before pushing to main:**
+**Always regenerate `package-lock.json` using Node 20 before pushing to main.**
+Run all commands in a single shell to ensure the Node version actually takes effect:
 
 ```bash
-nvm use 20
-rm package-lock.json
-npm install
-npm ci   # verify it passes before committing
+# Must be a single shell invocation — nvm use does not persist across shell calls
+. ~/.nvm/nvm.sh && nvm use v20 && \
+  rm -f package-lock.json && \
+  npm install && \
+  npm ci    # must pass here before committing
 git add package-lock.json
 ```
 
+**Critical:** Do NOT use `npm install --prefix /path/to/project` from a parent directory.
+Running install from outside the project root produces an incomplete lock file that is
+missing transitive deps (e.g. `@swc/helpers@0.5.18`) and will fail `npm ci` on Amplify.
+Always `cd` into the project directory first, or run the above from within it.
+
 **Why this matters:** npm 11+ (Node 22+) adds `"peer": true` annotations and other fields
 to lock files that npm 10 does not write. When `npm ci` runs on Amplify with npm 10, it
-sees those annotations as an out-of-sync lock file and fails — even though `package.json`
-hasn't changed. This has broken Amplify deploys twice (jobs 19–21, 2026-02-18/19).
+sees the lock file as out of sync and fails — even though `package.json` hasn't changed.
+This has broken Amplify deploys multiple times (2026-02-19).
 
 AI coding agents (Copilot, etc.) running on newer Node versions will silently regenerate
 the lock file in an incompatible format when they run `npm install`. Always check

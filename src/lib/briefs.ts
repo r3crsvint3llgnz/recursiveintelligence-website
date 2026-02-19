@@ -5,6 +5,16 @@ import { Brief, BriefItem } from '@/types/brief'
 
 const client = new DynamoDBClient({
   region: process.env.APP_REGION ?? 'us-east-1',
+  // Amplify SSR Lambda runs in a managed account with no access to this account's DynamoDB.
+  // Credentials for `amplify-briefs-writer` IAM user are embedded at build time via next.config.ts.
+  ...(process.env.BRIEFS_AWS_ACCESS_KEY_ID
+    ? {
+        credentials: {
+          accessKeyId: process.env.BRIEFS_AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.BRIEFS_AWS_SECRET_ACCESS_KEY ?? '',
+        },
+      }
+    : {}),
 })
 
 const docClient = DynamoDBDocumentClient.from(client)

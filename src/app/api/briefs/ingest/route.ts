@@ -45,21 +45,13 @@ const HMAC_KEY = randomBytes(32)
 
 function validateApiKey(req: NextRequest): boolean {
   const apiKey = process.env.BRIEF_API_KEY
-  if (!apiKey) {
-    console.log('[ingest] auth: BRIEF_API_KEY not set')
-    return false
-  }
+  if (!apiKey) return false
   const authHeader = req.headers.get('authorization') ?? ''
   const match = authHeader.match(/^Bearer (.+)$/)
-  if (!match) {
-    console.log('[ingest] auth: no Bearer header')
-    return false
-  }
+  if (!match) return false
   const ha = createHmac('sha256', HMAC_KEY).update(match[1]).digest()
   const hb = createHmac('sha256', HMAC_KEY).update(apiKey).digest()
-  const ok = timingSafeEqual(ha, hb)
-  if (!ok) console.log('[ingest] auth: key mismatch')
-  return ok
+  return timingSafeEqual(ha, hb)
 }
 
 interface IngestBody {

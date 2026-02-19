@@ -14,7 +14,6 @@ export const metadata = genPageMetadata({
 interface PriceInfo {
   id:       string
   amount:   number
-  interval: string
   currency: string
 }
 
@@ -26,7 +25,6 @@ const getPatronPrice = unstable_cache(
     return {
       id:       price.id,
       amount:   (price.unit_amount ?? 0) / 100,
-      interval: 'month',
       currency: price.currency,
     }
   },

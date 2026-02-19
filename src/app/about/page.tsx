@@ -3,7 +3,7 @@ import { genPageMetadata } from '../seo'
 export const metadata = genPageMetadata({
   title: 'About',
   description:
-    'Seth Robins — exploring AI, systems thinking, and philosophy of mind.',
+    'Seth Robins — translating cognitive science and AI research into practical frameworks for human-AI collaboration.',
 })
 
 export const dynamic = "force-static";
@@ -16,8 +16,9 @@ export default function AboutPage() {
 
       <div className="space-y-10 text-gray-200">
         <p className="text-xl">
-          I&apos;m Seth Robins. I explore how intelligence emerges from systems —
-          in AI, in minds, in organizations.
+          I&apos;m Seth Robins. I translate cognitive science and AI research
+          into practical frameworks — the kind you can actually apply to how you
+          think and collaborate with AI systems.
         </p>
 
         <hr className="ri-divider" />
@@ -28,8 +29,8 @@ export default function AboutPage() {
             <div>
               <h3 className="text-lg font-semibold mb-1">Original Research &amp; Writing</h3>
               <p className="text-gray-400 text-sm">
-                Long-form articles exploring AI systems, philosophy of mind, and
-                industrial intelligence. I publish as ideas develop.
+                Long-form articles turning peer-reviewed cognitive science and AI
+                research into actionable methodology. No theory without practice.
               </p>
             </div>
             <div>
@@ -43,8 +44,8 @@ export default function AboutPage() {
             <div>
               <h3 className="text-lg font-semibold mb-1">AWS Experiments</h3>
               <p className="text-gray-400 text-sm">
-                Projects I&apos;m building to explore ideas — agent frameworks,
-                industrial automation prototypes, and research tools.
+                Infrastructure I build to support the research — agent frameworks,
+                brief ingestion pipelines, and open tooling.
               </p>
             </div>
             <div>
@@ -71,16 +72,16 @@ export default function AboutPage() {
         <section>
           <h2 className="ri-heading text-2xl font-bold mb-6">Why This Exists</h2>
           <p className="text-gray-400 mb-3">
-            This is <strong className="text-gray-200">learning in public</strong>. I&apos;m an autistic systems
-            thinker with a full-time job elsewhere, and this is my independent
-            research platform.
+            Most AI coverage either oversimplifies the research or gets lost in
+            hype. I&apos;m an autistic systems thinker with a full-time job elsewhere —
+            this is my independent applied research platform, built to close that gap.
           </p>
           <p className="text-gray-400">
-            Revenue from small digital products and support helps fund AWS costs
-            for experiments, new hardware for AI research, time to develop open
-            tools, and the knowledge infrastructure I&apos;m building.
+            I read the studies, distill what actually holds up, and build frameworks
+            grounded in evidence. Support from readers funds AWS infrastructure, research
+            time, and open tooling.
           </p>
-          <p className="text-gray-500 text-sm mt-3">Think of it as a self-sustaining research lab.</p>
+          <p className="text-gray-500 text-sm mt-3">Think of it as a self-sustaining applied research lab.</p>
         </section>
 
         <hr className="ri-divider" />

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* Subtle page glow (top center) */
 .ri-page-bg{ position:relative; }
@@ -24,7 +25,7 @@
 /* Section divider */
 .ri-section{
   margin-top:2rem; padding-top:2rem;
-  border-top:1px solid color-mix(in oklab, white 12%, transparent);
+  border-top:1px solid var(--ri-border);
 }
 
 /* Accent list markers */
@@ -39,8 +40,20 @@
   --ri-info:#36a7af;
   --ri-warning:#f5c42e;
   --ri-danger:#b43c3c;
+  --ri-border: rgba(255,255,255,0.12);
 }
 body{ background-color:var(--ri-bg); color:var(--ri-fg); }
+[data-theme="light"]{
+  --ri-bg:#ffffff;
+  --ri-fg:#1a1a1a;
+  --ri-muted:#6b7280;
+  --ri-accent:#e55a00;
+  --ri-accent-700:#c44d00;
+  --ri-border: rgba(0,0,0,0.12);
+  --ri-info:#1a7f87;
+  --ri-warning:#a07700;
+  --ri-danger:#9b1c1c;
+}
 
 /* Accent ring + border */
 .ri-accent-ring:focus-visible{ outline:2px solid var(--ri-accent); outline-offset:2px; }
@@ -78,6 +91,11 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   backdrop-filter: blur(8px);
 }
 .glass:hover{ background: rgba(255,255,255,0.06); }
+[data-theme="light"] .glass{
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.10);
+}
+[data-theme="light"] .glass:hover{ background: rgba(0,0,0,0.06); }
 
 /* Hero entrance animation */
 @keyframes ri-fade-up {

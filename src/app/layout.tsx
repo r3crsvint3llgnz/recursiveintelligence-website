@@ -8,6 +8,8 @@ import AccentBar from "../components/AccentBar";
 import NavTabs from "../components/NavTabs";
 import R3IMarkFinal from "../components/brand/R3IMarkFinal";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import ThemeToggle from "../components/ThemeToggle";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -65,18 +67,21 @@ export const metadata: Metadata = {
 
 function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 bg-black z-50 px-4 py-3 border-b border-gray-800">
+    <header className="fixed top-0 left-0 right-0 bg-[color:var(--ri-bg)] z-50 px-4 py-3 border-b border-[color:var(--ri-border)]">
       <div className="max-w-3xl mx-auto flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-2 font-bold"
         >
           <R3IMarkFinal size={20} />
-          <span className={`${spaceGrotesk.variable} font-space-grotesk tracking-tight text-lg text-gray-100 hover:text-[color:var(--ri-accent)] transition-colors`}>
+          <span className={`${spaceGrotesk.variable} font-space-grotesk tracking-tight text-lg text-[color:var(--ri-fg)] hover:text-[color:var(--ri-accent)] transition-colors`}>
             RecursiveIntelligence.io
           </span>
         </Link>
-        <NavTabs />
+        <div className="flex items-center gap-2">
+          <NavTabs />
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
@@ -89,8 +94,8 @@ function Footer() {
     "https://recursiveintelligence.xyz/";
   
   return (
-    <footer className="mt-16 py-8 border-t border-gray-800">
-      <div className="max-w-3xl mx-auto px-4 text-center text-sm text-gray-400">
+    <footer className="mt-16 py-8 border-t border-[color:var(--ri-border)]">
+      <div className="max-w-3xl mx-auto px-4 text-center text-sm text-[color:var(--ri-muted)]">
         <p>
           © {currentYear} Recursive Intelligence —{" "}
           <Link href="/privacy" className="ri-link">
@@ -153,7 +158,7 @@ export default function RootLayout({
   `;
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="me" href="https://hachyderm.io/@r3crsvint3llgnz" />
         {process.env.NODE_ENV === "production" &&
@@ -167,17 +172,19 @@ export default function RootLayout({
           )}
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-inter bg-black text-gray-100 antialiased min-h-screen`}
+        className={`${inter.variable} ${spaceGrotesk.variable} font-inter antialiased min-h-screen`}
       >
-        <Header />
-        <AccentBar />
-        <main className="pt-16 min-h-screen">
-          <div className="max-w-3xl mx-auto px-4">
-            {children}
-            <FooterCTA />
-          </div>
-        </main>
-        <Footer />
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+          <Header />
+          <AccentBar />
+          <main className="pt-16 min-h-screen">
+            <div className="max-w-3xl mx-auto px-4">
+              {children}
+              <FooterCTA />
+            </div>
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

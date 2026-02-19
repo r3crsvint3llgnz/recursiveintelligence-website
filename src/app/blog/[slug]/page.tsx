@@ -36,11 +36,6 @@ function formatDate(dateString: string): string {
   });
 }
 
-const ACCESS_LABELS: Record<string, string> = {
-  members: "Members",
-  paid: "Paid",
-};
-
 export default async function BlogPostPage({
   params,
 }: {
@@ -53,9 +48,6 @@ export default async function BlogPostPage({
     return notFound();
   }
 
-  const accessLabel =
-    post.access !== "public" ? ACCESS_LABELS[post.access] : null;
-
   return (
     <article className="py-12">
       {/* Back link */}
@@ -67,17 +59,9 @@ export default async function BlogPostPage({
 
       {/* Post header */}
       <header className="mb-10 ri-fade-up">
-        {/* Title + access badge */}
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <h1 className="ri-heading font-space-grotesk text-4xl font-bold leading-tight">
-            {post.title}
-          </h1>
-          {accessLabel !== null && (
-            <span className="shrink-0 self-start text-xs font-semibold px-2 py-0.5 rounded-full bg-[color:var(--ri-accent)] text-black mt-1">
-              {accessLabel}
-            </span>
-          )}
-        </div>
+        <h1 className="ri-heading font-space-grotesk text-4xl font-bold leading-tight mb-4">
+          {post.title}
+        </h1>
 
         {/* Meta row */}
         <div className="flex items-center gap-3 text-sm text-[color:var(--ri-muted)] mb-4">

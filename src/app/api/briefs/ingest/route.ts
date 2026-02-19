@@ -123,7 +123,8 @@ export async function POST(req: NextRequest) {
       existing.date     === data.date &&
       existing.summary  === data.summary &&
       existing.category === data.category &&
-      existing.body     === data.body
+      existing.body     === data.body &&
+      JSON.stringify(existing.items) === JSON.stringify(data.items)
     ) {
       return NextResponse.json({ id }, { status: 201 })
     }

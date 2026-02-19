@@ -111,6 +111,29 @@ export async function POST(req: NextRequest) {
   )
   const previousId = (pointerResult.Item as { current_id?: string } | undefined)?.current_id
 
+  // Collision check: if id already exists with different content, return 409
+  const existingResult = await docClient.send(
+    new GetCommand({ TableName: TABLE_NAME, Key: { id } })
+  )
+  if (existingResult.Item) {
+    const existing = existingResult.Item
+    // Same content (idempotent re-ingest) → treat as success, skip transaction
+    if (
+      existing.title    === data.title &&
+      existing.date     === data.date &&
+      existing.summary  === data.summary &&
+      existing.category === data.category &&
+      existing.body     === data.body
+    ) {
+      return NextResponse.json({ id }, { status: 201 })
+    }
+    // Different content → conflict
+    return NextResponse.json(
+      { error: `Brief with id "${id}" already exists with different content` },
+      { status: 409 }
+    )
+  }
+
   const newBrief: Brief = {
     id,
     entity_type: 'brief',

@@ -16,7 +16,16 @@ export default function AboutPage() {
 
       <div className="space-y-10 text-gray-200">
         <p className="text-xl">
-          I&apos;m Seth Robins. I translate cognitive science and AI research
+          I&apos;m{" "}
+          <a
+            href="https://www.linkedin.com/in/sethrobins1010/"
+            className="text-orange-400 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Seth Robins
+          </a>
+          . I translate cognitive science and AI research
           into practical frameworks — the kind you can actually apply to how you
           think and collaborate with AI systems.
         </p>

@@ -82,7 +82,7 @@ export default function FooterCTA() {
         <MailIcon className="w-4 h-4" />
       </LinkBtn>
 
-      <LinkBtn href="https://r3crsvint3llgnz.substack.com/" label="Substack">
+      <LinkBtn href="https://recursiveintelligence.substack.com" label="Substack">
         <SubstackIcon className="w-4 h-4" />
       </LinkBtn>
 

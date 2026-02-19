@@ -35,6 +35,7 @@ export default function HomeHero() {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-semibold bg-[color:var(--ri-accent)] text-black hover:bg-[color:var(--ri-accent-700)] transition-colors"
+          aria-label="Subscribe to Recursive Intelligence newsletter"
         >
           Subscribe to Newsletter
         </a>
@@ -43,6 +44,7 @@ export default function HomeHero() {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-semibold border-2 border-[color:var(--ri-accent)] text-[color:var(--ri-accent)] hover:bg-[color:var(--ri-accent)] hover:text-black transition-colors"
+          aria-label="View Recursive Prompting research on GitHub"
         >
           View Research
         </a>

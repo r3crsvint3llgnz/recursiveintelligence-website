@@ -1,7 +1,7 @@
 export default function DisambiguationBanner() {
   return (
-    <div className="w-full border-b border-yellow-900/20 bg-yellow-900/10 py-2 px-4">
-      <p className="text-center text-sm text-yellow-200/80">
+    <div className="w-full border-b border-yellow-900/20 bg-yellow-900/30 py-2 px-4">
+      <p className="text-center text-sm text-yellow-50">
         <strong>Looking for Ricursive (the AI chip design company)?</strong>{" "}
         You want{" "}
         <a

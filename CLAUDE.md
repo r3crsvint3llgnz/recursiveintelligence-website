@@ -184,6 +184,34 @@ See `.env.example` for documentation. Create `.env.local` for local dev (gitigno
 
 ---
 
+## Deployment Notes
+
+### Amplify build environment
+
+Amplify is configured with `NODE_VERSION=20` (npm 10.x) via a branch environment variable.
+The build spec runs `npm ci`, which is strict about lock file consistency.
+
+**Always regenerate `package-lock.json` using Node 20 before pushing to main:**
+
+```bash
+nvm use 20
+rm package-lock.json
+npm install
+npm ci   # verify it passes before committing
+git add package-lock.json
+```
+
+**Why this matters:** npm 11+ (Node 22+) adds `"peer": true` annotations and other fields
+to lock files that npm 10 does not write. When `npm ci` runs on Amplify with npm 10, it
+sees those annotations as an out-of-sync lock file and fails — even though `package.json`
+hasn't changed. This has broken Amplify deploys twice (jobs 19–21, 2026-02-18/19).
+
+AI coding agents (Copilot, etc.) running on newer Node versions will silently regenerate
+the lock file in an incompatible format when they run `npm install`. Always check
+`git diff package-lock.json` after any AI-assisted PR and regenerate under Node 20 if needed.
+
+---
+
 ## Module Roadmap
 
 | Module | Status | Scope |

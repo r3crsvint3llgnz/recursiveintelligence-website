@@ -240,6 +240,7 @@ stubs — convert `<a>` to `<Link>` when those routes are built.
 | `BRIEFS_TABLE_NAME` | DynamoDB table name (`briefs`) | prod only |
 | `BRIEFS_AWS_ACCESS_KEY_ID` | IAM user `amplify-briefs-writer` access key | prod only |
 | `BRIEFS_AWS_SECRET_ACCESS_KEY` | IAM user `amplify-briefs-writer` secret key | prod only |
+| `OWNER_ACCESS_TOKEN` | Secret token gating World brief detail pages (`?t=`) | prod only |
 
 See `.env.example` for documentation. Create `.env.local` for local dev (gitignored).
 
@@ -362,17 +363,8 @@ These appear in every build log and can be ignored:
 | 6 — AWS Amplify + Analytics | 🔄 Partial | Amplify configured and deploying; CloudWatch RUM activation pending |
 | 7 — Content migration | Planned | Migrate Substack articles to MDX |
 
-### Known issues to fix before next production run (PM brief)
+### Brief ID format
 
-1. **Brief ID collision** — `route.ts:119` uses `date.slice(0,10)` which loses time-of-day.
-   AM and PM briefs for the same category produce the same ID → PM brief is silently dropped.
-   Fix: derive `am`/`pm` from the hour and include in the ID:
-   ```typescript
-   const hour = new Date(data.date).getUTCHours()
-   const period = hour < 12 ? 'am' : 'pm'
-   const id = `${data.date.slice(0, 10)}-${period}-${slugify(data.category)}`
-   ```
-
-2. **HTTP 200 mismatch** — route returns 200 for same-content re-ingest; `briefing_handler.py`
-   only accepts 201/409 and raises `RuntimeError` on 200. Fix: add 200 to the handler's
-   accepted status codes alongside 201.
+`route.ts` produces IDs like `2026-02-19-am-ai-ml` and `2026-02-19-pm-ai-ml`.
+The period (`am`/`pm`) is derived from `new Date(data.date).getUTCHours() < 12`.
+AM = 06:00 UTC, PM = 18:00 UTC as set by `_briefing_date_to_iso()` in the Lambda.

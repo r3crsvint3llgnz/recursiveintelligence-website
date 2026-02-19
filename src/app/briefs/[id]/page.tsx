@@ -34,8 +34,10 @@ export async function generateMetadata({
 
 export default async function BriefDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
 }) {
   const { id } = await params
 
@@ -47,8 +49,13 @@ export default async function BriefDetailPage({
   }
   if (!brief) notFound()
 
-  // Paywall: only the latest brief is public. All others require an active session.
-  if (!brief.is_latest) {
+  if (brief.category.toLowerCase() === 'world') {
+    // Private owner-only brief — requires owner token in query param
+    const { t } = await searchParams
+    const ownerToken = process.env.OWNER_ACCESS_TOKEN
+    if (!ownerToken || t !== ownerToken) notFound()
+  } else if (!brief.is_latest) {
+    // Paywall: only the latest public brief is free. Older ones require a subscriber session.
     const cookieStore = await cookies()
     const sessionId = cookieStore.get('ri_session')?.value
     const authorized = sessionId ? await getActiveSession(sessionId) : false

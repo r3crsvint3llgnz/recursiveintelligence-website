@@ -132,11 +132,15 @@ export async function POST(req: NextRequest) {
   const period = hour < 12 ? 'am' : 'pm'
   const id = `${data.date.slice(0, 10)}-${period}-${slugify(data.category)}`
 
-  // O(1) lookup — no scan
-  const pointerResult = await docClient.send(
-    new GetCommand({ TableName: TABLE_NAME, Key: { id: '__latest__' } })
-  )
-  const previousId = (pointerResult.Item as { current_id?: string } | undefined)?.current_id
+  // World briefs are private owner-only entries — they never become the public "latest" brief
+  const isPublic = data.category.toLowerCase() !== 'world'
+
+  // O(1) lookup — no scan (only needed for public briefs that update the pointer)
+  const previousId = isPublic ? (
+    (await docClient.send(
+      new GetCommand({ TableName: TABLE_NAME, Key: { id: '__latest__' } })
+    )).Item as { current_id?: string } | undefined
+  )?.current_id : undefined
 
   // Collision check: if id already exists with different content, return 409
   const existingResult = await docClient.send(
@@ -171,24 +175,14 @@ export async function POST(req: NextRequest) {
     category:    data.category,
     body:        data.body,
     items:       data.items,
-    is_latest:   true,
+    is_latest:   isPublic, // World briefs are never "latest" in the public sense
   }
 
-  // Build transaction: always update pointer + put new brief.
-  // Only flip previous record's is_latest if previousId exists and differs from new id.
-  // On first deploy, previousId is undefined — 2-op transaction.
+  // Build transaction: put new brief + optionally update pointer for public briefs.
   // Use ConditionExpression to prevent race conditions on brief creation.
   type TransactItem = NonNullable<TransactWriteCommandInput['TransactItems']>[0]
 
   const transactItems: TransactItem[] = [
-    {
-      Update: {
-        TableName:                 TABLE_NAME,
-        Key:                       { id: '__latest__' },
-        UpdateExpression:          'SET current_id = :cid, entity_type = :et',
-        ExpressionAttributeValues: { ':cid': id, ':et': 'brief' },
-      },
-    },
     {
       Put: {
         TableName: TABLE_NAME,
@@ -198,15 +192,25 @@ export async function POST(req: NextRequest) {
     },
   ]
 
-  if (previousId && previousId !== id) {
+  if (isPublic) {
     transactItems.push({
       Update: {
         TableName:                 TABLE_NAME,
-        Key:                       { id: previousId },
-        UpdateExpression:          'SET is_latest = :f',
-        ExpressionAttributeValues: { ':f': false },
+        Key:                       { id: '__latest__' },
+        UpdateExpression:          'SET current_id = :cid, entity_type = :et',
+        ExpressionAttributeValues: { ':cid': id, ':et': 'brief' },
       },
     })
+    if (previousId && previousId !== id) {
+      transactItems.push({
+        Update: {
+          TableName:                 TABLE_NAME,
+          Key:                       { id: previousId },
+          UpdateExpression:          'SET is_latest = :f',
+          ExpressionAttributeValues: { ':f': false },
+        },
+      })
+    }
   }
 
   try {

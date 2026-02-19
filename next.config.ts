@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
     BRIEFS_TABLE_NAME: process.env.BRIEFS_TABLE_NAME ?? 'briefs',
     BRIEFS_AWS_ACCESS_KEY_ID: process.env.BRIEFS_AWS_ACCESS_KEY_ID ?? '',
     BRIEFS_AWS_SECRET_ACCESS_KEY: process.env.BRIEFS_AWS_SECRET_ACCESS_KEY ?? '',
+    OWNER_ACCESS_TOKEN: process.env.OWNER_ACCESS_TOKEN ?? '',
   },
 }
 

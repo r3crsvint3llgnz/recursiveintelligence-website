@@ -126,7 +126,9 @@ export default async function BriefsPage() {
     if (!isTableNotProvisionedError(err)) throw err
   }
 
-  const [latestBrief, ...archiveBriefs] = briefs
+  // World briefs are private owner-only pages — exclude from public listing
+  const publicBriefs = briefs.filter(b => b.category.toLowerCase() !== 'world')
+  const [latestBrief, ...archiveBriefs] = publicBriefs
 
   return (
     <div className="py-12">
@@ -137,7 +139,7 @@ export default async function BriefsPage() {
         </p>
       </div>
 
-      {briefs.length === 0 ? (
+      {publicBriefs.length === 0 ? (
         <p className="text-[color:var(--ri-muted)]">No briefs yet. Check back soon.</p>
       ) : (
         <ol className="space-y-6 list-none p-0">

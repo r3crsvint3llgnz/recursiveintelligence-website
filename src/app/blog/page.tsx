@@ -69,7 +69,7 @@ export default function BlogPage() {
                   <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
                     {post.tags.map((tag) => (
                       <li key={tag}>
-                        <span className="text-xs px-2 py-0.5 rounded-full border border-white/20 text-[color:var(--ri-muted)]">
+                        <span className="text-xs px-2 py-0.5 rounded-full border border-[color:var(--ri-border)] text-[color:var(--ri-muted)]">
                           {tag}
                         </span>
                       </li>

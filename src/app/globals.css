@@ -25,7 +25,7 @@
 /* Section divider */
 .ri-section{
   margin-top:2rem; padding-top:2rem;
-  border-top:1px solid color-mix(in oklab, white 12%, transparent);
+  border-top:1px solid var(--ri-border);
 }
 
 /* Accent list markers */

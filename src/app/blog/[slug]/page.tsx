@@ -75,7 +75,7 @@ export default async function BlogPostPage({
           <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
             {post.tags.map((tag) => (
               <li key={tag}>
-                <span className="text-xs px-2 py-0.5 rounded-full border border-white/20 text-[color:var(--ri-muted)]">
+                <span className="text-xs px-2 py-0.5 rounded-full border border-[color:var(--ri-border)] text-[color:var(--ri-muted)]">
                   {tag}
                 </span>
               </li>
@@ -93,7 +93,7 @@ export default async function BlogPostPage({
       </div>
 
       {/* Footer back link */}
-      <div className="mt-12 pt-8 border-t border-white/10">
+      <div className="mt-12 pt-8 border-t border-[color:var(--ri-border)]">
         <Link href="/blog" className="ri-link text-sm ri-accent-ring">
           &larr; Back to Blog
         </Link>

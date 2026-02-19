@@ -13,7 +13,7 @@ export default function DisambiguationBanner() {
           ricursive.com
         </a>
         <span className="mx-2 opacity-30">|</span>
-        This is <strong>Recursive Intelligence</strong>—we study how humans interact with AI systems.
+        This is <strong>Recursive Intelligence</strong>—I research how humans interact with AI systems.
       </p>
     </div>
   );

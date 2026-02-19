@@ -31,7 +31,7 @@ export default function HomeHero() {
         style={{ animationDelay: "320ms" }}
       >
         <a
-          href="https://recursiveintelligence.substack.com"
+          href="https://substack.com/@r3crsvint3llgnz"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-semibold bg-[color:var(--ri-accent)] text-black hover:bg-[color:var(--ri-accent-700)] transition-colors"

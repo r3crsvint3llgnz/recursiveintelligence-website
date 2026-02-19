@@ -15,7 +15,7 @@ const siteMetadata = {
   mastodon: 'https://hachyderm.io/@r3crsvint3llgnz',
   email: '',
   github: 'https://github.com/r3crsvint3llgnz',
-  substack: 'https://recursiveintelligence.substack.com',
+  substack: 'https://substack.com/@r3crsvint3llgnz',
   buymeacoffee: 'https://buymeacoffee.com/sethrobinsw',
   locale: 'en-US',
   // Analytics - configure in Module 6

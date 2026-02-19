@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { randomUUID } from 'crypto'
 import { createSession } from '@/lib/sessions'
+import { getStripe } from '@/lib/stripeClient'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
   const checkoutSessionId = req.nextUrl.searchParams.get('checkout_session_id')
 
@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
   let checkoutSession: Stripe.Checkout.Session
   try {
-    checkoutSession = await stripe.checkout.sessions.retrieve(checkoutSessionId, {
+    checkoutSession = await getStripe().checkout.sessions.retrieve(checkoutSessionId, {
       expand: ['subscription'],
     })
   } catch {
@@ -27,7 +27,10 @@ export async function GET(req: NextRequest) {
     return NextResponse.redirect(`${baseUrl}/subscribe?error=payment_incomplete`)
   }
 
-  const subscription = checkoutSession.subscription as Stripe.Subscription
+  const subscription = checkoutSession.subscription
+  if (!subscription || typeof subscription === 'string') {
+    return NextResponse.redirect(`${baseUrl}/subscribe?error=payment_incomplete`)
+  }
   const riSessionId = randomUUID()
 
   try {

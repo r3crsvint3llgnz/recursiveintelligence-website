@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { updateSessionStatus } from '@/lib/sessions'
+import { getStripe } from '@/lib/stripeClient'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
   const sig    = req.headers.get('stripe-signature')
   const secret = process.env.STRIPE_WEBHOOK_SECRET
 
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
 
   let event: Stripe.Event
   try {
-    event = stripe.webhooks.constructEvent(bodyBuffer, sig, secret)
+    event = getStripe().webhooks.constructEvent(bodyBuffer, sig, secret)
   } catch (err) {
     console.error('Webhook signature verification failed:', err)
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })

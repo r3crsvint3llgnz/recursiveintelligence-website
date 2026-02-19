@@ -1,23 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Stripe from 'stripe'
-import { getActiveSession, getSessionRecord } from '@/lib/sessions'
+import { getSessionRecord } from '@/lib/sessions'
+import { getStripe } from '@/lib/stripeClient'
 
 export async function POST(req: NextRequest) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
   const baseUrl   = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
   const sessionId = req.cookies.get('ri_session')?.value
 
-  if (!sessionId || !(await getActiveSession(sessionId))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
-
-  const record = await getSessionRecord(sessionId)
-  if (!record) {
+  const record = sessionId ? await getSessionRecord(sessionId) : null
+  if (!record || record.status !== 'active') {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
   try {
-    const portalSession = await stripe.billingPortal.sessions.create({
+    const portalSession = await getStripe().billingPortal.sessions.create({
       customer:   record.stripe_customer_id,
       return_url: `${baseUrl}/account`,
     })

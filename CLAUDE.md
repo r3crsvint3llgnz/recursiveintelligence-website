@@ -209,17 +209,6 @@ stubs — convert `<a>` to `<Link>` when those routes are built.
 
 ---
 
-## Pending Copy Updates
-
-These are known copy issues to fix in the next editing pass:
-
-- **"We" → "I" audit:** Several components still use "we/our" framing — this is Seth's personal
-  site. Components to update:
-  - `src/components/ValueProp.tsx` — "What We Do", "We didn't.", "We take research..."
-  - `src/components/DisambiguationBanner.tsx` — "we study how humans interact with AI systems"
-
----
-
 ## Key Constraints
 
 - **No consulting language.** This is a research/personal site. No "clients", "services",

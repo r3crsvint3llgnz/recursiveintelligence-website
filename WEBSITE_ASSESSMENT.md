@@ -305,7 +305,7 @@ recursiveintelligence-website/
 **Technical Considerations:**
 - Next.js API routes for backend
 - Next.js middleware for auth
-- Vercel + AWS integration patterns
+- AWS Amplify + service integration patterns
 - Subdomain management
 
 ### Goal 3: Thought Leadership Platform

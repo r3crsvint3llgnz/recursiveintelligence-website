@@ -80,7 +80,7 @@ This repository now contains a comprehensive assessment of the Recursive Intelli
 - Next.js 15, React 19, TypeScript 5, Tailwind CSS 4
 - Professional design and brand identity
 - Fast static site with good SEO
-- Deployed on Vercel
+- Deployed on AWS Amplify
 
 ⚠️ **Critical Issues**
 - **3 npm vulnerabilities** (1 critical RCE in Next.js)

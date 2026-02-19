@@ -128,7 +128,9 @@ export async function POST(req: NextRequest) {
   }
 
   const { data } = validated
-  const id = `${data.date.slice(0, 10)}-${slugify(data.category)}`
+  const hour = new Date(data.date).getUTCHours()
+  const period = hour < 12 ? 'am' : 'pm'
+  const id = `${data.date.slice(0, 10)}-${period}-${slugify(data.category)}`
 
   // O(1) lookup — no scan
   const pointerResult = await docClient.send(

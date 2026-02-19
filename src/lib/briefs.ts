@@ -44,8 +44,25 @@ export function isTableNotProvisionedError(err: unknown): boolean {
 }
 
 export async function getBriefs(): Promise<Brief[]> {
-  const response = await docClient.send(new ScanCommand({ TableName: TABLE_NAME }))
-  const items = (response.Items ?? []).map(normalizeBrief).filter((b): b is Brief => b !== null)
+  const items: Brief[] = []
+  let lastEvaluatedKey: Record<string, unknown> | undefined
+
+  do {
+    const response = await docClient.send(
+      new ScanCommand({
+        TableName: TABLE_NAME,
+        ExclusiveStartKey: lastEvaluatedKey,
+      })
+    )
+
+    const briefs = (response.Items ?? [])
+      .map(normalizeBrief)
+      .filter((b): b is Brief => b !== null)
+    
+    items.push(...briefs)
+    lastEvaluatedKey = response.LastEvaluatedKey as Record<string, unknown> | undefined
+  } while (lastEvaluatedKey)
+
   return items.sort((a, b) => b.date.localeCompare(a.date))
 }
 

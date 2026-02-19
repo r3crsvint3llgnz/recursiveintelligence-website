@@ -10,8 +10,8 @@ const siteMetadata = {
   siteUrl:
     process.env.NEXT_PUBLIC_SITE_URL || 'https://recursiveintelligence.io',
   gardenUrl: 'https://recursiveintelligence.xyz',
-  siteLogo: '/static/images/logo.png',
-  socialBanner: '/static/images/twitter-card.png',
+  siteLogo: null,
+  socialBanner: null,
   mastodon: 'https://hachyderm.io/@r3crsvint3llgnz',
   email: '',
   github: 'https://github.com/r3crsvint3llgnz',

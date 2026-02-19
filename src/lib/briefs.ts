@@ -62,18 +62,28 @@ export function isTableNotProvisionedError(err: unknown): boolean {
 export async function getBriefs(): Promise<Brief[]> {
   // Uses entity_type-date-index GSI for reverse-chronological order without a scan.
   // FilterExpression excludes the __latest__ pointer record (which also has entity_type="brief").
-  const response = await docClient.send(new QueryCommand({
-    TableName: TABLE_NAME,
-    IndexName: GSI_NAME,
-    KeyConditionExpression: 'entity_type = :et',
-    FilterExpression: 'id <> :latest',
-    ExpressionAttributeValues: {
-      ':et': 'brief',
-      ':latest': '__latest__',
-    },
-    ScanIndexForward: false,
-  }))
-  return (response.Items ?? []).map(normalizeBrief).filter((b): b is Brief => b !== null)
+  // Paginate to handle tables growing beyond DynamoDB's 1 MB per-response limit.
+  const allItems: Record<string, unknown>[] = []
+  let lastKey: Record<string, unknown> | undefined
+
+  do {
+    const response = await docClient.send(new QueryCommand({
+      TableName: TABLE_NAME,
+      IndexName: GSI_NAME,
+      KeyConditionExpression: 'entity_type = :et',
+      FilterExpression: 'id <> :latest',
+      ExpressionAttributeValues: {
+        ':et': 'brief',
+        ':latest': '__latest__',
+      },
+      ScanIndexForward: false,
+      ...(lastKey ? { ExclusiveStartKey: lastKey } : {}),
+    }))
+    allItems.push(...(response.Items ?? []))
+    lastKey = response.LastEvaluatedKey as Record<string, unknown> | undefined
+  } while (lastKey)
+
+  return allItems.map(normalizeBrief).filter((b): b is Brief => b !== null)
 }
 
 export async function getBrief(id: string): Promise<Brief | null> {

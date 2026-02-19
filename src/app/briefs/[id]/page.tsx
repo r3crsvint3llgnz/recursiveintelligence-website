@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBrief } from "@/lib/briefs";
-import type { BriefItem } from "@/types/brief";
+import type { Brief, BriefItem } from "@/types/brief";
+import { genPageMetadata } from "@/app/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -30,10 +31,7 @@ export async function generateMetadata({
     if (!brief) {
       return { title: "Brief Not Found" };
     }
-    return {
-      title: brief.title,
-      description: brief.summary,
-    };
+    return genPageMetadata({ title: brief.title, description: brief.summary });
   } catch {
     return { title: "Brief Not Found" };
   }
@@ -46,7 +44,7 @@ export default async function BriefDetailPage({
 }) {
   const { id } = await params;
 
-  let brief;
+  let brief: Brief | null = null;
   try {
     brief = await getBrief(id);
   } catch {

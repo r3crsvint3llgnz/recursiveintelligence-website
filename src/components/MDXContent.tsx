@@ -11,7 +11,9 @@ interface MDXImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 
 function MDXImage({ src, alt, ...props }: MDXImageProps) {
   if (!src) return null;
-  if (src.endsWith(".gif")) {
+  const urlPath = src.split("?")[0].split("#")[0];
+  if (urlPath.toLowerCase().endsWith(".gif")) {
+    // Plain <img> preserves GIF animation — Next.js <Image> strips frames
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
@@ -23,13 +25,18 @@ function MDXImage({ src, alt, ...props }: MDXImageProps) {
       />
     );
   }
+  // Unknown dimensions: width/height=0 + sizes="100vw" lets Next.js
+  // serve responsive srcsets without imposing a fixed aspect ratio.
+  // Note: non-GIF branch intentionally omits ...props spread to avoid
+  // passing HTML img attributes that <Image> doesn't accept.
   return (
     <Image
       src={src}
       alt={alt ?? ""}
-      width={800}
-      height={600}
-      style={{ height: "auto", width: "100%" }}
+      width={0}
+      height={0}
+      sizes="100vw"
+      style={{ width: "100%", height: "auto" }}
       className="max-w-full"
     />
   );

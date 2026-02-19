@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import { DynamoDBDocumentClient, GetCommand, QueryCommand } from '@aws-sdk/lib-dynamodb'
 import { Brief, BriefItem } from '@/types/brief'
@@ -86,9 +87,9 @@ export async function getBriefs(): Promise<Brief[]> {
   return allItems.map(normalizeBrief).filter((b): b is Brief => b !== null)
 }
 
-export async function getBrief(id: string): Promise<Brief | null> {
+export const getBrief = cache(async (id: string): Promise<Brief | null> => {
   const response = await docClient.send(
     new GetCommand({ TableName: TABLE_NAME, Key: { id } })
   )
   return normalizeBrief(response.Item) ?? null
-}
+})

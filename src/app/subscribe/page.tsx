@@ -18,10 +18,15 @@ interface PriceInfo {
 
 const getPrices = unstable_cache(
   async (): Promise<{ monthly: PriceInfo; annual: PriceInfo }> => {
+    const monthlyId = process.env.STRIPE_PRICE_MONTHLY_ID
+    const annualId = process.env.STRIPE_PRICE_ANNUAL_ID
+    if (!monthlyId || !annualId) {
+      throw new Error('STRIPE_PRICE_MONTHLY_ID and STRIPE_PRICE_ANNUAL_ID must be set')
+    }
     const stripe = getStripe()
     const [monthly, annual] = await Promise.all([
-      stripe.prices.retrieve(process.env.STRIPE_PRICE_MONTHLY_ID!),
-      stripe.prices.retrieve(process.env.STRIPE_PRICE_ANNUAL_ID!),
+      stripe.prices.retrieve(monthlyId),
+      stripe.prices.retrieve(annualId),
     ])
     return {
       monthly: {

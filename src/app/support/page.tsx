@@ -53,7 +53,7 @@ export default async function SupportPage({ searchParams }: SupportPageProps) {
       <div className="mb-10 ri-fade-up">
         <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Support</h1>
         <p className="text-[color:var(--ri-muted)] text-lg max-w-xl">
-          This research is independent and self-funded. If it's useful to you, you can help keep it going.
+          This research is independent and self-funded. If it&apos;s useful to you, you can help keep it going.
         </p>
       </div>
 

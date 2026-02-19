@@ -1,6 +1,7 @@
 import { unstable_cache } from 'next/cache'
 import { genPageMetadata } from '../seo'
 import { getStripe } from '@/lib/stripeClient'
+import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
@@ -130,6 +131,13 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
           </div>
         </div>
       )}
+
+      <p className="mt-8 text-sm text-[color:var(--ri-muted)]">
+        Looking to support the research without a subscription?{' '}
+        <Link href="/support" className="ri-link ri-accent-ring">
+          Fund the Lab →
+        </Link>
+      </p>
     </div>
   )
 }

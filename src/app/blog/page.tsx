@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { allPosts } from "contentlayer/generated";
 
@@ -42,40 +43,58 @@ export default function BlogPage() {
           {posts.map((post) => (
             <li key={post.slug}>
               <article className="glass hover:bg-white/[0.06] transition-colors border-l-[3px] border-[color:var(--ri-accent)]">
-                {/* Title row */}
-                <div className="mb-2">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="ri-link text-xl font-bold leading-snug hover:underline ri-accent-ring"
-                  >
-                    {post.title}
-                  </Link>
+                <div className="flex gap-4">
+                  {/* Cover image */}
+                  {post.coverImage && (
+                    <div className="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32 rounded overflow-hidden">
+                      <Image
+                        src={post.coverImage}
+                        alt=""
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+
+                  {/* Text content */}
+                  <div className="flex-1 min-w-0">
+                    {/* Title row */}
+                    <div className="mb-2">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="ri-link text-xl font-bold leading-snug hover:underline ri-accent-ring"
+                      >
+                        {post.title}
+                      </Link>
+                    </div>
+
+                    {/* Meta row */}
+                    <div className="flex items-center gap-3 text-xs text-[color:var(--ri-muted)] mb-3">
+                      <time dateTime={post.date}>{formatDate(post.date)}</time>
+                      <span aria-hidden="true">·</span>
+                      <span>{post.readingTime} min read</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-[color:var(--ri-fg)] leading-relaxed mb-4">
+                      {post.description}
+                    </p>
+
+                    {/* Tags */}
+                    {post.tags.length > 0 && (
+                      <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
+                        {post.tags.map((tag) => (
+                          <li key={tag}>
+                            <span className="text-xs px-2 py-0.5 rounded-full border border-[color:var(--ri-border)] text-[color:var(--ri-muted)]">
+                              {tag}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-
-                {/* Meta row */}
-                <div className="flex items-center gap-3 text-xs text-[color:var(--ri-muted)] mb-3">
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
-                  <span aria-hidden="true">·</span>
-                  <span>{post.readingTime} min read</span>
-                </div>
-
-                {/* Description */}
-                <p className="text-sm text-[color:var(--ri-fg)] leading-relaxed mb-4">
-                  {post.description}
-                </p>
-
-                {/* Tags */}
-                {post.tags.length > 0 && (
-                  <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
-                    {post.tags.map((tag) => (
-                      <li key={tag}>
-                        <span className="text-xs px-2 py-0.5 rounded-full border border-[color:var(--ri-border)] text-[color:var(--ri-muted)]">
-                          {tag}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </article>
             </li>
           ))}

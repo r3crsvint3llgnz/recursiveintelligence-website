@@ -10,6 +10,17 @@ import {
 import { isSafeUrl } from '@/lib/isSafeUrl'
 import type { Brief, BriefItem } from '@/types/brief'
 
+function normalizeItems(items: Array<Record<string, unknown> | BriefItem>): string {
+  return JSON.stringify(
+    items.map((item) => ({
+      title:   (item as Record<string, unknown>).title,
+      url:     (item as Record<string, unknown>).url,
+      source:  (item as Record<string, unknown>).source,
+      snippet: (item as Record<string, unknown>).snippet,
+    }))
+  )
+}
+
 const client = new DynamoDBClient({ region: process.env.AWS_REGION ?? 'us-east-1' })
 const docClient = DynamoDBDocumentClient.from(client)
 const TABLE_NAME = process.env.BRIEFS_TABLE_NAME ?? 'briefs'
@@ -126,7 +137,7 @@ export async function POST(req: NextRequest) {
       existing.summary  === data.summary &&
       existing.category === data.category &&
       existing.body     === data.body &&
-      JSON.stringify(existing.items) === JSON.stringify(data.items)
+      normalizeItems(existing.items as Record<string, unknown>[] ?? []) === normalizeItems(data.items)
     ) {
       return NextResponse.json({ id }, { status: 200 })
     }

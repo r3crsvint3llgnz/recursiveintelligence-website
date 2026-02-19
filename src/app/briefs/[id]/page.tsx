@@ -101,17 +101,17 @@ export default async function BriefDetailPage({
         <ol className="space-y-3 ri-list pl-6 list-decimal">
           {brief.items.map((item: BriefItem, index: number) => (
             <li key={index} className="text-[color:var(--ri-fg)] leading-relaxed">
-              {item.url && isSafeUrl(item.url) ? (
+              {isSafeUrl(item.url) ? (
                 <a
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ri-link ri-accent-ring"
                 >
-                  {item.label}
+                  {item.title}
                 </a>
               ) : (
-                <span>{item.label}</span>
+                <span>{item.title}</span>
               )}
             </li>
           ))}

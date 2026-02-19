@@ -4,7 +4,7 @@ import { DynamoDBDocumentClient, GetCommand, QueryCommand } from '@aws-sdk/lib-d
 import { Brief, BriefItem } from '@/types/brief'
 
 const client = new DynamoDBClient({
-  region: process.env.AWS_REGION ?? 'us-east-1',
+  region: process.env.APP_REGION ?? 'us-east-1',
 })
 
 const docClient = DynamoDBDocumentClient.from(client)

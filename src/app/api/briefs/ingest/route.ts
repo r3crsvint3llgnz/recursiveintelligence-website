@@ -21,7 +21,7 @@ function normalizeItems(items: Array<Record<string, unknown> | BriefItem>): stri
   )
 }
 
-const client = new DynamoDBClient({ region: process.env.AWS_REGION ?? 'us-east-1' })
+const client = new DynamoDBClient({ region: process.env.APP_REGION ?? 'us-east-1' })
 const docClient = DynamoDBDocumentClient.from(client)
 const TABLE_NAME = process.env.BRIEFS_TABLE_NAME ?? 'briefs'
 

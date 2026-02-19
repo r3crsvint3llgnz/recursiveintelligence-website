@@ -7,7 +7,7 @@ import {
   UpdateCommand,
 } from '@aws-sdk/lib-dynamodb'
 
-const client = new DynamoDBClient({ region: process.env.AWS_REGION ?? 'us-east-1' })
+const client = new DynamoDBClient({ region: process.env.APP_REGION ?? 'us-east-1' })
 const docClient = DynamoDBDocumentClient.from(client)
 
 const TABLE_NAME = process.env.BRIEF_SESSIONS_TABLE_NAME ?? 'brief_sessions'

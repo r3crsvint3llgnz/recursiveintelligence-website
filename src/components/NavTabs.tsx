@@ -17,8 +17,8 @@ export default function NavTabs(){
             className={
               "rounded-full px-3 py-1.5 border transition-colors " +
               (active
-                ? "text-white border-[color:var(--ri-accent)] bg-white/5"
-                : "text-gray-400 border-white/10 hover:text-gray-200 hover:bg-white/5")
+                ? "text-[color:var(--ri-fg)] border-[color:var(--ri-accent)] dark:bg-white/5 bg-black/5"
+                : "text-[color:var(--ri-muted)] border-[color:var(--ri-border)] hover:text-[color:var(--ri-fg)] dark:hover:bg-white/5 hover:bg-black/5")
             }
           >
             {it.label}

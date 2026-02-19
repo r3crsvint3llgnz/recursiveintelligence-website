@@ -163,6 +163,7 @@ export async function POST(req: NextRequest) {
   // Build transaction: always update pointer + put new brief.
   // Only flip previous record's is_latest if previousId exists and differs from new id.
   // On first deploy, previousId is undefined — 2-op transaction.
+  // Use ConditionExpression to prevent race conditions on brief creation.
   type TransactItem = NonNullable<TransactWriteCommandInput['TransactItems']>[0]
 
   const transactItems: TransactItem[] = [
@@ -175,7 +176,11 @@ export async function POST(req: NextRequest) {
       },
     },
     {
-      Put: { TableName: TABLE_NAME, Item: newBrief },
+      Put: {
+        TableName: TABLE_NAME,
+        Item: newBrief,
+        ConditionExpression: 'attribute_not_exists(id)',
+      },
     },
   ]
 
@@ -193,6 +198,19 @@ export async function POST(req: NextRequest) {
   try {
     await docClient.send(new TransactWriteCommand({ TransactItems: transactItems }))
   } catch (err) {
+    // ConditionalCheckFailedException means the brief already exists (race condition)
+    if (err && typeof err === 'object' && (err as { name?: string }).name === 'TransactionCanceledException') {
+      const canceledErr = err as { CancellationReasons?: Array<{ Code?: string }> }
+      const hasConditionFailure = canceledErr.CancellationReasons?.some(
+        (r) => r.Code === 'ConditionalCheckFailed'
+      )
+      if (hasConditionFailure) {
+        return NextResponse.json(
+          { error: `Brief with id "${id}" already exists` },
+          { status: 409 }
+        )
+      }
+    }
     console.error('Ingest transaction failed:', err)
     return NextResponse.json({ error: 'Failed to save brief' }, { status: 500 })
   }

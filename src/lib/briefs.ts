@@ -1,4 +1,4 @@
-import { cache } from 'react'
+import { unstable_cache } from 'next/cache'
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import { DynamoDBDocumentClient, GetCommand, QueryCommand } from '@aws-sdk/lib-dynamodb'
 import { Brief, BriefItem } from '@/types/brief'
@@ -87,9 +87,16 @@ export async function getBriefs(): Promise<Brief[]> {
   return allItems.map(normalizeBrief).filter((b): b is Brief => b !== null)
 }
 
-export const getBrief = cache(async (id: string): Promise<Brief | null> => {
-  const response = await docClient.send(
-    new GetCommand({ TableName: TABLE_NAME, Key: { id } })
-  )
-  return normalizeBrief(response.Item) ?? null
-})
+export const getBrief = unstable_cache(
+  async (id: string): Promise<Brief | null> => {
+    const response = await docClient.send(
+      new GetCommand({ TableName: TABLE_NAME, Key: { id } })
+    )
+    return normalizeBrief(response.Item) ?? null
+  },
+  ['brief'],
+  {
+    tags: ['briefs'],
+    revalidate: 60, // Cache for 60 seconds
+  }
+)

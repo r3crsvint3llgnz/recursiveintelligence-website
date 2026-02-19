@@ -61,7 +61,13 @@ interface SubscribePageProps {
 
 export default async function SubscribePage({ searchParams }: SubscribePageProps) {
   const { error } = await searchParams
-  const prices = await getPrices()
+
+  // Render a "coming soon" state when Stripe isn't configured yet.
+  // This prevents a 500 at runtime — the page stays up, subscriptions just aren't active.
+  const stripeReady =
+    !!process.env.STRIPE_PRICE_MONTHLY_ID && !!process.env.STRIPE_PRICE_ANNUAL_ID
+
+  const prices = stripeReady ? await getPrices() : null
 
   return (
     <div className="py-12">
@@ -80,41 +86,50 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
-        <div className="glass border-l-[3px] border-[color:var(--ri-accent)]">
-          <p className="text-[color:var(--ri-muted)] text-sm mb-1">Monthly</p>
-          <p className="font-space-grotesk text-3xl font-bold text-[color:var(--ri-fg)] mb-1">
-            {formatAmount(prices.monthly.amount, prices.monthly.currency)}
+      {!prices ? (
+        <div className="glass border-l-[3px] border-[color:var(--ri-accent)] max-w-2xl">
+          <p className="text-[color:var(--ri-fg)] mb-2">Subscriptions coming soon.</p>
+          <p className="text-[color:var(--ri-muted)] text-sm">
+            Paid archive access is not yet active. The latest brief is always free.
           </p>
-          <p className="text-[color:var(--ri-muted)] text-xs mb-6">per month · cancel anytime</p>
-          <form action="/api/stripe/checkout" method="POST">
-            <input type="hidden" name="priceId" value={prices.monthly.id} />
-            <button
-              type="submit"
-              className="w-full font-semibold py-2 px-4 rounded bg-[color:var(--ri-accent)] text-[color:var(--ri-bg)] hover:bg-[color:var(--ri-accent-700)] transition-colors ri-accent-ring"
-            >
-              Subscribe Monthly
-            </button>
-          </form>
         </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
+          <div className="glass border-l-[3px] border-[color:var(--ri-accent)]">
+            <p className="text-[color:var(--ri-muted)] text-sm mb-1">Monthly</p>
+            <p className="font-space-grotesk text-3xl font-bold text-[color:var(--ri-fg)] mb-1">
+              {formatAmount(prices.monthly.amount, prices.monthly.currency)}
+            </p>
+            <p className="text-[color:var(--ri-muted)] text-xs mb-6">per month · cancel anytime</p>
+            <form action="/api/stripe/checkout" method="POST">
+              <input type="hidden" name="priceId" value={prices.monthly.id} />
+              <button
+                type="submit"
+                className="w-full font-semibold py-2 px-4 rounded bg-[color:var(--ri-accent)] text-[color:var(--ri-bg)] hover:bg-[color:var(--ri-accent-700)] transition-colors ri-accent-ring"
+              >
+                Subscribe Monthly
+              </button>
+            </form>
+          </div>
 
-        <div className="glass border-l-[3px] border-[color:var(--ri-accent)]">
-          <p className="text-[color:var(--ri-muted)] text-sm mb-1">Annual</p>
-          <p className="font-space-grotesk text-3xl font-bold text-[color:var(--ri-fg)] mb-1">
-            {formatAmount(prices.annual.amount, prices.annual.currency)}
-          </p>
-          <p className="text-[color:var(--ri-muted)] text-xs mb-6">per year · best value</p>
-          <form action="/api/stripe/checkout" method="POST">
-            <input type="hidden" name="priceId" value={prices.annual.id} />
-            <button
-              type="submit"
-              className="w-full font-semibold py-2 px-4 rounded bg-[color:var(--ri-accent)] text-[color:var(--ri-bg)] hover:bg-[color:var(--ri-accent-700)] transition-colors ri-accent-ring"
-            >
-              Subscribe Annually
-            </button>
-          </form>
+          <div className="glass border-l-[3px] border-[color:var(--ri-accent)]">
+            <p className="text-[color:var(--ri-muted)] text-sm mb-1">Annual</p>
+            <p className="font-space-grotesk text-3xl font-bold text-[color:var(--ri-fg)] mb-1">
+              {formatAmount(prices.annual.amount, prices.annual.currency)}
+            </p>
+            <p className="text-[color:var(--ri-muted)] text-xs mb-6">per year · best value</p>
+            <form action="/api/stripe/checkout" method="POST">
+              <input type="hidden" name="priceId" value={prices.annual.id} />
+              <button
+                type="submit"
+                className="w-full font-semibold py-2 px-4 rounded bg-[color:var(--ri-accent)] text-[color:var(--ri-bg)] hover:bg-[color:var(--ri-accent-700)] transition-colors ri-accent-ring"
+              >
+                Subscribe Annually
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

@@ -24,6 +24,8 @@ export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  // Standard hydration-safe mounting pattern — intentional setState in effect.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   // Render nothing on the server to avoid hydration mismatch.

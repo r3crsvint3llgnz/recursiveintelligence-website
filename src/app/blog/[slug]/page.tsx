@@ -104,7 +104,7 @@ export default async function BlogPostPage({
       <div className="ri-divider mb-10" aria-hidden="true" />
 
       {/* Post body */}
-      <div className="prose prose-invert prose-orange max-w-none prose-headings:font-space-grotesk prose-a:text-[color:var(--ri-accent)] prose-a:no-underline hover:prose-a:underline prose-code:before:content-none prose-code:after:content-none">
+      <div className="prose dark:prose-invert prose-orange max-w-none prose-headings:font-space-grotesk prose-a:text-[color:var(--ri-accent)] prose-a:no-underline hover:prose-a:underline prose-code:before:content-none prose-code:after:content-none">
         <MDXContent code={post.body.code} />
       </div>
 

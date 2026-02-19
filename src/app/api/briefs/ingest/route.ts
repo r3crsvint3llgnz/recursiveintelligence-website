@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { timingSafeEqual } from 'crypto'
+import { timingSafeEqual, createHmac, randomBytes } from 'crypto'
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import {
   DynamoDBDocumentClient,
@@ -14,9 +14,11 @@ const client = new DynamoDBClient({ region: process.env.AWS_REGION ?? 'us-east-1
 const docClient = DynamoDBDocumentClient.from(client)
 const TABLE_NAME = process.env.BRIEFS_TABLE_NAME ?? 'briefs'
 
-function slugify(str: string): string {
+export function slugify(str: string): string {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
+
+const HMAC_KEY = randomBytes(32)
 
 function validateApiKey(req: NextRequest): boolean {
   const apiKey = process.env.BRIEF_API_KEY
@@ -24,14 +26,9 @@ function validateApiKey(req: NextRequest): boolean {
   const authHeader = req.headers.get('authorization') ?? ''
   const match = authHeader.match(/^Bearer (.+)$/)
   if (!match) return false
-  try {
-    const a = Buffer.from(match[1], 'utf-8')
-    const b = Buffer.from(apiKey, 'utf-8')
-    if (a.length !== b.length) return false
-    return timingSafeEqual(a, b)
-  } catch {
-    return false
-  }
+  const ha = createHmac('sha256', HMAC_KEY).update(match[1]).digest()
+  const hb = createHmac('sha256', HMAC_KEY).update(apiKey).digest()
+  return timingSafeEqual(ha, hb)
 }
 
 interface IngestBody {
@@ -80,7 +77,12 @@ function validateBody(raw: unknown): { data: IngestBody } | { error: string } {
       summary:  r.summary  as string,
       category: r.category as string,
       body:     r.body     as string,
-      items:    r.items    as BriefItem[],
+      items: (r.items as Record<string, unknown>[]).map(item => ({
+        title:   item.title   as string,
+        url:     item.url     as string,
+        source:  item.source  as string,
+        snippet: item.snippet as string,
+      })),
     },
   }
 }
@@ -126,7 +128,7 @@ export async function POST(req: NextRequest) {
       existing.body     === data.body &&
       JSON.stringify(existing.items) === JSON.stringify(data.items)
     ) {
-      return NextResponse.json({ id }, { status: 201 })
+      return NextResponse.json({ id }, { status: 200 })
     }
     // Different content → conflict
     return NextResponse.json(

@@ -1,11 +1,5 @@
 import { describe, it, expect } from 'vitest'
-
-// slugify and validateBody are not exported — test them via the pure logic
-// by duplicating the functions here. If the implementation drifts, tests catch it.
-
-function slugify(str: string): string {
-  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
+import { slugify } from './route'
 
 function generateId(date: string, category: string): string {
   return `${date.slice(0, 10)}-${slugify(category)}`

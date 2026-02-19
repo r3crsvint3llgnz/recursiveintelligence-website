@@ -235,8 +235,17 @@ stubs — convert `<a>` to `<Link>` when those routes are built.
 | `NEXT_PUBLIC_AWS_RUM_APPLICATION_ID` | CloudWatch RUM app ID | prod only |
 | `NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID` | CloudWatch RUM identity pool | prod only |
 | `NEXT_PUBLIC_AWS_RUM_REGION` | CloudWatch RUM region | prod only |
+| `BRIEF_API_KEY` | Shared secret for `/api/briefs/ingest` auth | prod only |
+| `APP_REGION` | AWS region for DynamoDB (`us-east-1`) | prod only |
+| `BRIEFS_TABLE_NAME` | DynamoDB table name (`briefs`) | prod only |
+| `BRIEFS_AWS_ACCESS_KEY_ID` | IAM user `amplify-briefs-writer` access key | prod only |
+| `BRIEFS_AWS_SECRET_ACCESS_KEY` | IAM user `amplify-briefs-writer` secret key | prod only |
 
 See `.env.example` for documentation. Create `.env.local` for local dev (gitignored).
+
+**IMPORTANT:** Non-`NEXT_PUBLIC_` vars set in Amplify console are NOT auto-injected
+into the SSR Lambda runtime. All server-side vars must also be listed in
+`next.config.ts` → `env` section. See Deployment Notes below.
 
 ---
 
@@ -292,6 +301,46 @@ aws amplify start-job \
 ```
 If retries keep failing, reconnect GitHub in the Amplify console → App settings → Repository.
 
+### Critical: Amplify SSR env vars must be embedded at build time
+
+Amplify Hosting does NOT inject non-`NEXT_PUBLIC_` env vars into the SSR Lambda runtime.
+All server-side env vars must be listed in `next.config.ts` → `env` section so Next.js
+embeds them as literals at compile time.
+
+```typescript
+// next.config.ts
+env: {
+  BRIEF_API_KEY:               process.env.BRIEF_API_KEY               ?? '',
+  APP_REGION:                  process.env.APP_REGION                  ?? 'us-east-1',
+  BRIEFS_TABLE_NAME:           process.env.BRIEFS_TABLE_NAME           ?? 'briefs',
+  BRIEFS_AWS_ACCESS_KEY_ID:    process.env.BRIEFS_AWS_ACCESS_KEY_ID    ?? '',
+  BRIEFS_AWS_SECRET_ACCESS_KEY: process.env.BRIEFS_AWS_SECRET_ACCESS_KEY ?? '',
+},
+```
+
+Workflow for a new server-side var: (1) add to Amplify console, (2) add to `next.config.ts env`, (3) push.
+
+### Critical: DynamoDB access from Amplify SSR Lambda
+
+The Amplify SSR Lambda runs in Amplify's managed account. Customer IAM roles do nothing.
+IAM user `amplify-briefs-writer` holds minimal DynamoDB credentials, embedded at build time.
+
+- **Credentials rotation:** update IAM access key → update Amplify env vars → push empty commit
+- **`AmplifySSRLoggingRole`** in customer IAM = Amplify service role for CloudWatch only,
+  NOT the Lambda execution role. Adding DynamoDB policies to it has no effect.
+
+### CloudWatch logs for the SSR Lambda
+
+Log group: `/aws/amplify/d2dmx5f9lbvzyb` in `us-east-2`. Multiple concurrent streams per day.
+
+```bash
+aws logs describe-log-streams \
+  --log-group-name /aws/amplify/d2dmx5f9lbvzyb \
+  --region us-east-2 --profile seth-dev \
+  --order-by LastEventTime --descending \
+  --query 'logStreams[0:3].logStreamName'
+```
+
 ### Benign build warnings
 
 These appear in every build log and can be ignored:
@@ -308,7 +357,22 @@ These appear in every build log and can be ignored:
 | 1.5 — Homepage Repositioning | ✅ Complete | New positioning, DisambiguationBanner, ValueProp, ResearchApplied, JSON-LD, CTAs |
 | 2 — MDX Content System | Planned | contentlayer2, Blog + Brief document types, reading time, TOC |
 | 3 — Blog pages | Planned | Listing + detail pages, RSS feed |
-| 4 — Briefs pages | Planned | Listing + detail pages, separate RSS feed |
-| 5 — Brief ingestion API | Planned | API endpoint for automated brief delivery |
+| 4 — Briefs pages (DynamoDB-backed) | 🔄 In Progress | `/api/briefs/ingest` live; listing + detail pages pending |
+| 5 — Brief ingestion API | ✅ Complete | `/api/briefs/ingest` endpoint, DynamoDB integration, IAM |
 | 6 — AWS Amplify + Analytics | 🔄 Partial | Amplify configured and deploying; CloudWatch RUM activation pending |
 | 7 — Content migration | Planned | Migrate Substack articles to MDX |
+
+### Known issues to fix before next production run (PM brief)
+
+1. **Brief ID collision** — `route.ts:119` uses `date.slice(0,10)` which loses time-of-day.
+   AM and PM briefs for the same category produce the same ID → PM brief is silently dropped.
+   Fix: derive `am`/`pm` from the hour and include in the ID:
+   ```typescript
+   const hour = new Date(data.date).getUTCHours()
+   const period = hour < 12 ? 'am' : 'pm'
+   const id = `${data.date.slice(0, 10)}-${period}-${slugify(data.category)}`
+   ```
+
+2. **HTTP 200 mismatch** — route returns 200 for same-content re-ingest; `briefing_handler.py`
+   only accepts 201/409 and raises `RuntimeError` on 200. Fix: add 200 to the handler's
+   accepted status codes alongside 201.

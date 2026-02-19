@@ -4,6 +4,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import {
   DynamoDBDocumentClient,
   GetCommand,
+  PutCommand,
   TransactWriteCommand,
   type TransactWriteCommandInput,
 } from '@aws-sdk/lib-dynamodb'
@@ -128,19 +129,42 @@ export async function POST(req: NextRequest) {
   }
 
   const { data } = validated
-  const hour = new Date(data.date).getUTCHours()
-  const period = hour < 12 ? 'am' : 'pm'
-  const id = `${data.date.slice(0, 10)}-${period}-${slugify(data.category)}`
 
   // World briefs are private owner-only entries — they never become the public "latest" brief
   const isPublic = data.category.toLowerCase() !== 'world'
 
+  const hour = new Date(data.date).getUTCHours()
+  const period = hour < 12 ? 'am' : 'pm'
+  // World briefs use a single fixed ID — unconditionally overwritten each time (no archive)
+  const id = isPublic
+    ? `${data.date.slice(0, 10)}-${period}-${slugify(data.category)}`
+    : 'the-recursive-briefing'
+
+  // World briefs: overwrite the single fixed record without collision checks
+  if (!isPublic) {
+    await docClient.send(new PutCommand({
+      TableName: TABLE_NAME,
+      Item: {
+        id,
+        entity_type: 'brief',
+        title:       data.title,
+        date:        data.date,
+        summary:     data.summary,
+        category:    data.category,
+        body:        data.body,
+        items:       data.items,
+        is_latest:   false,
+      },
+    }))
+    return NextResponse.json({ id }, { status: 200 })
+  }
+
   // O(1) lookup — no scan (only needed for public briefs that update the pointer)
-  const previousId = isPublic ? (
+  const previousId = (
     (await docClient.send(
       new GetCommand({ TableName: TABLE_NAME, Key: { id: '__latest__' } })
     )).Item as { current_id?: string } | undefined
-  )?.current_id : undefined
+  )?.current_id
 
   // Collision check: if id already exists with different content, return 409
   const existingResult = await docClient.send(
@@ -175,7 +199,7 @@ export async function POST(req: NextRequest) {
     category:    data.category,
     body:        data.body,
     items:       data.items,
-    is_latest:   isPublic, // World briefs are never "latest" in the public sense
+    is_latest:   true,
   }
 
   // Build transaction: put new brief + optionally update pointer for public briefs.

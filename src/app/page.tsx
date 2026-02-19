@@ -14,14 +14,6 @@ export default function Page() {
 
       <hr className="ri-divider my-8" />
 
-      <ValueProp />
-
-      <hr className="ri-divider my-8" />
-
-      <ResearchApplied />
-
-      <hr className="ri-divider my-8" />
-
       <section className="pb-12">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="glass border-l-[3px] border-[color:var(--ri-accent)] hover:bg-white/[0.06] transition-colors p-6">
@@ -58,6 +50,14 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      <hr className="ri-divider my-8" />
+
+      <ValueProp />
+
+      <hr className="ri-divider my-8" />
+
+      <ResearchApplied />
     </>
   );
 }

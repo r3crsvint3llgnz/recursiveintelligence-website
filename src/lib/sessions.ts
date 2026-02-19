@@ -7,7 +7,19 @@ import {
   UpdateCommand,
 } from '@aws-sdk/lib-dynamodb'
 
-const client = new DynamoDBClient({ region: process.env.APP_REGION ?? 'us-east-1' })
+const client = new DynamoDBClient({
+  region: process.env.APP_REGION ?? 'us-east-1',
+  // Amplify SSR Lambda runs in a managed account with no access to this account's DynamoDB.
+  // Credentials for `amplify-briefs-writer` IAM user are embedded at build time via next.config.ts.
+  ...(process.env.BRIEF_SESSIONS_AWS_ACCESS_KEY_ID
+    ? {
+        credentials: {
+          accessKeyId: process.env.BRIEF_SESSIONS_AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.BRIEF_SESSIONS_AWS_SECRET_ACCESS_KEY ?? '',
+        },
+      }
+    : {}),
+})
 const docClient = DynamoDBDocumentClient.from(client)
 
 const TABLE_NAME = process.env.BRIEF_SESSIONS_TABLE_NAME ?? 'brief_sessions'

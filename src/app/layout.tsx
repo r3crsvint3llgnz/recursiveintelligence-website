@@ -5,11 +5,14 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { getBaseUrl } from "../lib/baseUrl";
 import FooterCTA from "../components/FooterCTA";
 import AccentBar from "../components/AccentBar";
+import DisambiguationBanner from "../components/DisambiguationBanner";
 import NavTabs from "../components/NavTabs";
 import R3IMarkFinal from "../components/brand/R3IMarkFinal";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ThemeToggle from "../components/ThemeToggle";
+
+const siteMetadata = require("../../data/siteMetadata");
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,35 +31,34 @@ export const metadata: Metadata = {
       : getBaseUrl()
   ),
   title: {
-    default: "Recursive Intelligence | AI, Systems Thinking, Philosophy of Mind",
+    default: siteMetadata.title,
     template: "%s | Recursive Intelligence",
   },
-  description:
-    "Exploring AI, systems thinking, and philosophy of mind. Research, experiments, and learning in public by Seth Robins.",
+  description: siteMetadata.description,
   keywords: [
+    "applied AI methodology",
+    "human-AI collaboration",
+    "cognitive science",
     "AI research",
-    "systems thinking",
-    "philosophy of mind",
-    "artificial intelligence",
-    "consciousness",
-    "machine learning",
-    "AWS",
-    "agent systems",
+    "recursive prompting",
+    "neuroscience and AI",
+    "AI frameworks",
+    "Seth Robins",
   ],
-  authors: [{ name: "Seth Robins" }],
-  creator: "Seth Robins",
+  authors: [{ name: siteMetadata.author }],
+  creator: siteMetadata.author,
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: siteMetadata.locale,
     url: process.env.NEXT_PUBLIC_SITE_URL || getBaseUrl(),
-    title: "Recursive Intelligence",
-    description: "Exploring AI, systems thinking, and philosophy of mind.",
-    siteName: "Recursive Intelligence",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    siteName: siteMetadata.headerTitle,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Recursive Intelligence",
-    description: "Exploring AI, systems thinking, and philosophy of mind.",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
     creator: "@r3crsvint3llgnz",
   },
   robots: {
@@ -161,6 +163,28 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="me" href="https://hachyderm.io/@r3crsvint3llgnz" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            // Safe: content is JSON.stringify of our own static siteMetadata constants, not user input
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Recursive Intelligence",
+              url: siteMetadata.siteUrl,
+              description: siteMetadata.description,
+              founder: {
+                "@type": "Person",
+                name: siteMetadata.author,
+              },
+              sameAs: [
+                siteMetadata.substack,
+                siteMetadata.github,
+                siteMetadata.mastodon,
+              ],
+            }),
+          }}
+        />
         {process.env.NODE_ENV === "production" &&
           process.env.NEXT_PUBLIC_AWS_RUM_APPLICATION_ID &&
           process.env.NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID && (
@@ -178,6 +202,7 @@ export default function RootLayout({
           <Header />
           <AccentBar />
           <main className="pt-16 min-h-screen">
+            <DisambiguationBanner />
             <div className="max-w-3xl mx-auto px-4">
               {children}
               <FooterCTA />

@@ -4,15 +4,25 @@
 */
 import Link from "next/link";
 import HomeHero from "../components/HomeHero";
+import ValueProp from "../components/ValueProp";
+import ResearchApplied from "../components/ResearchApplied";
 
 export default function Page() {
   return (
-    <main>
+    <>
       <HomeHero />
 
       <hr className="ri-divider my-8" />
 
-      <section className="max-w-3xl mx-auto px-4 pb-12">
+      <ValueProp />
+
+      <hr className="ri-divider my-8" />
+
+      <ResearchApplied />
+
+      <hr className="ri-divider my-8" />
+
+      <section className="pb-12">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="glass border-l-[3px] border-[color:var(--ri-accent)] hover:bg-white/[0.06] transition-colors p-6">
             <h3 className="text-xl font-bold mb-2">Articles</h3>
@@ -48,6 +58,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }

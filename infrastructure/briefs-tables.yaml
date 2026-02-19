@@ -1,17 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: DynamoDB tables for the recursiveintelligence.io briefs feature
 
-Parameters:
-  Environment:
-    Type: String
-    Default: prod
-    AllowedValues: [dev, staging, prod]
-
 Resources:
   BriefsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Sub '${Environment}-briefs'
+      TableName: briefs
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
         - AttributeName: id
@@ -36,7 +30,7 @@ Resources:
   BriefSessionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Sub '${Environment}-brief-sessions'
+      TableName: brief_sessions
       BillingMode: PAY_PER_REQUEST
       TimeToLiveSpecification:
         AttributeName: ttl
@@ -61,9 +55,9 @@ Outputs:
   BriefsTableName:
     Value: !Ref BriefsTable
     Export:
-      Name: !Sub '${Environment}-briefs-table-name'
+      Name: briefs-table-name
 
   BriefSessionsTableName:
     Value: !Ref BriefSessionsTable
     Export:
-      Name: !Sub '${Environment}-brief-sessions-table-name'
+      Name: brief-sessions-table-name

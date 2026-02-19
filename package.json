@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20"
   },
+  "packageManager": "npm@11.6.2",
   "scripts": {
     "dev": "concurrently --kill-others \"contentlayer2 dev\" \"next dev --turbopack\"",
     "build": "contentlayer2 build && next build",
@@ -20,6 +21,9 @@
     "next": "^16.1.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"
+  },
+  "overrides": {
+    "minimatch": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -16,14 +16,14 @@ export default function HomeHero() {
         Practical AI Methodology Meets Cognitive Science
       </p>
       <p
-        className="ri-fade-up mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed"
+        className="ri-fade-up mt-4 text-lg md:text-xl text-gray-900 dark:text-gray-300 max-w-2xl leading-relaxed"
         style={{ animationDelay: "160ms" }}
       >
         Turning peer-reviewed research into frameworks for human-AI collaboration
         that enhance thinking rather than replace it.
       </p>
       <p
-        className="ri-fade-up mt-2 text-base text-gray-500 dark:text-gray-400"
+        className="ri-fade-up mt-2 text-base text-gray-800 dark:text-gray-400"
         style={{ animationDelay: "240ms" }}
       >
         Tools and weekly implementation guides.

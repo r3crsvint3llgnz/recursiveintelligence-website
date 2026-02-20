@@ -14,7 +14,7 @@ export default function AboutPage() {
     <main className="max-w-3xl mx-auto py-12 px-4">
       <h1 className="text-4xl font-extrabold tracking-tight mb-8">About</h1>
 
-      <div className="space-y-10 text-gray-200">
+      <div className="space-y-10 text-gray-900 dark:text-gray-200">
         <p className="text-xl">
           I&apos;m{" "}
           <a
@@ -37,14 +37,14 @@ export default function AboutPage() {
           <div className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold mb-1">Original Research &amp; Writing</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 Long-form articles turning peer-reviewed cognitive science and AI
                 research into actionable methodology. No theory without practice.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-1">AI/ML Briefs</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 Twice-daily curated research summaries. An automated system
                 analyzes ~50 AI/ML articles every 12 hours and generates
                 synthesized briefs.
@@ -52,14 +52,14 @@ export default function AboutPage() {
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-1">AWS Experiments</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 Infrastructure I build to support the research — agent frameworks,
                 brief ingestion pipelines, and open tooling.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-1">The Recursive Garden</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 My{" "}
                 <a
                   href="https://recursiveintelligence.xyz"
@@ -80,12 +80,12 @@ export default function AboutPage() {
 
         <section>
           <h2 className="ri-heading text-2xl font-bold mb-6">Why This Exists</h2>
-          <p className="text-gray-400 mb-3">
+          <p className="text-gray-600 dark:text-gray-400 mb-3">
             Most AI coverage either oversimplifies the research or gets lost in
             hype. I&apos;m an autistic systems thinker with a full-time job elsewhere —
             this is my independent applied research platform, built to close that gap.
           </p>
-          <p className="text-gray-400">
+          <p className="text-gray-600 dark:text-gray-400">
             I read the studies, distill what actually holds up, and build frameworks
             grounded in evidence. Support from readers funds AWS infrastructure, research
             time, and open tooling.
@@ -97,21 +97,21 @@ export default function AboutPage() {
 
         <section>
           <h2 className="ri-heading text-2xl font-bold mb-6">Connect</h2>
-          <ul className="ri-list space-y-2 text-gray-400">
+          <ul className="ri-list space-y-2 text-gray-600 dark:text-gray-400">
             <li>
-              <strong className="text-gray-200">Digital Garden:</strong>{" "}
+              <strong className="text-gray-900 dark:text-gray-200">Digital Garden:</strong>{" "}
               <a href="https://recursiveintelligence.xyz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 recursiveintelligence.xyz
               </a>
             </li>
             <li>
-              <strong className="text-gray-200">Substack:</strong>{" "}
+              <strong className="text-gray-900 dark:text-gray-200">Substack:</strong>{" "}
               <a href="https://substack.com/@r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 substack.com/@r3crsvint3llgnz
               </a>
             </li>
             <li>
-              <strong className="text-gray-200">Mastodon:</strong>{" "}
+              <strong className="text-gray-900 dark:text-gray-200">Mastodon:</strong>{" "}
               <a
                 href="https://hachyderm.io/@r3crsvint3llgnz"
                 className="text-orange-400 hover:underline"
@@ -122,13 +122,13 @@ export default function AboutPage() {
               </a>
             </li>
             <li>
-              <strong className="text-gray-200">GitHub:</strong>{" "}
+              <strong className="text-gray-900 dark:text-gray-200">GitHub:</strong>{" "}
               <a href="https://github.com/r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 r3crsvint3llgnz
               </a>
             </li>
             <li>
-              <strong className="text-gray-200">Support:</strong>{" "}
+              <strong className="text-gray-900 dark:text-gray-200">Support:</strong>{" "}
               <a href="https://buymeacoffee.com/sethrobinsw" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 Buy Me a Coffee
               </a>
@@ -138,7 +138,7 @@ export default function AboutPage() {
 
         <section className="border-l-4 border-orange-500 pl-4 py-2">
           <p className="text-xs text-gray-500">
-            <strong className="text-gray-400">Disclaimer:</strong> This is a personal research project
+            <strong className="text-gray-700 dark:text-gray-400">Disclaimer:</strong> This is a personal research project
             representing my independent views. I am employed full-time elsewhere;
             this site is not affiliated with my employer.
           </p>

@@ -55,7 +55,7 @@ function LinkBtn({ href, label, rel, children }: LinkBtnProps) {
   const base =
     "inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold text-base transition-colors ri-accent-ring";
   const ghost =
-    "bg-transparent text-white ring-1 ring-[color:var(--ri-accent-700)]/60 hover:bg-white/5 hover:ring-[color:var(--ri-accent)]";
+    "bg-transparent text-gray-900 dark:text-white ring-1 ring-[color:var(--ri-accent-700)]/60 hover:bg-gray-100 dark:hover:bg-white/5 hover:ring-[color:var(--ri-accent)]";
 
   return (
     <a

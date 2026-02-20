@@ -8,6 +8,7 @@ import AccentBar from "../components/AccentBar";
 import DisambiguationBanner from "../components/DisambiguationBanner";
 import NavTabs from "../components/NavTabs";
 import R3IMarkFinal from "../components/brand/R3IMarkFinal";
+import BrandLink from "../components/brand/BrandLink";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ThemeToggle from "../components/ThemeToggle";
@@ -71,15 +72,7 @@ function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-[color:var(--ri-bg)] z-50 px-4 py-3 border-b border-[color:var(--ri-border)]">
       <div className="max-w-3xl mx-auto flex items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-bold"
-        >
-          <R3IMarkFinal size={20} />
-          <span className={`${spaceGrotesk.variable} font-space-grotesk tracking-tight text-lg text-[color:var(--ri-fg)] hover:text-[color:var(--ri-accent)] transition-colors`}>
-            RecursiveIntelligence.io
-          </span>
-        </Link>
+        <BrandLink />
         <div className="flex items-center gap-2">
           <NavTabs />
           <ThemeToggle />

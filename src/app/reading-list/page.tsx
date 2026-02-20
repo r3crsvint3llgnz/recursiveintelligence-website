@@ -18,11 +18,11 @@ export default async function ReadingListPage() {
         <h1 className="ri-heading text-4xl font-extrabold tracking-tight mb-3">
           AI/ML Reading List
         </h1>
-        <p className="text-gray-400">
+        <p className="text-[color:var(--ri-muted)]">
           Curated links with summaries.{' '}
           <a
             href="/rss/reading-list.xml"
-            className="ri-link text-sm"
+            className="ri-link ri-accent-ring text-sm"
           >
             RSS feed ↗
           </a>
@@ -30,7 +30,7 @@ export default async function ReadingListPage() {
       </div>
 
       {items.length === 0 && (
-        <p className="text-gray-500">No items yet.</p>
+        <p className="text-[color:var(--ri-muted)]">No items yet.</p>
       )}
 
       <ul className="space-y-8">
@@ -44,13 +44,13 @@ export default async function ReadingListPage() {
             >
               {item.title}
             </a>
-            {item.note && (
-              <p className="mt-2 text-gray-300 text-sm leading-relaxed">
+            {item.note.trim() && (
+              <p className="mt-2 text-[color:var(--ri-fg)] text-sm leading-relaxed">
                 {item.note}
               </p>
             )}
-            <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-gray-500">
-              <time dateTime={item.created}>
+            <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-[color:var(--ri-muted)]">
+              <time dateTime={item.created} suppressHydrationWarning>
                 {new Date(item.created).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'short',
@@ -60,7 +60,7 @@ export default async function ReadingListPage() {
               {item.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 rounded border border-gray-700 text-gray-400"
+                  className="px-2 py-0.5 rounded border border-[color:var(--ri-border)] text-[color:var(--ri-muted)]"
                 >
                   {tag}
                 </span>

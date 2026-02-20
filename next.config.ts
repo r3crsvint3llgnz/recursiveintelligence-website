@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
     BRIEF_SESSIONS_TABLE_NAME: process.env.BRIEF_SESSIONS_TABLE_NAME ?? 'brief_sessions',
     BRIEF_SESSIONS_AWS_ACCESS_KEY_ID: process.env.BRIEF_SESSIONS_AWS_ACCESS_KEY_ID ?? '',
     BRIEF_SESSIONS_AWS_SECRET_ACCESS_KEY: process.env.BRIEF_SESSIONS_AWS_SECRET_ACCESS_KEY ?? '',
+    RAINDROP_TOKEN: process.env.RAINDROP_TOKEN ?? '',
   },
 }
 

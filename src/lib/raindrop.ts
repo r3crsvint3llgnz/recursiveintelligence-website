@@ -10,14 +10,17 @@ export interface RaindropItem {
 const COLLECTION_ID = '67035667'
 
 export async function fetchReadingList(): Promise<RaindropItem[]> {
+  const token = process.env.RAINDROP_TOKEN
+  if (!token) throw new Error('RAINDROP_TOKEN is not configured')
+
   const res = await fetch(
     `https://api.raindrop.io/rest/v1/raindrops/${COLLECTION_ID}?perpage=50&sort=-created`,
     {
-      headers: { Authorization: `Bearer ${process.env.RAINDROP_TOKEN}` },
+      headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 3600 },
     }
   )
   if (!res.ok) throw new Error(`Raindrop API error: ${res.status}`)
-  const data = (await res.json()) as { items: RaindropItem[] }
-  return data.items
+  const data = (await res.json()) as { items?: RaindropItem[] }
+  return data.items ?? []
 }

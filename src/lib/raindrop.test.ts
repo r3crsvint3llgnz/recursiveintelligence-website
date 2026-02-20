@@ -1,7 +1,12 @@
-import { describe, it, expect, vi, afterEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { fetchReadingList } from './raindrop'
 
+beforeEach(() => {
+  process.env.RAINDROP_TOKEN = 'test-token'
+})
+
 afterEach(() => {
+  delete process.env.RAINDROP_TOKEN
   vi.unstubAllGlobals()
 })
 
@@ -26,8 +31,14 @@ describe('fetchReadingList', () => {
     const items = await fetchReadingList()
 
     expect(items).toHaveLength(1)
-    expect(items[0].title).toBe('Test Article')
-    expect(items[0].note).toBe('A useful summary.')
+    expect(items[0]).toEqual({
+      _id: 1,
+      title: 'Test Article',
+      link: 'https://example.com/article',
+      note: 'A useful summary.',
+      created: '2026-01-01T00:00:00.000Z',
+      tags: ['llm'],
+    })
   })
 
   it('calls the correct Raindrop collection endpoint', async () => {
@@ -48,5 +59,26 @@ describe('fetchReadingList', () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false, status: 401 }))
 
     await expect(fetchReadingList()).rejects.toThrow('Raindrop API error: 401')
+  })
+
+  it('returns empty array when API omits items field', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ result: true, count: 0 }),
+    }))
+
+    const items = await fetchReadingList()
+
+    expect(items).toEqual([])
+  })
+
+  it('throws when RAINDROP_TOKEN is not configured', async () => {
+    const original = process.env.RAINDROP_TOKEN
+    process.env.RAINDROP_TOKEN = ''
+    try {
+      await expect(fetchReadingList()).rejects.toThrow('RAINDROP_TOKEN is not configured')
+    } finally {
+      process.env.RAINDROP_TOKEN = original
+    }
   })
 })

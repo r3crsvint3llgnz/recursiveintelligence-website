@@ -78,34 +78,32 @@ describe('POST /api/briefs/ingest — bootstrap', () => {
   it('uses a 2-op transaction when no __latest__ record exists (first deploy)', async () => {
     mockSend
       .mockResolvedValueOnce({ Item: undefined })  // GetItem __latest__ → not found
-      .mockResolvedValueOnce({ Item: undefined })  // GetItem new id → no collision
       .mockResolvedValueOnce({})                   // TransactWriteCommand → success
 
     const res = await POST(makeRequest())
 
     expect(res.status).toBe(201)
     const { id } = await res.json() as { id: string }
-    expect(id).toBe('2026-02-18-ai-ml')
+    expect(id).toBe('2026-02-18-am-ai-ml')
 
-    // Third send() call is the TransactWriteCommand.
+    // Second send() call is the TransactWriteCommand.
     // Its instance carries the constructor arg in .input.
     // 2 ops = update __latest__ pointer + put new brief (no is_latest flip).
-    const twc = mockSend.mock.calls[2][0] as { input: { TransactItems: unknown[] } }
+    const twc = mockSend.mock.calls[1][0] as { input: { TransactItems: unknown[] } }
     expect(twc.input.TransactItems).toHaveLength(2)
   })
 
   it('uses a 3-op transaction when a previous record exists', async () => {
     mockSend
-      .mockResolvedValueOnce({ Item: { current_id: '2026-02-17-ai-ml' } })  // __latest__ → previous
-      .mockResolvedValueOnce({ Item: undefined })                             // new id → no collision
-      .mockResolvedValueOnce({})                                              // TransactWriteCommand → success
+      .mockResolvedValueOnce({ Item: { current_id: '2026-02-17-am-ai-ml' } })  // __latest__ → previous
+      .mockResolvedValueOnce({})                                                 // TransactWriteCommand → success
 
     const res = await POST(makeRequest())
 
     expect(res.status).toBe(201)
 
     // 3 ops = update __latest__ + put new brief + flip previous is_latest to false
-    const twc = mockSend.mock.calls[2][0] as { input: { TransactItems: unknown[] } }
+    const twc = mockSend.mock.calls[1][0] as { input: { TransactItems: unknown[] } }
     expect(twc.input.TransactItems).toHaveLength(3)
   })
 })

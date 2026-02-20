@@ -54,11 +54,29 @@ describe('buildRssXml', () => {
 
   it('includes pubDate', () => {
     const xml = buildRssXml(sampleItems, baseUrl)
+    expect(xml).toContain('<pubDate>')
     expect(xml).toContain('2026')
   })
 
   it('handles empty note gracefully', () => {
     const xml = buildRssXml(sampleItems, baseUrl)
     expect(xml).toContain('<description><![CDATA[]]></description>')
+  })
+
+  it('escapes ampersands in item links', () => {
+    const items: RaindropItem[] = [
+      {
+        _id: 3,
+        title: 'Search Results',
+        link: 'https://example.com/search?q=llm&lang=en',
+        note: '',
+        created: '2026-01-01T00:00:00.000Z',
+        tags: [],
+      },
+    ]
+    const xml = buildRssXml(items, baseUrl)
+    expect(xml).toContain('&amp;')
+    expect(xml).not.toContain('q=llm&lang')
+    expect(xml).toContain('<link>')
   })
 })

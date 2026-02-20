@@ -2,14 +2,23 @@ import { fetchReadingList } from '@/lib/raindrop'
 import { getBaseUrl } from '@/lib/baseUrl'
 import type { RaindropItem } from '@/lib/raindrop'
 
+function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
 export function buildRssXml(items: RaindropItem[], baseUrl: string): string {
   const itemsXml = items
     .map(
       (item) => `
     <item>
       <title><![CDATA[${item.title}]]></title>
-      <link>${item.link}</link>
-      <guid isPermaLink="true">${item.link}</guid>
+      <link>${escapeXml(item.link)}</link>
+      <guid isPermaLink="false">${escapeXml(item.link)}</guid>
       <description><![CDATA[${item.note}]]></description>
       <pubDate>${new Date(item.created).toUTCString()}</pubDate>
     </item>`

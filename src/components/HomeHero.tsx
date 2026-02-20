@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function HomeHero() {
   return (
     <section className="ri-hero min-h-[45vh] flex flex-col justify-center max-w-3xl mx-auto py-12 px-4">
@@ -14,14 +16,14 @@ export default function HomeHero() {
         Practical AI Methodology Meets Cognitive Science
       </p>
       <p
-        className="ri-fade-up mt-4 text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed"
+        className="ri-fade-up mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed"
         style={{ animationDelay: "160ms" }}
       >
         Turning peer-reviewed research into frameworks for human-AI collaboration
         that enhance thinking rather than replace it.
       </p>
       <p
-        className="ri-fade-up mt-2 text-base text-gray-400"
+        className="ri-fade-up mt-2 text-base text-gray-500 dark:text-gray-400"
         style={{ animationDelay: "240ms" }}
       >
         Tools and weekly implementation guides.
@@ -48,6 +50,13 @@ export default function HomeHero() {
         >
           View Research
         </a>
+        <Link
+          href="/reading-list"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-semibold border-2 border-[color:var(--ri-accent)] text-[color:var(--ri-accent)] hover:bg-[color:var(--ri-accent)] hover:text-black transition-colors"
+          aria-label="Browse curated AI/ML news"
+        >
+          AI/ML News
+        </Link>
       </div>
     </section>
   );

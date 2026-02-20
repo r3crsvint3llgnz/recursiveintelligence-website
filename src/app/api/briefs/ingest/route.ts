@@ -11,17 +11,6 @@ import {
 import { isSafeUrl } from '@/lib/isSafeUrl'
 import type { Brief, BriefItem } from '@/types/brief'
 
-function normalizeItems(items: Array<Record<string, unknown> | BriefItem>): string {
-  return JSON.stringify(
-    items.map((item) => ({
-      title:   (item as Record<string, unknown>).title,
-      url:     (item as Record<string, unknown>).url,
-      source:  (item as Record<string, unknown>).source,
-      snippet: (item as Record<string, unknown>).snippet,
-    }))
-  )
-}
-
 const client = new DynamoDBClient({
   region: process.env.APP_REGION ?? 'us-east-1',
   // Amplify SSR Lambda runs in a managed account with no access to this account's DynamoDB.
@@ -159,36 +148,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ id }, { status: 200 })
   }
 
-  // O(1) lookup — no scan (only needed for public briefs that update the pointer)
+  // O(1) lookup — needed to archive the previous latest brief
   const previousId = (
     (await docClient.send(
       new GetCommand({ TableName: TABLE_NAME, Key: { id: '__latest__' } })
     )).Item as { current_id?: string } | undefined
   )?.current_id
 
-  // Collision check: if id already exists with different content, return 409
-  const existingResult = await docClient.send(
-    new GetCommand({ TableName: TABLE_NAME, Key: { id } })
-  )
-  if (existingResult.Item) {
-    const existing = existingResult.Item
-    // Same content (idempotent re-ingest) → treat as success, skip transaction
-    if (
-      existing.title    === data.title &&
-      existing.date     === data.date &&
-      existing.summary  === data.summary &&
-      existing.category === data.category &&
-      existing.body     === data.body &&
-      normalizeItems(existing.items as Record<string, unknown>[] ?? []) === normalizeItems(data.items)
-    ) {
-      return NextResponse.json({ id }, { status: 200 })
-    }
-    // Different content → conflict
-    return NextResponse.json(
-      { error: `Brief with id "${id}" already exists with different content` },
-      { status: 409 }
-    )
-  }
+  // Always overwrite: each new AI/ML run replaces the current brief and archives the previous.
+  type TransactItem = NonNullable<TransactWriteCommandInput['TransactItems']>[0]
 
   const newBrief: Brief = {
     id,
@@ -202,57 +170,39 @@ export async function POST(req: NextRequest) {
     is_latest:   true,
   }
 
-  // Build transaction: put new brief + optionally update pointer for public briefs.
-  // Use ConditionExpression to prevent race conditions on brief creation.
-  type TransactItem = NonNullable<TransactWriteCommandInput['TransactItems']>[0]
-
   const transactItems: TransactItem[] = [
     {
       Put: {
         TableName: TABLE_NAME,
         Item: newBrief,
-        ConditionExpression: 'attribute_not_exists(id)',
+        // No ConditionExpression — always overwrite so every run produces fresh content
       },
     },
-  ]
-
-  if (isPublic) {
-    transactItems.push({
+    {
       Update: {
         TableName:                 TABLE_NAME,
         Key:                       { id: '__latest__' },
         UpdateExpression:          'SET current_id = :cid, entity_type = :et',
         ExpressionAttributeValues: { ':cid': id, ':et': 'brief' },
       },
+    },
+  ]
+
+  // Archive the previous brief if it was a different entry
+  if (previousId && previousId !== id) {
+    transactItems.push({
+      Update: {
+        TableName:                 TABLE_NAME,
+        Key:                       { id: previousId },
+        UpdateExpression:          'SET is_latest = :f',
+        ExpressionAttributeValues: { ':f': false },
+      },
     })
-    if (previousId && previousId !== id) {
-      transactItems.push({
-        Update: {
-          TableName:                 TABLE_NAME,
-          Key:                       { id: previousId },
-          UpdateExpression:          'SET is_latest = :f',
-          ExpressionAttributeValues: { ':f': false },
-        },
-      })
-    }
   }
 
   try {
     await docClient.send(new TransactWriteCommand({ TransactItems: transactItems }))
   } catch (err) {
-    // ConditionalCheckFailedException means the brief already exists (race condition)
-    if (err && typeof err === 'object' && (err as { name?: string }).name === 'TransactionCanceledException') {
-      const canceledErr = err as { CancellationReasons?: Array<{ Code?: string }> }
-      const hasConditionFailure = canceledErr.CancellationReasons?.some(
-        (r) => r.Code === 'ConditionalCheckFailed'
-      )
-      if (hasConditionFailure) {
-        return NextResponse.json(
-          { error: `Brief with id "${id}" already exists` },
-          { status: 409 }
-        )
-      }
-    }
     console.error('Ingest transaction failed:', err)
     return NextResponse.json({ error: 'Failed to save brief' }, { status: 500 })
   }

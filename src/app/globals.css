@@ -133,4 +133,9 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   background-size: 1400px 700px;
   background-position: center -60px;
 }
+[data-theme="light"] .ri-hero {
+  background-image: url("/r3_cover-light.png");
+  background-size: cover;
+  background-position: center top;
+}
 .ri-hero > * { position: relative; z-index: 1; }

@@ -33,16 +33,16 @@ export default function ResearchApplied() {
             <h3 className="text-lg font-semibold text-[color:var(--ri-fg)] mb-1">
               {item.title}
             </h3>
-            <p className="text-gray-400 text-sm">{item.description}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">{item.description}</p>
           </li>
         ))}
       </ul>
 
       <div className="space-y-1 pt-4">
-        <p className="text-base italic text-gray-400">
+        <p className="text-base italic text-gray-500 dark:text-gray-400">
           Each study becomes a practical framework.
         </p>
-        <p className="text-base italic text-gray-400">
+        <p className="text-base italic text-gray-500 dark:text-gray-400">
           Each framework becomes a tool you can use.
         </p>
       </div>

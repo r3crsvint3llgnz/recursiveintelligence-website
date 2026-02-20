@@ -6,12 +6,12 @@ export default function ValueProp() {
       </h2>
 
       <div className="space-y-4">
-        <p className="text-xl font-light text-gray-300">
+        <p className="text-xl font-light text-gray-600 dark:text-gray-300">
           Most people missed what the MIT brain study actually proved.
         </p>
-        <p className="text-xl font-light text-gray-300">I didn&apos;t.</p>
+        <p className="text-xl font-light text-gray-600 dark:text-gray-300">I didn&apos;t.</p>
 
-        <p className="text-base text-gray-400 leading-relaxed">
+        <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
           I take research from cognitive science, neuroscience, and AI—the
           studies everyone&apos;s arguing about but few understand—and build
           practical frameworks you can use immediately.

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import React from "react";
 import ReactPDF from "@react-pdf/renderer";
 
+// Helvetica built-in fonts only — no external fetches (Lambda has no outbound font access)
 const { Document, Page, Text, View, StyleSheet, Link } = ReactPDF;
 
 const EMERALD = "#059669";
@@ -25,18 +26,17 @@ const s = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
     fontSize: 22,
     color: NAVY,
-    letterSpacing: -0.5,
+    marginBottom: 3,
   },
   headerLabel: {
-    fontFamily: "Helvetica-Bold",
     fontSize: 10,
     color: EMERALD,
-    marginTop: 2,
+    marginBottom: 4,
   },
   headerMeta: {
     fontSize: 8,
     color: SLATE_500,
-    marginTop: 4,
+    marginBottom: 4,
   },
   headerLink: {
     color: EMERALD,
@@ -45,14 +45,14 @@ const s = StyleSheet.create({
   summary: {
     fontSize: 9,
     color: SLATE_700,
-    marginTop: 8,
+    marginTop: 6,
     lineHeight: 1.5,
   },
   linksRow: {
     flexDirection: "row" as const,
     flexWrap: "wrap" as const,
     gap: 8,
-    marginTop: 6,
+    marginBottom: 4,
   },
   linkItem: {
     fontSize: 7.5,
@@ -66,22 +66,56 @@ const s = StyleSheet.create({
   accentBar: {
     height: 2,
     backgroundColor: EMERALD,
-    marginVertical: 10,
+    marginVertical: 8,
   },
   // Sections
   sectionTitle: {
     fontFamily: "Helvetica-Bold",
-    fontSize: 9,
+    fontSize: 8.5,
     color: EMERALD,
     textTransform: "uppercase" as const,
-    letterSpacing: 1.5,
+    letterSpacing: 0.5,
     marginBottom: 6,
     borderBottomWidth: 0.5,
     borderBottomColor: SLATE_200,
     paddingBottom: 3,
   },
   section: {
-    marginBottom: 12,
+    marginBottom: 10,
+  },
+  // KPI grid
+  kpiGrid: {
+    flexDirection: "row" as const,
+    flexWrap: "wrap" as const,
+    gap: 5,
+    marginBottom: 4,
+  },
+  kpiCard: {
+    width: "48%",
+    backgroundColor: "#f8fafc",
+    borderLeftWidth: 2,
+    borderLeftColor: EMERALD,
+    padding: 6,
+    borderRadius: 2,
+  },
+  kpiCategory: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: 6.5,
+    color: EMERALD,
+    textTransform: "uppercase" as const,
+    letterSpacing: 0.3,
+    marginBottom: 2,
+  },
+  kpiMetric: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: 15,
+    color: NAVY,
+    marginBottom: 2,
+  },
+  kpiDescription: {
+    fontSize: 7.5,
+    color: SLATE_700,
+    lineHeight: 1.3,
   },
   // Experience
   jobRow: {
@@ -109,8 +143,7 @@ const s = StyleSheet.create({
     paddingLeft: 8,
   },
   bulletDot: {
-    width: 4,
-    marginRight: 6,
+    width: 8,
     color: EMERALD,
     fontSize: 9,
   },
@@ -119,31 +152,6 @@ const s = StyleSheet.create({
     fontSize: 8.5,
     color: SLATE_700,
     lineHeight: 1.4,
-  },
-  // KPI
-  kpiGrid: {
-    flexDirection: "row" as const,
-    flexWrap: "wrap" as const,
-    gap: 6,
-    marginBottom: 6,
-  },
-  kpiCard: {
-    width: "48%",
-    backgroundColor: "#f8fafc",
-    borderLeftWidth: 2,
-    borderLeftColor: EMERALD,
-    padding: 6,
-    borderRadius: 3,
-  },
-  kpiValue: {
-    fontFamily: "Helvetica-Bold",
-    fontSize: 9,
-    color: NAVY,
-  },
-  kpiLabel: {
-    fontSize: 7.5,
-    color: SLATE_500,
-    marginTop: 1,
   },
   // Competencies
   tagRow: {
@@ -206,6 +214,7 @@ function ResumePDF({ data }: { data: any }) {
     React.createElement(
       Page,
       { size: "LETTER", style: s.page },
+
       // Header
       React.createElement(
         View,
@@ -218,7 +227,6 @@ function ResumePDF({ data }: { data: any }) {
           `${basics.location} | `,
           React.createElement(Link, { src: `mailto:${basics.email}`, style: s.headerLink }, basics.email)
         ),
-        // Links row
         React.createElement(
           View,
           { style: s.linksRow },
@@ -246,18 +254,14 @@ function ResumePDF({ data }: { data: any }) {
         React.createElement(
           View,
           { style: s.kpiGrid },
-          ...[
-            { value: kpi.realized_ebitda, label: "Realized EBITDA — Architectural Enablement" },
-            { value: kpi.targeted_ebitda, label: "Targeted EBITDA Pipeline" },
-            { value: kpi.peak_adoption, label: "Peak Adoption" },
-            { value: kpi.workshop_roi, label: "Workshop ROI" },
-            { value: kpi.user_growth, label: "User Growth" },
-          ].map((k, i: number) =>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ...kpi.map((k: any, i: number) =>
             React.createElement(
               View,
               { key: i, style: s.kpiCard },
-              React.createElement(Text, { style: s.kpiValue }, k.value),
-              React.createElement(Text, { style: s.kpiLabel }, k.label)
+              React.createElement(Text, { style: s.kpiCategory }, k.label),
+              React.createElement(Text, { style: s.kpiMetric }, k.metric),
+              React.createElement(Text, { style: s.kpiDescription }, k.description)
             )
           )
         )
@@ -271,19 +275,19 @@ function ResumePDF({ data }: { data: any }) {
         React.createElement(
           View,
           { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "▸"),
+          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
           React.createElement(Text, { style: s.bulletText }, `Methodology: ${cs.methodology}`)
         ),
         React.createElement(
           View,
           { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "▸"),
+          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
           React.createElement(Text, { style: s.bulletText }, `Role: ${cs.team_role}`)
         ),
         React.createElement(
           View,
           { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "▸"),
+          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
           React.createElement(Text, { style: s.bulletText }, `Impact: ${cs.impact}`)
         )
       ),
@@ -296,7 +300,7 @@ function ResumePDF({ data }: { data: any }) {
         ...experience.map((job: { role: string; company: string; period: string; highlights: string[] }, i: number) =>
           React.createElement(
             View,
-            { key: i, style: { marginBottom: 8 } },
+            { key: i, style: { marginBottom: 7 } },
             React.createElement(
               View,
               { style: s.jobRow },
@@ -312,7 +316,7 @@ function ResumePDF({ data }: { data: any }) {
               React.createElement(
                 View,
                 { key: j, style: s.bulletItem },
-                React.createElement(Text, { style: s.bulletDot }, "▸"),
+                React.createElement(Text, { style: s.bulletDot }, "\u2022"),
                 React.createElement(Text, { style: s.bulletText }, h)
               )
             )
@@ -330,14 +334,14 @@ function ResumePDF({ data }: { data: any }) {
               ...independent_leadership.map((org: { organization: string; role: string; highlights: string[] }, i: number) =>
                 React.createElement(
                   View,
-                  { key: i, style: { marginBottom: 6 } },
+                  { key: i, style: { marginBottom: 5 } },
                   React.createElement(Text, { style: s.jobTitle }, org.role),
                   React.createElement(Text, { style: s.jobCompany }, org.organization),
                   ...org.highlights.map((h: string, j: number) =>
                     React.createElement(
                       View,
                       { key: j, style: s.bulletItem },
-                      React.createElement(Text, { style: s.bulletDot }, "▸"),
+                      React.createElement(Text, { style: s.bulletDot }, "\u2022"),
                       React.createElement(Text, { style: s.bulletText }, h)
                     )
                   )
@@ -391,7 +395,7 @@ function ResumePDF({ data }: { data: any }) {
       React.createElement(
         Text,
         { style: s.footer },
-        `Generated from identity.yaml — ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`
+        `${basics.email}  |  ${basics.links.resume}  |  Last updated: ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}`
       )
     )
   );
@@ -399,7 +403,6 @@ function ResumePDF({ data }: { data: any }) {
 
 export async function GET() {
   try {
-    // Import identity at runtime
     const identityModule = await import("../../../lib/identity");
     const data = identityModule.getIdentity();
 
@@ -408,7 +411,6 @@ export async function GET() {
       React.createElement(ResumePDF, { data })
     );
 
-    // Collect stream into buffer
     const chunks: Buffer[] = [];
     for await (const chunk of pdfStream) {
       chunks.push(Buffer.from(chunk));
@@ -419,8 +421,7 @@ export async function GET() {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition":
-          'attachment; filename="Seth_Robins_Resume.pdf"',
+        "Content-Disposition": 'attachment; filename="Seth_Robins_Resume.pdf"',
         "Cache-Control": "public, max-age=3600",
       },
     });

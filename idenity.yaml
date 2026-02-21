@@ -20,11 +20,21 @@ basics:
     linkedin: https://www.linkedin.com/in/sethrobins1010/
 
 key_performance_indicators:
-  realized_ebitda: "€4M recurring annual impact (2025) — contributed through global and regional cross-functional architectural frameworks."
-  targeted_ebitda: "€12M pipeline (2026) — coordinating agentic systems and AI optimization across sites."
-  peak_adoption: "6,000+ active users globally within 24 hours during AI Adoption Day — a coordinated global initiative."
-  workshop_roi: "$6M in potential annual EBITDA surfaced in a single 7-hour sprint (2026) — coordinating 5+ cross-functional teams."
-  user_growth: "Triple-digit percentage growth in MAU with sustained usage plateaus — driven by global adoption programs."
+  - metric: "€4M"
+    label: "Realized EBITDA"
+    description: "Recurring annual impact (2025) through global and regional cross-functional architectural frameworks."
+  - metric: "€12M"
+    label: "EBITDA Pipeline"
+    description: "2026 target — coordinating agentic AI optimization across Covestro sites."
+  - metric: "6,000+"
+    label: "Peak Concurrent Users"
+    description: "Active globally within 24 hours during AI Adoption Day — coordinated global initiative."
+  - metric: "$6M"
+    label: "Workshop ROI"
+    description: "Potential annual EBITDA surfaced in a single 7-hour sprint — coordinating 5+ cross-functional teams."
+  - metric: "3x+"
+    label: "MAU Growth"
+    description: "Monthly active user growth with sustained plateaus — driven by global adoption programs."
 
 case_study_workshop:
   title: "The 7-Hour Value Discovery Sprint"
@@ -71,16 +81,17 @@ experience:
       - "Provided expert consultation on instrumentation design and Allen Bradley PLC systems in support of plant engineering teams."
 
 independent_leadership:
-  - organization: RECURSIVE INTELLIGENCE
-    role: Founder / Applied Researcher
+  - organization: Recursive Intelligence
+    role: Founder / Applied AI Researcher
     highlights:
-      - "Developed AWS-based automated research pipeline analyzing ~50 AI/ML articles every 12 hours."
-      - "Maintains 'The Digital Garden' documenting thinking as a science and industrial constraint testing."
+      - "Architected multi-agent AI research pipeline on AWS (Lambda, Bedrock, DynamoDB) analyzing 50+ AI/ML sources every 12 hours and synthesizing structured intelligence briefs via LLM."
+      - "Authors applied AI methodology research at recursiveintelligence.io — frameworks for constraint-aware, human-AI collaboration grounded in cognitive science."
 
 core_competencies:
-  industrial_stack: [DCS Control, Advanced Process Control (APC), Process Safety Layers, Instrumentation]
-  systems_architecture: [IT/OT Integration, Cloud-to-Edge Architecture, Agentic Workflows, RAG Pipelines]
+  industrial_stack: [DCS Control, Advanced Process Control (APC), Process Safety Layers, Instrumentation, SCADA, PLCs]
+  systems_architecture: [IT/OT Integration, Cloud-to-Edge Architecture, Agentic Workflows, RAG Pipelines, LLM Orchestration]
   data_governance: [Historians, Industrial Data Pipelines, MES, Asset Management]
+  ai_tools: [Python, AWS Bedrock, AWS Lambda, DynamoDB, Prompt Engineering, Multi-Agent Systems, TypeScript]
 
 education:
   - school: Texas McCombs School of Business

@@ -29,18 +29,17 @@ export interface CaseStudyWorkshop {
   impact: string;
 }
 
-export interface KPI {
-  realized_ebitda: string;
-  targeted_ebitda: string;
-  peak_adoption: string;
-  workshop_roi: string;
-  user_growth: string;
+export interface KPIItem {
+  metric: string;
+  label: string;
+  description: string;
 }
 
 export interface CoreCompetencies {
   industrial_stack: string[];
   systems_architecture: string[];
   data_governance: string[];
+  ai_tools: string[];
 }
 
 export interface Identity {
@@ -60,7 +59,7 @@ export interface Identity {
       linkedin: string;
     };
   };
-  key_performance_indicators: KPI;
+  key_performance_indicators: KPIItem[];
   case_study_workshop: CaseStudyWorkshop;
   experience: Experience[];
   independent_leadership: IndependentLeadership[];

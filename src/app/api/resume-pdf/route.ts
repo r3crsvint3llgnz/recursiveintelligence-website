@@ -21,22 +21,29 @@ const s = StyleSheet.create({
     paddingHorizontal: 40,
     lineHeight: 1.4,
   },
-  // Header
+  // Header — each line in its own View to guarantee block stacking in react-pdf
+  headerNameWrap: {
+    minHeight: 28,
+    marginBottom: 4,
+  },
   headerName: {
     fontFamily: "Helvetica-Bold",
     fontSize: 22,
     color: NAVY,
-    marginBottom: 3,
+  },
+  headerLabelWrap: {
+    marginBottom: 4,
   },
   headerLabel: {
     fontSize: 10,
     color: EMERALD,
-    marginBottom: 4,
+  },
+  headerMetaWrap: {
+    marginBottom: 6,
   },
   headerMeta: {
     fontSize: 8,
     color: SLATE_500,
-    marginBottom: 4,
   },
   headerLink: {
     color: EMERALD,
@@ -45,23 +52,7 @@ const s = StyleSheet.create({
   summary: {
     fontSize: 9,
     color: SLATE_700,
-    marginTop: 6,
     lineHeight: 1.5,
-  },
-  linksRow: {
-    flexDirection: "row" as const,
-    flexWrap: "wrap" as const,
-    gap: 8,
-    marginBottom: 4,
-  },
-  linkItem: {
-    fontSize: 7.5,
-    color: EMERALD,
-    textDecoration: "none",
-  },
-  linkSeparator: {
-    fontSize: 7.5,
-    color: SLATE_500,
   },
   accentBar: {
     height: 2,
@@ -83,38 +74,28 @@ const s = StyleSheet.create({
   section: {
     marginBottom: 10,
   },
-  // KPI grid
-  kpiGrid: {
+  // KPI — flat table rows, ATS-parseable
+  kpiRow: {
     flexDirection: "row" as const,
-    flexWrap: "wrap" as const,
-    gap: 5,
     marginBottom: 4,
+    alignItems: "flex-start" as const,
   },
-  kpiCard: {
-    width: "48%",
-    backgroundColor: "#f8fafc",
-    borderLeftWidth: 2,
-    borderLeftColor: EMERALD,
-    padding: 6,
-    borderRadius: 2,
-  },
-  kpiCategory: {
+  kpiLabel: {
     fontFamily: "Helvetica-Bold",
-    fontSize: 6.5,
-    color: EMERALD,
-    textTransform: "uppercase" as const,
-    letterSpacing: 0.3,
-    marginBottom: 2,
+    fontSize: 8,
+    color: SLATE_700,
+    width: "28%",
   },
   kpiMetric: {
     fontFamily: "Helvetica-Bold",
-    fontSize: 15,
-    color: NAVY,
-    marginBottom: 2,
+    fontSize: 10,
+    color: EMERALD,
+    width: "14%",
   },
   kpiDescription: {
-    fontSize: 7.5,
+    fontSize: 8,
     color: SLATE_700,
+    flex: 1,
     lineHeight: 1.3,
   },
   // Experience
@@ -215,54 +196,42 @@ function ResumePDF({ data }: { data: any }) {
       Page,
       { size: "LETTER", style: s.page },
 
-      // Header
-      React.createElement(
-        View,
-        null,
-        React.createElement(Text, { style: s.headerName }, basics.name),
-        React.createElement(Text, { style: s.headerLabel }, basics.label),
+      // Header — each line wrapped in its own View to prevent overlap in react-pdf
+      React.createElement(View, { style: s.headerNameWrap },
+        React.createElement(Text, { style: s.headerName }, basics.name)
+      ),
+      React.createElement(View, { style: s.headerLabelWrap },
+        React.createElement(Text, { style: s.headerLabel }, basics.label)
+      ),
+      React.createElement(View, { style: s.headerMetaWrap },
         React.createElement(
           Text,
           { style: s.headerMeta },
-          `${basics.location} | `,
-          React.createElement(Link, { src: `mailto:${basics.email}`, style: s.headerLink }, basics.email)
-        ),
-        React.createElement(
-          View,
-          { style: s.linksRow },
-          React.createElement(Link, { src: basics.links.website, style: s.linkItem }, "Website"),
-          React.createElement(Text, { style: s.linkSeparator }, " · "),
-          React.createElement(Link, { src: basics.links.resume, style: s.linkItem }, "Resume"),
-          React.createElement(Text, { style: s.linkSeparator }, " · "),
-          React.createElement(Link, { src: basics.links.garden, style: s.linkItem }, "Digital Garden"),
-          React.createElement(Text, { style: s.linkSeparator }, " · "),
-          React.createElement(Link, { src: basics.links.github, style: s.linkItem }, "GitHub"),
-          React.createElement(Text, { style: s.linkSeparator }, " · "),
-          React.createElement(Link, { src: basics.links.substack, style: s.linkItem }, "Substack"),
-          React.createElement(Text, { style: s.linkSeparator }, " · "),
-          React.createElement(Link, { src: basics.links.linkedin, style: s.linkItem }, "LinkedIn")
-        ),
-        React.createElement(Text, { style: s.summary }, basics.summary)
+          `${basics.location}  |  `,
+          React.createElement(Link, { src: `mailto:${basics.email}`, style: s.headerLink }, basics.email),
+          `  |  `,
+          React.createElement(Link, { src: basics.links.linkedin, style: s.headerLink }, "LinkedIn"),
+          `  |  `,
+          React.createElement(Link, { src: basics.links.github, style: s.headerLink }, "GitHub")
+        )
       ),
+      React.createElement(Text, { style: s.summary }, basics.summary),
+
       React.createElement(View, { style: s.accentBar }),
 
-      // KPIs
+      // KPIs — flat table rows for ATS parseability
       React.createElement(
         View,
         { style: s.section },
         React.createElement(Text, { style: s.sectionTitle }, "Key Performance Indicators"),
-        React.createElement(
-          View,
-          { style: s.kpiGrid },
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ...kpi.map((k: any, i: number) =>
-            React.createElement(
-              View,
-              { key: i, style: s.kpiCard },
-              React.createElement(Text, { style: s.kpiCategory }, k.label),
-              React.createElement(Text, { style: s.kpiMetric }, k.metric),
-              React.createElement(Text, { style: s.kpiDescription }, k.description)
-            )
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...kpi.map((k: any, i: number) =>
+          React.createElement(
+            View,
+            { key: i, style: s.kpiRow },
+            React.createElement(Text, { style: s.kpiLabel }, k.label),
+            React.createElement(Text, { style: s.kpiMetric }, k.metric),
+            React.createElement(Text, { style: s.kpiDescription }, k.description)
           )
         )
       ),

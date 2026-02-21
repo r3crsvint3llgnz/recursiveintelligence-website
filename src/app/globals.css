@@ -135,3 +135,201 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 }
 
 .ri-hero > * { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Industrial Systems Theme — scoped to .industrial wrapper
+   Deep Navy / Slate / Emerald palette
+   ═══════════════════════════════════════════════════════════════ */
+
+.industrial {
+  --ind-bg: #ffffff;
+  --ind-bg-alt: #f9fafb;
+  --ind-surface: #f9fafb;
+  --ind-surface-elevated: #f3f4f6;
+  --ind-fg: #374151;
+  --ind-fg-strong: #111827;
+  --ind-muted: #6b7280;
+  --ind-accent: #475569;
+  --ind-accent-dim: #64748b;
+  --ind-accent-glow: rgba(71, 85, 105, 0.08);
+  --ind-border: #e5e7eb;
+  --ind-border-accent: #cbd5e1;
+  --ind-chat-accent: #1e40af;
+  --ind-tag-bg: rgba(71, 85, 105, 0.06);
+  --ind-tag-bg-hover: rgba(71, 85, 105, 0.12);
+  --ind-tag-border: rgba(71, 85, 105, 0.15);
+  --ind-danger: #dc2626;
+
+  background-color: var(--ind-bg);
+  color: var(--ind-fg);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Industrial Cards ── */
+.ind-card {
+  background: var(--ind-surface);
+  border: 1px solid var(--ind-border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ind-card:hover {
+  border-color: var(--ind-border-accent);
+  box-shadow: 0 0 20px var(--ind-accent-glow);
+}
+
+/* ── KPI Metric Card ── */
+.ind-metric {
+  background: linear-gradient(135deg, var(--ind-surface) 0%, var(--ind-surface-elevated) 100%);
+  border: 1px solid var(--ind-border);
+  border-left: 3px solid var(--ind-accent);
+  border-radius: 8px;
+  padding: 16px 20px;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.ind-metric:hover {
+  box-shadow: 0 2px 12px var(--ind-accent-glow);
+}
+
+/* ── Spotlight Section ── */
+.ind-spotlight {
+  background: linear-gradient(135deg, var(--ind-accent-glow) 0%, transparent 100%);
+  border: 1px solid var(--ind-border-accent);
+  border-left: 4px solid var(--ind-accent);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.ind-spotlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--ind-accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Timeline ── */
+.ind-timeline-item {
+  position: relative;
+  padding-left: 28px;
+  border-left: 2px solid var(--ind-border);
+}
+.ind-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ind-accent);
+  box-shadow: 0 0 8px var(--ind-accent-glow);
+}
+
+/* ── Competency Tags ── */
+.ind-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--ind-tag-bg);
+  color: var(--ind-accent);
+  border: 1px solid var(--ind-tag-border);
+  transition: background 0.15s;
+}
+.ind-tag:hover {
+  background: var(--ind-tag-bg-hover);
+}
+
+/* ── Section Heading ── */
+.ind-section-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ind-accent);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ind-border);
+}
+
+/* ── System Health Pulse ── */
+@keyframes ind-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.ind-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ind-accent);
+  animation: ind-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--ind-accent);
+}
+
+/* ── Chat Widget ── */
+.ind-chat-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ind-chat-accent);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(30, 64, 175, 0.25);
+  transition: transform 0.15s, box-shadow 0.15s;
+  z-index: 100;
+}
+.ind-chat-bubble:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(30, 64, 175, 0.35);
+}
+
+.ind-chat-panel {
+  position: fixed;
+  bottom: 92px;
+  right: 24px;
+  width: 400px;
+  max-height: 520px;
+  background: var(--ind-surface);
+  border: 1px solid var(--ind-border-accent);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .ind-chat-panel {
+    width: calc(100vw - 32px);
+    right: 16px;
+    bottom: 80px;
+    max-height: 70vh;
+  }
+}
+
+/* ── Entrance Animations ── */
+@keyframes ind-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ind-animate {
+  animation: ind-fade-in 0.4s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ind-animate { animation: none; opacity: 1; transform: none; }
+}

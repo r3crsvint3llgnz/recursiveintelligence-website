@@ -16,7 +16,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.78.0",
     "@aws-sdk/client-bedrock-runtime": "^3.995.0",
     "@aws-sdk/client-dynamodb": "^3.992.0",
     "@aws-sdk/lib-dynamodb": "^3.992.0",

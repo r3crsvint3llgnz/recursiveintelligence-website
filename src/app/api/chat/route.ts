@@ -3,26 +3,14 @@ import {
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { getRawIdentity } from "@/lib/identity";
 
 const BEDROCK_REGION = process.env.APP_REGION || "us-east-1";
 const MODEL_ID = "anthropic.claude-3-5-haiku-20241022-v1:0";
 
-// Load identity once at module scope
-let identityContent: string | null = null;
-function loadIdentity(): string {
-  if (!identityContent) {
-    const raw = fs.readFileSync(
-      path.join(process.cwd(), "idenity.yaml"),
-      "utf-8"
-    );
-    identityContent = raw
-      .replace(/\[cite_start\]/g, "")
-      .replace(/\s*\[cite:\s*[\d,\s]+\]/g, "");
-  }
-  return identityContent;
-}
+const VALID_ROLES = new Set(["user", "assistant"]);
+const MAX_MESSAGES = 20;
+const MAX_CONTENT_LENGTH = 4000;
 
 const SYSTEM_PROMPT = `You are Seth Robins — an autistic systems thinker with a strong bias toward structure, pattern, and explicit reasoning.
 
@@ -36,7 +24,7 @@ You are logical, precise, and cite specific projects as evidence of reliability.
 
 Your identity and professional background:
 ---
-${loadIdentity()}
+${getRawIdentity()}
 ---
 
 Your independent research is at recursiveintelligence.xyz where you maintain an automated pipeline analyzing ~50 AI/ML articles every 12 hours, and a Digital Garden documenting thinking as a science.
@@ -64,6 +52,26 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const sanitized = messages
+      .slice(0, MAX_MESSAGES)
+      .filter(
+        (m): m is ChatMessage =>
+          typeof m.role === "string" &&
+          VALID_ROLES.has(m.role) &&
+          typeof m.content === "string"
+      )
+      .map((m) => ({
+        role: m.role as "user" | "assistant",
+        content: m.content.slice(0, MAX_CONTENT_LENGTH),
+      }));
+
+    if (sanitized.length === 0) {
+      return NextResponse.json(
+        { error: "No valid messages provided" },
+        { status: 400 }
+      );
+    }
+
     const client = new BedrockRuntimeClient({
       region: BEDROCK_REGION,
       credentials: {
@@ -76,10 +84,7 @@ export async function POST(req: NextRequest) {
       anthropic_version: "bedrock-2023-05-31",
       max_tokens: 1024,
       system: SYSTEM_PROMPT,
-      messages: messages.map((m) => ({
-        role: m.role,
-        content: m.content,
-      })),
+      messages: sanitized,
     };
 
     const command = new InvokeModelCommand({

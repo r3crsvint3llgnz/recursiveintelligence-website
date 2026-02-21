@@ -80,5 +80,22 @@ export function getIdentity(): Identity {
   const cleaned = raw
     .replace(/\[cite_start\]/g, "")
     .replace(/\s*\[cite:\s*[\d,\s]+\]/g, "");
-  return yaml.load(cleaned) as Identity;
+  const parsed = yaml.load(cleaned);
+  if (typeof parsed !== "object" || parsed === null) {
+    throw new Error("idenity.yaml did not parse to a valid object");
+  }
+  return parsed as Identity;
+}
+
+/**
+ * Returns the raw cleaned YAML string — used by the chat system prompt.
+ */
+export function getRawIdentity(): string {
+  const raw = fs.readFileSync(
+    path.join(process.cwd(), "idenity.yaml"),
+    "utf-8"
+  );
+  return raw
+    .replace(/\[cite_start\]/g, "")
+    .replace(/\s*\[cite:\s*[\d,\s]+\]/g, "");
 }

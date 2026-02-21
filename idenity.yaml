@@ -1,0 +1,91 @@
+# identity.yaml - Sovereign Source of Truth for recursiveintelligence.io/resume
+basics:
+  name: Seth Robins
+  label: Industrial AI Architect | Manufacturing Optimization Specialist | Systems Thinker
+  email: seth.robins@recursiveintelligence.io
+  url: https://recursiveintelligence.io
+  location: Pasadena, Texas
+  summary: >
+    Autistic systems thinker with a strong bias toward structure, pattern, and explicit reasoning.
+    Specialized in the intersection of industrial control, machine learning, and live manufacturing operations.
+    Proven track record of contributing architectural frameworks to global and regional cross-functional teams,
+    delivering constraint-aware, intelligent systems that run in live plants (not sandboxes)
+    and are measured strictly by operational and financial outcomes.
+  links:
+    website: https://recursiveintelligence.io
+    resume: https://sethrobins.recursiveintelligence.io
+    garden: https://recursiveintelligence.xyz
+    github: https://github.com/r3crsvint3llgnz
+    substack: https://substack.com/@r3crsvint3llgnz
+    linkedin: https://www.linkedin.com/in/sethrobins1010/
+
+key_performance_indicators:
+  realized_ebitda: "€4M recurring annual impact (2025) — contributed through global and regional cross-functional architectural frameworks."
+  targeted_ebitda: "€12M pipeline (2026) — coordinating agentic systems and AI optimization across sites."
+  peak_adoption: "6,000+ active users globally within 24 hours during AI Adoption Day — a coordinated global initiative."
+  workshop_roi: "$6M in potential annual EBITDA surfaced in a single 7-hour sprint (2026) — coordinating 5+ cross-functional teams."
+  user_growth: "Triple-digit percentage growth in MAU with sustained usage plateaus — driven by global adoption programs."
+
+case_study_workshop:
+  title: "The 7-Hour Value Discovery Sprint"
+  methodology: "Translating cognitive science into actionable methodology to bridge the 'reality gap' — applied across Engineering, Commercial, and Operations teams."
+  team_role: "Architect & Facilitator — coordinating 5+ cross-functional teams (Engineering, Commercial, Operations) across global and regional stakeholders."
+  impact: "$6M in EBITDA opportunities identified through constraint-aware system modeling with cross-functional team input."
+
+experience:
+  - company: Covestro
+    role: Artificial Intelligence Adoption Consultant
+    period: Jan 2025 – Present
+    highlights:
+      - "Contributed architectural delivery frameworks to global and regional cross-functional initiatives, enabling €4M in recurring EBITDA impact."
+      - "Collaborated with global engineering and operations teams to design end-to-end AI architectures spanning data ingestion, forecasting, and validated setpoint recommendations."
+      - "Co-developed reusable platforms and internal AI use case catalogs in partnership with regional teams to support scalable deployment across multiple sites."
+      - "Coordinated concurrent AI initiatives across global and regional stakeholders, targeting energy efficiency, throughput, and margin protection."
+
+  - company: Covestro
+    role: Industrial Mobility & Intelligent Operations Architect
+    period: Apr 2022 – Jan 2025
+    highlights:
+      - "Partnered with plant operations and safety teams to deploy intrinsically safe smart devices integrated with plant Wi-Fi for hazardous industrial environments."
+      - "Coordinated cross-functional delivery of 100+ mobile devices for emergency mustering, improving incident response readiness across site operations."
+      - "Collaborated with turnaround teams to equip operations with 80+ mobile devices for real-time task execution and data capture."
+
+  - company: Covestro
+    role: Process Control Capability Development Specialist
+    period: Apr 2019 – Apr 2022
+    highlights:
+      - "Coordinated global learning and capability development programs for ~250 direct and 2,000+ indirect personnel across sites."
+      - "Partnered with operations and safety leaders to design qualification-based training for safety-critical plant functions (DCS, APC, and Process Safety)."
+
+  - company: Bayer Technology Services / Material Science
+    role: Process Control Technology Engineer / Production Technician
+    period: Aug 2007 – Apr 2015
+    highlights:
+      - "Contributed to cross-functional DCS Migration Projects and supported system continuity through site acquisitions and mergers."
+      - "Provided production support within a multi-team effort for the 2012 CTO DeltaV Migration Project."
+
+  - company: Dow Chemical
+    role: Instrumentation Technician
+    period: Oct 2006 – Aug 2007
+    highlights:
+      - "Provided expert consultation on instrumentation design and Allen Bradley PLC systems in support of plant engineering teams."
+
+independent_leadership:
+  - organization: RECURSIVE INTELLIGENCE
+    role: Founder / Applied Researcher
+    highlights:
+      - "Developed AWS-based automated research pipeline analyzing ~50 AI/ML articles every 12 hours."
+      - "Maintains 'The Digital Garden' documenting thinking as a science and industrial constraint testing."
+
+core_competencies:
+  industrial_stack: [DCS Control, Advanced Process Control (APC), Process Safety Layers, Instrumentation]
+  systems_architecture: [IT/OT Integration, Cloud-to-Edge Architecture, Agentic Workflows, RAG Pipelines]
+  data_governance: [Historians, Industrial Data Pipelines, MES, Asset Management]
+
+education:
+  - school: Texas McCombs School of Business
+    degree: Postgraduate Degree, AI (2024)
+  - school: University of Phoenix
+    degree: BS, IT/Software Engineering
+  - school: Lee College
+    degree: AAS, Instrumentation Technology

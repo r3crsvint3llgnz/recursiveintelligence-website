@@ -58,15 +58,16 @@ This repository now contains a comprehensive assessment of the Recursive Intelli
 
 ### Project Setup
 
-**[README.md](./README.md)**
+**[README.md](../README.md)**
 - Updated project README with:
   - Accurate project description
   - Local development setup
   - Tech stack overview
   - Links to all assessment documentation
   - Deployment information
+  - MIT License
 
-**[.env.example](./.env.example)**
+**[.env.example](../.env.example)**
 - Environment variable template
 - Configuration documentation
 - Optional integrations (newsletter, analytics, AWS)

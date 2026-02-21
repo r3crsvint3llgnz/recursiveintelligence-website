@@ -1,200 +1,50 @@
-# Recursive Intelligence Website
+# 🌐 Recursive Intelligence Platform
 
-AI-first consulting and thought leadership platform built with Next.js 15.
+A high-performance consulting and research platform built with **Next.js 15**, **Turbopack**, and an **Industrial Systems** design language.
 
-## 🎯 Project Overview
+## 🎯 Architecture & Purpose
 
-This is the official website for Recursive Intelligence, currently a static consulting site with plans to transform into a comprehensive content platform featuring:
+This repository houses the core brand presence for **Recursive Intelligence**. It is designed as a high-density information platform that translates complex AI/ML research into actionable industrial methodology.
 
-- Substack-like blog for AI thought leadership
-- Portfolio showcase for AWS applications
-- Author platform for Seth Robins
-- Newsletter integration for community building
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 20+ 
-- npm or pnpm
-
-### Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/r3crsvint3llgnz/recursiveintelligence-website.git
-cd recursiveintelligence-website
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Set up environment variables:
-```bash
-cp .env.example .env.local
-# Edit .env.local with your values
-```
-
-4. Run the development server:
-```bash
-npm run dev
-```
-
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 📁 Project Structure
-
-```
-recursiveintelligence-website/
-├── src/
-│   ├── app/              # Next.js App Router pages
-│   ├── components/       # React components
-│   └── lib/              # Utility functions
-├── public/               # Static assets
-├── WEBSITE_ASSESSMENT.md # Comprehensive current state analysis
-├── UPGRADE_ROADMAP.md    # Detailed upgrade implementation plan
-└── QUICK_START.md        # Condensed action plan
-```
+### Key Pillars
+- **Industrial Systems Aesthetic**: A custom-scoped design system (Deep Navy & Emerald) optimized for professional, technical environments.
+- **Agentic Integration**: Built-in chat interface powered by **AWS Bedrock (Claude 3 Haiku)**, persona-mapped to an "Autistic Systems Thinker" logic.
+- **Research-to-Practice Loop**: Fully automated pipeline integration for synthesizing daily AI briefs and maintained digital gardens.
+- **Sovereign Content**: Single-source-of-truth identity management via `idenity.yaml`.
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js 15.4.6 with App Router
-- **Language:** TypeScript 5 (strict mode)
-- **Styling:** Tailwind CSS 4 with custom design system
-- **Fonts:** Google Fonts (Inter, Space Grotesk)
-- **Deployment:** AWS Amplify at recursiveintelligence.io
+- **Framework**: Next.js 15.4 (App Router & Turbopack)
+- **Styling**: Tailwind CSS 4 + Scoped Industrial Theme
+- **Intelligence**: AWS Bedrock SDK (Claude 3 Haiku)
+- **Data**: ContentLayer2, YAML parsing, React-PDF
+- **Infrastructure**: AWS Amplify + S3 Static Hosting
 
-## 📖 Documentation
+## 🚀 Development
 
-For detailed information about the current state and upgrade plans:
+### Prerequisites
+- Node.js 20+
+- AWS CLI (for Bedrock/S3 features)
 
-- **[WEBSITE_ASSESSMENT.md](./WEBSITE_ASSESSMENT.md)** - Complete analysis of current website state
-- **[UPGRADE_ROADMAP.md](./UPGRADE_ROADMAP.md)** - Detailed 7-week transformation plan
-- **[QUICK_START.md](./QUICK_START.md)** - Condensed action guide
+### Local Setup
+1. `npm install`
+2. `cp .env.example .env.local` (Add your AWS credentials for chat/deployment)
+3. `npm run dev`
 
-## 🎨 Design System
+### Available Commands
+- `npm run build`: Production build and data synthesis
+- `npm run lint`: Architecture consistency check
+- `scripts/deploy-portfolio.sh`: Automated S3 bucket provisioning and sync
 
-The site features a custom design system with:
-- **Primary accent:** `#ff6600` (orange)
-- **Background:** `#000000` (black)
-- **Text:** `#e0e0e0` (light gray)
-- **Custom utilities:** `.ri-heading`, `.ri-section`, `.glass`, etc.
+## 📖 Documentation Index
 
-See `src/app/globals.css` for complete design tokens.
+For deep-dives into the platform architecture and transformation roadmap, see the `/docs` directory:
 
-## 🏗️ Development
-
-### Available Scripts
-
-```bash
-npm run dev        # Start development server with Turbopack
-npm run build      # Build for production
-npm run start      # Start production server
-npm run lint       # Run ESLint
-```
-
-### Current Features
-
-- ✅ Static homepage with hero section
-- ✅ About page (mission, values, methodology)
-- ✅ Services page (pricing, offerings)
-- ✅ Responsive navigation
-- ✅ SEO optimization (metadata, sitemap, robots.txt)
-- ✅ Custom brand identity with R³ logo system
-
-### Planned Features
-
-See [UPGRADE_ROADMAP.md](./UPGRADE_ROADMAP.md) for the complete feature roadmap including:
-- 📝 MDX-based blog system
-- 📧 Newsletter integration
-- 💬 Comments via Giscus
-- 🎯 Project showcase
-- 🔐 AWS application demos
-- 🔍 Search functionality
-
-## 🚨 Security
-
-⚠️ **Before deploying:** Fix npm security vulnerabilities:
-
-```bash
-npm audit
-npm install next@latest
-npm audit fix
-```
-
-See [QUICK_START.md](./QUICK_START.md) for details on current vulnerabilities.
-
-## 🚢 Deployment
-
-The site is deployed on AWS Amplify at **recursiveintelligence.io**. To deploy:
-
-1. Push to the `main` branch (or configured branch)
-2. AWS Amplify will automatically build and deploy
-3. Environment variables must be set in AWS Amplify console → Environment Variables
-
-### AWS Amplify Build Settings
-
-Current build configuration (stored in AWS Amplify console):
-```yaml
-version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - npm ci
-    build:
-      commands:
-        - npm run build
-  artifacts:
-    baseDirectory: .next
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
-```
-
-### Environment Variables
-
-Required environment variables (set in AWS Amplify console):
-- `NEXT_PUBLIC_SITE_URL` - Your production domain (recursiveintelligence.io)
-- `NEXT_PUBLIC_GARDEN_URL` - Lab/experiments site URL
-- `NODE_ENV` - Environment (production/development)
-
-See [.env.example](./.env.example) for complete list.
-
-### Custom Domain
-
-The domain **recursiveintelligence.io** is configured in AWS Amplify with:
-- SSL/TLS certificate via AWS Certificate Manager
-- DNS managed through Route 53
-- Automatic redirects (www → apex)
-
-## 📝 Content Management
-
-Currently, all content is hard-coded in React components. The upgrade plan includes implementing MDX-based content management for:
-- Blog articles
-- Project documentation
-- Case studies
-
-## 🤝 Contributing
-
-This is a personal project for Recursive Intelligence. For questions or collaboration:
-- Email: seth.robins@recursiveintelligence.io
-- Mastodon: [@r3crsvint3llgnz](https://hachyderm.io/@r3crsvint3llgnz)
+- **[Executive Summary](./docs/EXECUTIVE_SUMMARY.md)**: High-level vision and snapshots.
+- **[Website Assessment](./docs/WEBSITE_ASSESSMENT.md)**: Technical audit and current-state analysis.
+- **[Upgrade Roadmap](./docs/UPGRADE_ROADMAP.md)**: Phased implementation and feature pipeline.
+- **[Documentation Index](./docs/DOCUMENTATION_INDEX.md)**: Full map of all project research.
 
 ## 📄 License
 
-All rights reserved. © 2026 Recursive Intelligence
-
-## 🔗 Links
-
-- **Website:** [recursiveintelligence.io](https://recursiveintelligence.io)
-- **Lab:** [Recursive Garden](https://recursiveintelligence.xyz/)
-- **Mastodon:** [@r3crsvint3llgnz](https://hachyderm.io/@r3crsvint3llgnz)
-
----
-
-Built with ❤️ using Next.js 15 and Tailwind CSS 4
+MIT © 2026 Seth Robins / Recursive Intelligence

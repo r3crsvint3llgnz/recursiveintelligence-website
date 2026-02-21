@@ -33,7 +33,7 @@ export default function CompetencyMatrix({
   return (
     <section className="ind-animate" style={{ animationDelay: "400ms" }}>
       <h2 className="ind-section-heading">Core Competencies</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <CompetencyColumn
           title="Industrial Stack"
           items={competencies.industrial_stack}
@@ -45,6 +45,10 @@ export default function CompetencyMatrix({
         <CompetencyColumn
           title="Data Governance"
           items={competencies.data_governance}
+        />
+        <CompetencyColumn
+          title="AI & Automation"
+          items={competencies.ai_tools}
         />
       </div>
     </section>

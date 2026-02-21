@@ -62,3 +62,8 @@ Thumbs.db
 
 # Git worktrees
 .worktrees/
+
+# Internal session logs and implementation plans (not for public consumption)
+docs/plans/
+docs/sessions/
+docs/2026-02-19-pipeline-integration-session.md

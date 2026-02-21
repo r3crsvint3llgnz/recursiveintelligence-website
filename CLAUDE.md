@@ -23,7 +23,7 @@ in cognitive science research. NOT a consulting site — do not add consulting l
 | Styling | Tailwind v4 + custom CSS variables |
 | Fonts | Inter (body), Space Grotesk (headings) |
 | Analytics | CloudWatch RUM (scaffolded, inactive until Module 6) |
-| Hosting | AWS Amplify (us-east-2), app ID: `d2dmx5f9lbvzyb` |
+| Hosting | AWS Amplify (us-east-2), app ID: `YOUR_AMPLIFY_APP_ID` |
 
 ---
 
@@ -254,7 +254,7 @@ into the SSR Lambda runtime. All server-side vars must also be listed in
 
 ### Amplify build environment
 
-- **App ID:** `d2dmx5f9lbvzyb`
+- **App ID:** `YOUR_AMPLIFY_APP_ID`
 - **Region:** `us-east-2`
 - **Branch env var:** `NODE_VERSION=20` (npm 10.x)
 - **Build spec:** `npm ci --cache .npm --prefer-offline` → `npm run build`
@@ -293,7 +293,7 @@ fatal: repository not found / CustomerError: Unable to clone repository
 This is not a code issue. Retry the job:
 ```bash
 aws amplify start-job \
-  --app-id d2dmx5f9lbvzyb \
+  --app-id YOUR_AMPLIFY_APP_ID \
   --branch-name main \
   --job-type RETRY \
   --job-id <N> \
@@ -332,11 +332,11 @@ IAM user `amplify-briefs-writer` holds minimal DynamoDB credentials, embedded at
 
 ### CloudWatch logs for the SSR Lambda
 
-Log group: `/aws/amplify/d2dmx5f9lbvzyb` in `us-east-2`. Multiple concurrent streams per day.
+Log group: `/aws/amplify/YOUR_AMPLIFY_APP_ID` in `us-east-2`. Multiple concurrent streams per day.
 
 ```bash
 aws logs describe-log-streams \
-  --log-group-name /aws/amplify/d2dmx5f9lbvzyb \
+  --log-group-name /aws/amplify/YOUR_AMPLIFY_APP_ID \
   --region us-east-2 --profile seth-dev \
   --order-by LastEventTime --descending \
   --query 'logStreams[0:3].logStreamName'
@@ -346,7 +346,7 @@ aws logs describe-log-streams \
 
 These appear in every build log and can be ignored:
 - `Unable to write cache: ERR_BAD_REQUEST` — Amplify cache backend glitch, doesn't affect build
-- `Failed to set up process.env.secrets` — SSM path `/amplify/d2dmx5f9lbvzyb/main/` has no secrets; expected
+- `Failed to set up process.env.secrets` — SSM path `/amplify/YOUR_AMPLIFY_APP_ID/main/` has no secrets; expected
 
 ---
 

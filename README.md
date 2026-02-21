@@ -1,6 +1,6 @@
 # 🌐 Recursive Intelligence Platform
 
-A high-performance consulting and research platform built with **Next.js 15**, **Turbopack**, and an **Industrial Systems** design language.
+A high-performance research and portfolio platform built with **Next.js 15**, **Turbopack**, and an **Industrial Systems** design language.
 
 ## 🎯 Architecture & Purpose
 
@@ -34,7 +34,6 @@ This repository houses the core brand presence for **Recursive Intelligence**. I
 ### Available Commands
 - `npm run build`: Production build and data synthesis
 - `npm run lint`: Architecture consistency check
-- `scripts/deploy-portfolio.sh`: Automated S3 bucket provisioning and sync
 
 ## 📖 Documentation Index
 

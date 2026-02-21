@@ -118,6 +118,10 @@ describe('POST /api/chat', () => {
     expect(res.status).toBe(200)
     // Confirm Bedrock was called (i.e., the valid user message got through)
     expect(mockSend).toHaveBeenCalledOnce()
+    const callArg = mockSend.mock.calls[0][0]
+    const body = JSON.parse(callArg.input.body as string)
+    expect(body.messages).toHaveLength(1)
+    expect(body.messages[0].role).toBe('user')
   })
 
   it('returns 400 when all messages have invalid roles', async () => {

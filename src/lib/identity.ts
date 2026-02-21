@@ -68,18 +68,22 @@ export interface Identity {
   education: Education[];
 }
 
+function readAndClean(): string {
+  const raw = fs.readFileSync(
+    path.join(process.cwd(), "idenity.yaml"),
+    "utf-8"
+  );
+  return raw
+    .replace(/\[cite_start\]/g, "")
+    .replace(/\s*\[cite:\s*[\d,\s]+\]/g, "");
+}
+
 /**
  * Read and parse idenity.yaml at build time.
  * Strips [cite_start] and [cite: …] markers that the source YAML contains.
  */
 export function getIdentity(): Identity {
-  const raw = fs.readFileSync(
-    path.join(process.cwd(), "idenity.yaml"),
-    "utf-8"
-  );
-  const cleaned = raw
-    .replace(/\[cite_start\]/g, "")
-    .replace(/\s*\[cite:\s*[\d,\s]+\]/g, "");
+  const cleaned = readAndClean();
   const parsed = yaml.load(cleaned);
   if (typeof parsed !== "object" || parsed === null) {
     throw new Error("idenity.yaml did not parse to a valid object");
@@ -91,11 +95,5 @@ export function getIdentity(): Identity {
  * Returns the raw cleaned YAML string — used by the chat system prompt.
  */
 export function getRawIdentity(): string {
-  const raw = fs.readFileSync(
-    path.join(process.cwd(), "idenity.yaml"),
-    "utf-8"
-  );
-  return raw
-    .replace(/\[cite_start\]/g, "")
-    .replace(/\s*\[cite:\s*[\d,\s]+\]/g, "");
+  return readAndClean();
 }

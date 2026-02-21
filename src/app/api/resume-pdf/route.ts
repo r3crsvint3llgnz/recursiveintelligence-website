@@ -2,26 +2,7 @@ import { NextResponse } from "next/server";
 import React from "react";
 import ReactPDF from "@react-pdf/renderer";
 
-const { Document, Page, Text, View, StyleSheet, Font, Link } = ReactPDF;
-
-// Register fonts
-Font.register({
-  family: "Inter",
-  fonts: [
-    {
-      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfopgk.ttf",
-      fontWeight: 400,
-    },
-    {
-      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fopgk.ttf",
-      fontWeight: 600,
-    },
-    {
-      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYopgk.ttf",
-      fontWeight: 700,
-    },
-  ],
-});
+const { Document, Page, Text, View, StyleSheet, Link } = ReactPDF;
 
 const EMERALD = "#059669";
 const NAVY = "#0f172a";
@@ -31,7 +12,7 @@ const SLATE_200 = "#e2e8f0";
 
 const s = StyleSheet.create({
   page: {
-    fontFamily: "Inter",
+    fontFamily: "Helvetica",
     fontSize: 9,
     color: NAVY,
     paddingTop: 36,
@@ -41,14 +22,14 @@ const s = StyleSheet.create({
   },
   // Header
   headerName: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 22,
-    fontWeight: 700,
     color: NAVY,
     letterSpacing: -0.5,
   },
   headerLabel: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 10,
-    fontWeight: 600,
     color: EMERALD,
     marginTop: 2,
   },
@@ -89,8 +70,8 @@ const s = StyleSheet.create({
   },
   // Sections
   sectionTitle: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 9,
-    fontWeight: 700,
     color: EMERALD,
     textTransform: "uppercase" as const,
     letterSpacing: 1.5,
@@ -109,13 +90,13 @@ const s = StyleSheet.create({
     marginBottom: 2,
   },
   jobTitle: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 10,
-    fontWeight: 700,
     color: NAVY,
   },
   jobCompany: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 9,
-    fontWeight: 600,
     color: EMERALD,
   },
   jobPeriod: {
@@ -155,8 +136,8 @@ const s = StyleSheet.create({
     borderRadius: 3,
   },
   kpiValue: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 9,
-    fontWeight: 700,
     color: NAVY,
   },
   kpiLabel: {
@@ -182,8 +163,8 @@ const s = StyleSheet.create({
     borderColor: "#a7f3d0",
   },
   compCategory: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 8,
-    fontWeight: 600,
     color: SLATE_700,
     marginBottom: 3,
     marginTop: 4,
@@ -195,8 +176,8 @@ const s = StyleSheet.create({
     marginBottom: 3,
   },
   eduDegree: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 9,
-    fontWeight: 600,
     color: NAVY,
   },
   eduSchool: {

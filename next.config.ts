@@ -2,6 +2,17 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   turbopack: {},
+  async redirects() {
+    return [
+      {
+        // sethrobins.recursiveintelligence.io/ → /resume
+        source: '/',
+        has: [{ type: 'host', value: 'sethrobins.recursiveintelligence.io' }],
+        destination: '/resume',
+        permanent: false,
+      },
+    ]
+  },
   // Server-only env vars Amplify sets at build time; not auto-injected into SSR Lambda runtime.
   // Next.js replaces these with literal values at compile time so they are available server-side.
   env: {

@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRawIdentity } from "@/lib/identity";
 
 const BEDROCK_REGION = process.env.APP_REGION || "us-east-1";
-const MODEL_ID = "anthropic.claude-3-5-haiku-20241022-v1:0";
+const MODEL_ID = "us.anthropic.claude-3-5-haiku-20241022-v1:0";
 
 const VALID_ROLES = new Set(["user", "assistant"]);
 const MAX_MESSAGES = 20;

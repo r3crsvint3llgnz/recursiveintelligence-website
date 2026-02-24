@@ -11,7 +11,7 @@ export const revalidate = false;
 
 export default function AboutPage() {
   return (
-    <main className="max-w-3xl mx-auto py-12 px-4">
+    <div className="py-12">
       <h1 className="text-4xl font-extrabold tracking-tight mb-8">About</h1>
 
       <div className="space-y-10 text-gray-900 dark:text-gray-200">
@@ -144,6 +144,6 @@ export default function AboutPage() {
           </p>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

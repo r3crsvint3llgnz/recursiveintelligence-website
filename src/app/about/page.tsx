@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { genPageMetadata } from '../seo'
 
 export const metadata = genPageMetadata({
@@ -91,6 +92,24 @@ export default function AboutPage() {
             time, and open tooling.
           </p>
           <p className="text-gray-500 text-sm mt-3">Think of it as a self-sustaining applied research lab.</p>
+        </section>
+
+        <hr className="ri-divider" />
+
+        <section>
+          <h2 className="ri-heading text-2xl font-bold mb-4">Industrial AI Portfolio</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-5">
+            My full work history, architecture case studies, and quantified impact are at
+            my interactive portfolio. It includes a chatbot — ask me directly about my
+            experience, methodologies, or anything on the resume. Built for recruiters
+            and hiring managers.
+          </p>
+          <Link
+            href="/resume"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-semibold text-white transition-colors bg-orange-500 hover:bg-orange-600"
+          >
+            View Portfolio &amp; Ask Me Directly →
+          </Link>
         </section>
 
         <hr className="ri-divider" />

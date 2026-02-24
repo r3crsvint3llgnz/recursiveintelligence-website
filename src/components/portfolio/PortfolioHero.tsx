@@ -15,12 +15,12 @@ export default function PortfolioHero({ data }: { data: Identity }) {
         >
           {name}
         </h1>
-        <p
+        <h2
           className="text-lg md:text-xl font-medium mt-1"
           style={{ color: "var(--ind-accent)" }}
         >
           {label}
-        </p>
+        </h2>
         <p className="text-sm mt-1" style={{ color: "var(--ind-muted)" }}>
           📍 {location}
         </p>

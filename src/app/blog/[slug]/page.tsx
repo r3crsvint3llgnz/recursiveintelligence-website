@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import MDXContent from "../../../components/MDXContent";
+import { genPageMetadata } from '../../seo'
 
 export function generateStaticParams() {
   return allPosts
@@ -15,17 +16,10 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = allPosts.find((p) => p.slug === slug);
-
-  if (!post) {
-    return { title: "Not Found" };
-  }
-
-  return {
-    title: post.title,
-    description: post.description,
-  };
+  const { slug } = await params
+  const post = allPosts.find((p) => p.slug === slug)
+  if (!post) return { title: 'Not Found' }
+  return genPageMetadata({ title: post.title, description: post.description })
 }
 
 function formatDate(dateString: string): string {

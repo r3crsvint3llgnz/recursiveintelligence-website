@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { allPosts } from "contentlayer/generated";
+import { genPageMetadata } from '../seo'
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Long-form writing on AI systems, systems thinking, and philosophy of mind.",
-};
+export const metadata = genPageMetadata({
+  title: 'Blog',
+  description: 'Long-form writing on AI systems, systems thinking, and philosophy of mind.',
+})
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {

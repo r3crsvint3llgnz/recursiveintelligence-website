@@ -12,7 +12,7 @@ import { genPageMetadata } from '../seo';
 export const metadata = genPageMetadata({
   title: 'Seth Robins — Industrial AI Architect',
   description:
-    'Industrial AI Architect specializing in manufacturing optimization and intelligent operations. €4M EBITDA impact at Covestro.',
+    'Industrial AI Architect specializing in manufacturing optimization and intelligent operations. Significant EBITDA impact delivered across global industrial sites.',
 });
 
 export const dynamic = "force-static";

@@ -125,8 +125,8 @@ export default function ChatWidget() {
           >
             {messages.length === 0 && (
               <p className="text-xs text-center py-8" style={{ color: "var(--ind-muted)" }}>
-                Ask me about my experience, methodologies, or specific
-                projects like the 2012 CTO DeltaV Migration.
+                Ask me about my experience, methodologies, or
+                how I approach industrial AI architecture.
               </p>
             )}
             {messages.map((msg, i) => (

@@ -23,6 +23,55 @@ export default function ResumePage() {
 
   return (
     <div className="industrial min-h-screen">
+      {/* Person structured data — safe: JSON.stringify of static identity.yaml, not user input */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: identity.basics.name,
+            jobTitle: "Industrial AI Architect",
+            description: identity.basics.summary,
+            url: identity.basics.links.resume,
+            email: identity.basics.email,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Pasadena",
+              addressRegion: "TX",
+              addressCountry: "US",
+            },
+            sameAs: [
+              identity.basics.links.linkedin,
+              identity.basics.links.github,
+              identity.basics.links.substack,
+              identity.basics.links.website,
+            ],
+            worksFor: {
+              "@type": "Organization",
+              name: "Covestro",
+            },
+            alumniOf: identity.education.map((e) => ({
+              "@type": "EducationalOrganization",
+              name: e.school,
+            })),
+            knowsAbout: [
+              "Industrial AI",
+              "Manufacturing Optimization",
+              "Advanced Process Control",
+              "DCS Control",
+              "IT/OT Integration",
+              "AWS Bedrock",
+              "LLM Orchestration",
+              "Multi-Agent Systems",
+              "Cognitive Science",
+            ],
+          }),
+        }}
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <PortfolioHero data={identity} />
 

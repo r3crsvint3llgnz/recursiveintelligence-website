@@ -20,11 +20,14 @@ export function genPageMetadata({
     ? [image] 
     : (siteMetadata.socialBanner ? [siteMetadata.socialBanner] : [])
 
+  const resolvedDescription = description || siteMetadata.description
+
   return {
     title,
+    description: resolvedDescription,
     openGraph: {
       title: `${title} | ${siteMetadata.title}`,
-      description: description || siteMetadata.description,
+      description: resolvedDescription,
       siteName: siteMetadata.title,
       images: imageArray,
       locale: siteMetadata.locale,

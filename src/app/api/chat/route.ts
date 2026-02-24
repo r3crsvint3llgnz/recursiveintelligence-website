@@ -20,7 +20,7 @@ const COOKIE_NAME = "resume-chat-usage";
 // so the static import works in Amplify SSR Lambda (process.cwd() does not).
 function formatKnowledgeBase(): string {
   try {
-    const kb = knowledgeBaseData as {
+    const kb = knowledgeBaseData as unknown as {
       articles: Array<{ title: string; content: string }>;
       repositories: Array<{ name: string; tree: string; files: Record<string, string> }>;
     };

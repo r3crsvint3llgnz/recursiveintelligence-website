@@ -92,6 +92,31 @@ export default async function BlogPostPage({
           &larr; Back to Blog
         </Link>
       </div>
+
+      {/* Article structured data — safe: JSON.stringify of static MDX frontmatter, not user input */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            description: post.description,
+            datePublished: post.date,
+            author: {
+              "@type": "Person",
+              name: "Seth Robins",
+              url: "https://recursiveintelligence.io/about",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Recursive Intelligence",
+              url: "https://recursiveintelligence.io",
+            },
+          }),
+        }}
+      />
     </article>
   );
 }

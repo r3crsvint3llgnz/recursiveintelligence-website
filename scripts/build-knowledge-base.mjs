@@ -125,6 +125,7 @@ function buildKnowledge() {
   }
 
   const outputPath = path.join(WEBSITE_DIR, 'src/data/knowledge-base.json');
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, JSON.stringify(knowledge, null, 2));
   console.log(`Knowledge base written to ${outputPath}`);
   

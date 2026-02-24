@@ -12,6 +12,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionLimitReached, setSessionLimitReached] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,6 +37,10 @@ export default function ChatWidget() {
       });
 
       if (!res.ok) {
+        if (res.status === 429) {
+          setSessionLimitReached(true);
+          return;
+        }
         const err = await res.text();
         setMessages([
           ...updated,
@@ -168,6 +173,29 @@ export default function ChatWidget() {
                 </div>
               </div>
             )}
+            {sessionLimitReached && (
+              <div
+                className="text-sm p-3 rounded-md"
+                style={{
+                  borderLeft: "3px solid var(--ind-chat-accent)",
+                  borderTop: "1px solid var(--ind-border)",
+                  borderRight: "1px solid var(--ind-border)",
+                  borderBottom: "1px solid var(--ind-border)",
+                  background: "var(--ind-surface-elevated)",
+                }}
+              >
+                <p style={{ color: "var(--ind-fg)" }}>
+                  We&apos;ve covered a lot of ground. If you want to keep going or schedule
+                  a call —{" "}
+                  <a
+                    href="mailto:seth.robins@recursiveintelligence.io"
+                    style={{ color: "var(--ind-chat-accent)", textDecoration: "underline" }}
+                  >
+                    seth.robins@recursiveintelligence.io
+                  </a>
+                </p>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
 
@@ -188,11 +216,11 @@ export default function ChatWidget() {
                 color: "var(--ind-fg)",
                 border: "1px solid var(--ind-border)",
               }}
-              disabled={isLoading}
+              disabled={isLoading || sessionLimitReached}
             />
             <button
               onClick={handleSend}
-              disabled={isLoading || !input.trim()}
+              disabled={isLoading || !input.trim() || sessionLimitReached}
               className="rounded-md px-3 py-2 text-sm font-semibold transition-colors disabled:opacity-40"
               style={{
                 background: "var(--ind-chat-accent)",

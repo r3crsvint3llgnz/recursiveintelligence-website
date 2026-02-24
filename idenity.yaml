@@ -20,34 +20,34 @@ basics:
     linkedin: https://www.linkedin.com/in/sethrobins1010/
 
 key_performance_indicators:
-  - metric: "€4M"
-    label: "Realized EBITDA"
-    description: "Recurring annual impact (2025) through global and regional cross-functional architectural frameworks."
-  - metric: "€12M"
-    label: "EBITDA Pipeline"
-    description: "2026 target — coordinating agentic AI optimization across Covestro sites."
+  - metric: "Multi-million €"
+    label: "Recurring EBITDA Impact"
+    description: "Recurring annual impact through global and regional cross-functional architectural frameworks."
+  - metric: "Eight-figure €"
+    label: "EBITDA Opportunity Pipeline"
+    description: "Active pipeline — coordinating agentic AI optimization across Covestro sites."
   - metric: "6,000+"
     label: "Peak Concurrent Users"
-    description: "Active globally within 24 hours during AI Adoption Day — coordinated global initiative."
-  - metric: "$6M"
+    description: "Active globally within 24 hours during a coordinated global AI adoption initiative."
+  - metric: "Multi-million $"
     label: "Workshop ROI"
-    description: "Potential annual EBITDA surfaced in a single 7-hour sprint — coordinating 5+ cross-functional teams."
+    description: "Potential annual EBITDA surfaced in a single rapid sprint — coordinating 5+ cross-functional teams."
   - metric: "3x+"
     label: "MAU Growth"
     description: "Monthly active user growth with sustained plateaus — driven by global adoption programs."
 
 case_study_workshop:
-  title: "The 7-Hour Value Discovery Sprint"
+  title: "Rapid Cross-Functional Value Discovery Sprint"
   methodology: "Translating cognitive science into actionable methodology to bridge the 'reality gap' — applied across Engineering, Commercial, and Operations teams."
   team_role: "Architect & Facilitator — coordinating 5+ cross-functional teams (Engineering, Commercial, Operations) across global and regional stakeholders."
-  impact: "$6M in EBITDA opportunities identified through constraint-aware system modeling with cross-functional team input."
+  impact: "Multi-million dollar EBITDA opportunities identified through constraint-aware system modeling with cross-functional team input."
 
 experience:
   - company: Covestro
     role: Artificial Intelligence Adoption Consultant
     period: Jan 2025 – Present
     highlights:
-      - "Contributed architectural delivery frameworks to global and regional cross-functional initiatives, enabling €4M in recurring EBITDA impact."
+      - "Contributed architectural delivery frameworks to global and regional cross-functional initiatives, enabling multi-million Euro recurring EBITDA impact."
       - "Collaborated with global engineering and operations teams to design end-to-end AI architectures spanning data ingestion, forecasting, and validated setpoint recommendations."
       - "Co-developed reusable platforms and internal AI use case catalogs in partnership with regional teams to support scalable deployment across multiple sites."
       - "Coordinated concurrent AI initiatives across global and regional stakeholders, targeting energy efficiency, throughput, and margin protection."
@@ -72,7 +72,7 @@ experience:
     period: Aug 2007 – Apr 2015
     highlights:
       - "Contributed to cross-functional DCS Migration Projects and supported system continuity through site acquisitions and mergers."
-      - "Provided production support within a multi-team effort for the 2012 CTO DeltaV Migration Project."
+      - "Provided production support within a multi-team effort for an enterprise-scale DCS Migration Project."
 
   - company: Dow Chemical
     role: Instrumentation Technician

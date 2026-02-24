@@ -7,13 +7,13 @@ import CompetencyMatrix from "../../components/portfolio/CompetencyMatrix";
 import EducationSection from "../../components/portfolio/EducationSection";
 import SystemHealthWidget from "../../components/portfolio/SystemHealthWidget";
 import ChatWidget from "../../components/portfolio/ChatWidget";
-import type { Metadata } from "next";
+import { genPageMetadata } from '../seo';
 
-export const metadata: Metadata = {
-  title: "Seth Robins — Industrial AI Architect | Resume",
+export const metadata = genPageMetadata({
+  title: 'Seth Robins — Industrial AI Architect',
   description:
-    "Industrial AI Architect specializing in manufacturing optimization, intelligent operations, and constraint-aware system design. Proven €4M EBITDA impact.",
-};
+    'Industrial AI Architect specializing in manufacturing optimization and intelligent operations. €4M EBITDA impact at Covestro.',
+});
 
 export const dynamic = "force-static";
 export const revalidate = false;

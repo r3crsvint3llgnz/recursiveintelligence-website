@@ -4,7 +4,7 @@ import { allPosts } from "contentlayer/generated";
 export async function GET() {
   const base = getBaseUrl();
 
-  const staticPaths = ["/", "/about", "/blog", "/briefs", "/subscribe", "/support", "/reading-list"];
+  const staticPaths = ["/", "/about", "/blog", "/briefs", "/subscribe", "/support", "/reading-list", "/privacy"];
 
   const staticUrls = staticPaths
     .map((p) => `<url><loc>${base}${p}</loc></url>`)

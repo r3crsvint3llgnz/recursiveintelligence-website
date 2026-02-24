@@ -14,6 +14,20 @@ vi.mock('@aws-sdk/client-bedrock-runtime', () => ({
   },
 }))
 
+// Hoist mockCookiesGet so it can be controlled per-test
+const mockCookiesGet = vi.hoisted(() => vi.fn())
+
+vi.mock('next/headers', () => ({
+  cookies: vi.fn().mockResolvedValue({
+    get: mockCookiesGet,
+  }),
+}))
+
+// Static import mock — route bundles KB at build time; tests use empty stubs
+vi.mock('@/data/knowledge-base.json', () => ({
+  default: { articles: [], repositories: [] },
+}))
+
 // Stub fs so loadIdentity() doesn't fail in test environment
 vi.mock('fs', () => ({
   default: {
@@ -35,6 +49,8 @@ function makeRequest(body: unknown) {
 describe('POST /api/chat', () => {
   beforeEach(() => {
     mockSend.mockReset()
+    mockCookiesGet.mockReset()                      // reset per-test cookie mock
+    mockCookiesGet.mockReturnValue(undefined)        // no cookie = count 0
     process.env.RESUME_CHAT_AWS_ACCESS_KEY_ID = 'test-key-id'
     process.env.RESUME_CHAT_AWS_SECRET_ACCESS_KEY = 'test-secret'
     process.env.APP_REGION = 'us-east-1'
@@ -68,6 +84,21 @@ describe('POST /api/chat', () => {
   it('returns 400 when messages is empty array', async () => {
     const res = await POST(makeRequest({ messages: [] }))
     expect(res.status).toBe(400)
+  })
+
+  it('returns 429 with email CTA when session limit is reached', async () => {
+    mockCookiesGet.mockReturnValue({
+      value: JSON.stringify({ count: 15, timestamp: Date.now() }),
+    })
+
+    const res = await POST(makeRequest({
+      messages: [{ role: 'user', content: 'Hello' }],
+    }))
+
+    expect(res.status).toBe(429)
+    const data = await res.json()
+    expect(data.error).toBe('limit_reached')
+    expect(data.message).toMatch(/seth\.robins@recursiveintelligence\.io/)
   })
 
   it('returns 500 on Bedrock error', async () => {

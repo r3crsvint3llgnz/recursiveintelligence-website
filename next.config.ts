@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
         source: '/',
         has: [{ type: 'host', value: 'sethrobins.recursiveintelligence.io' }],
         destination: '/resume',
-        permanent: false,
+        permanent: true,
       },
     ]
   },

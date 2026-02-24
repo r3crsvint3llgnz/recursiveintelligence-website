@@ -1,9 +1,10 @@
 import { allPosts } from 'contentlayer/generated'
 import { getBaseUrl } from '@/lib/baseUrl'
 
-const SITE_TITLE = 'Recursive Intelligence'
-const SITE_DESCRIPTION =
-  'AI strategy, research, and tools for the intelligent enterprise'
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const siteMetadata = require('../../../data/siteMetadata')
+const SITE_TITLE: string = siteMetadata.title
+const SITE_DESCRIPTION: string = siteMetadata.description
 
 function escapeXml(text: string): string {
   return text

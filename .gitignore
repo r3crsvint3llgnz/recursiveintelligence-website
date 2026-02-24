@@ -63,6 +63,9 @@ Thumbs.db
 # Git worktrees
 .worktrees/
 
+# Generated knowledge base — built during npm run build
+src/data/knowledge-base.json
+
 # Internal session logs and implementation plans (not for public consumption)
 docs/plans/
 docs/sessions/

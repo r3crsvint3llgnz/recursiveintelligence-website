@@ -93,7 +93,7 @@ export default async function BlogPostPage({
         </Link>
       </div>
 
-      {/* Article structured data — safe: JSON.stringify of static MDX frontmatter, not user input */}
+      {/* Article structured data — Safe: JSON.stringify of static MDX frontmatter, not user input */}
       <script
         type="application/ld+json"
         suppressHydrationWarning

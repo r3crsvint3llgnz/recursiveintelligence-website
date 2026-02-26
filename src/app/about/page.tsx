@@ -136,12 +136,12 @@ export default function AboutPage() {
               </a>
             </li>
             <li>
-              <strong className="text-gray-900 dark:text-gray-200">Mastodon:</strong>{" "}
+              <strong className="text-gray-900 dark:text-gray-200">Bluesky:</strong>{" "}
               <a
-                href="https://hachyderm.io/@r3crsvint3llgnz"
+                href="https://bsky.app/profile/r3crsvint3llgnz.bsky.social"
                 className="text-orange-400 hover:underline"
                 target="_blank"
-                rel="me noopener noreferrer"
+                rel="noopener noreferrer"
               >
                 @r3crsvint3llgnz
               </a>

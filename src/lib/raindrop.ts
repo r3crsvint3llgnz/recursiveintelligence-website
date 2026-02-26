@@ -17,7 +17,7 @@ export async function fetchReadingList(): Promise<RaindropItem[]> {
     `https://api.raindrop.io/rest/v1/raindrops/${COLLECTION_ID}?perpage=50&sort=-created`,
     {
       headers: { Authorization: `Bearer ${token}` },
-      next: { revalidate: 3600 },
+      cache: 'no-store',
     }
   )
   if (!res.ok) throw new Error(`Raindrop API error: ${res.status}`)

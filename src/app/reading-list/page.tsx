@@ -1,7 +1,7 @@
 import { fetchReadingList } from '@/lib/raindrop'
 import { genPageMetadata } from '../seo'
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export const metadata = genPageMetadata({
   title: 'AI/ML Reading List',

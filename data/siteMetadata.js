@@ -15,7 +15,7 @@ const siteMetadata = {
   bluesky: 'https://bsky.app/profile/r3crsvint3llgnz.bsky.social',
   email: '',
   github: 'https://github.com/r3crsvint3llgnz',
-  substack: 'https://substack.com/@r3crsvint3llgnz',
+  substack: 'https://substack.recursiveintelligence.io',
   buymeacoffee: 'https://buymeacoffee.com/sethrobinsw',
   locale: 'en-US',
   // Analytics - configure in Module 6

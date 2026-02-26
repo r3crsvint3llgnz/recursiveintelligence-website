@@ -131,8 +131,8 @@ export default function AboutPage() {
             </li>
             <li>
               <strong className="text-gray-900 dark:text-gray-200">Substack:</strong>{" "}
-              <a href="https://substack.com/@r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
-                substack.com/@r3crsvint3llgnz
+              <a href="https://substack.recursiveintelligence.io" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                substack.recursiveintelligence.io
               </a>
             </li>
             <li>

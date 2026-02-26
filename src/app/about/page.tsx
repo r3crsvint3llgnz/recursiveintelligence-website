@@ -131,17 +131,17 @@ export default function AboutPage() {
             </li>
             <li>
               <strong className="text-gray-900 dark:text-gray-200">Substack:</strong>{" "}
-              <a href="https://substack.com/@r3crsvint3llgnz" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
-                substack.com/@r3crsvint3llgnz
+              <a href="https://substack.recursiveintelligence.io" className="text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                substack.recursiveintelligence.io
               </a>
             </li>
             <li>
-              <strong className="text-gray-900 dark:text-gray-200">Mastodon:</strong>{" "}
+              <strong className="text-gray-900 dark:text-gray-200">Bluesky:</strong>{" "}
               <a
-                href="https://hachyderm.io/@r3crsvint3llgnz"
+                href="https://bsky.app/profile/r3crsvint3llgnz.bsky.social"
                 className="text-orange-400 hover:underline"
                 target="_blank"
-                rel="me noopener noreferrer"
+                rel="noopener noreferrer"
               >
                 @r3crsvint3llgnz
               </a>

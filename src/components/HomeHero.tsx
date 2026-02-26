@@ -33,29 +33,27 @@ export default function HomeHero() {
         style={{ animationDelay: "320ms" }}
       >
         <a
-          href="https://r3crsvint3llgnz.gumroad.com/l/wmiho"
+          href="https://store.recursiveintelligence.io"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-semibold bg-[color:var(--ri-accent)] text-black hover:bg-[color:var(--ri-accent-700)] transition-colors"
-          aria-label="Get the Recursive Prompting Handbook on Gumroad"
+          aria-label="Get the Recursive Prompting Handbook from the store"
         >
-          Recursive Prompting Handbook
+          Get the Handbook
         </a>
-        <a
-          href="https://github.com/r3crsvint3llgnz/recursive-prompting"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/briefs"
           className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-semibold border-2 border-[color:var(--ri-accent)] text-[color:var(--ri-accent)] hover:bg-[color:var(--ri-accent)] hover:text-black transition-colors"
-          aria-label="View Recursive Prompting research on GitHub"
+          aria-label="Read the latest AI/ML research brief"
         >
-          View Research
-        </a>
+          Read Latest Brief
+        </Link>
         <Link
           href="/reading-list"
           className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-semibold border-2 border-[color:var(--ri-accent)] text-[color:var(--ri-accent)] hover:bg-[color:var(--ri-accent)] hover:text-black transition-colors"
-          aria-label="Browse curated AI/ML news"
+          aria-label="Browse the AI/ML intake feed"
         >
-          AI/ML News
+          AI/ML Feed
         </Link>
       </div>
     </section>

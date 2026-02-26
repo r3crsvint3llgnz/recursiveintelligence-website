@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   ),
   title: {
     default: siteMetadata.title,
-    template: "%s | Recursive Intelligence",
+    template: "%s | Seth Robins",
   },
   description: siteMetadata.description,
   keywords: [
@@ -112,12 +112,12 @@ function Footer() {
           </a>
           {" | "}
           <a
-            href="https://hachyderm.io/@r3crsvint3llgnz"
-            rel="me"
+            href="https://bsky.app/profile/r3crsvint3llgnz.bsky.social"
+            rel="noopener noreferrer"
             className="ri-link"
             target="_blank"
           >
-            Mastodon
+            Bluesky
           </a>
         </p>
       </div>
@@ -160,25 +160,44 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="me" href="https://hachyderm.io/@r3crsvint3llgnz" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             // Safe: content is JSON.stringify of our own static siteMetadata constants, not user input
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Recursive Intelligence",
-              url: siteMetadata.siteUrl,
-              description: siteMetadata.description,
-              founder: {
-                "@type": "Person",
-                name: siteMetadata.author,
-              },
-              sameAs: [
-                siteMetadata.substack,
-                siteMetadata.github,
-                siteMetadata.mastodon,
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${siteMetadata.siteUrl}/#organization`,
+                  name: "Recursive Intelligence",
+                  url: siteMetadata.siteUrl,
+                  description: siteMetadata.description,
+                  founder: {
+                    "@type": "Person",
+                    "@id": `${siteMetadata.siteUrl}/#seth-robins`,
+                  },
+                  sameAs: [
+                    siteMetadata.substack,
+                    siteMetadata.github,
+                    siteMetadata.bluesky,
+                  ],
+                },
+                {
+                  "@type": "Person",
+                  "@id": `${siteMetadata.siteUrl}/#seth-robins`,
+                  name: siteMetadata.author,
+                  jobTitle: "Industrial AI & Systems Architect",
+                  description: siteMetadata.description,
+                  url: siteMetadata.siteUrl,
+                  sameAs: [
+                    siteMetadata.bluesky,
+                    siteMetadata.github,
+                    siteMetadata.substack,
+                    "https://sethrobins.recursiveintelligence.io",
+                    "https://store.recursiveintelligence.io",
+                  ],
+                },
               ],
             }),
           }}

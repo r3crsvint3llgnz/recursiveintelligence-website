@@ -1,10 +1,10 @@
 /** @type {import('./siteMetadata').SiteMetadata} */
 const siteMetadata = {
-  title: 'Recursive Intelligence | Applied AI Methodology & Cognitive Science',
+  title: 'Seth Robins | Industrial AI & Systems Architect',
   author: 'Seth Robins',
   headerTitle: 'Recursive Intelligence',
   description:
-    'Practical AI methodology meets cognitive science. Turning peer-reviewed research into frameworks for human-AI collaboration that enhance thinking rather than replace it. Tools and weekly implementation guides.',
+    'Connecting practical AI and ML methodologies to the latest research. Combating cognitive atrophy and AI misuse with scientific skepticism and rigor.',
   language: 'en-us',
   theme: 'dark',
   siteUrl:
@@ -12,10 +12,10 @@ const siteMetadata = {
   gardenUrl: 'https://recursiveintelligence.xyz',
   siteLogo: null,
   socialBanner: null,
-  mastodon: 'https://hachyderm.io/@r3crsvint3llgnz',
+  bluesky: 'https://bsky.app/profile/r3crsvint3llgnz.bsky.social',
   email: '',
   github: 'https://github.com/r3crsvint3llgnz',
-  substack: 'https://substack.com/@r3crsvint3llgnz',
+  substack: 'https://substack.recursiveintelligence.io',
   buymeacoffee: 'https://buymeacoffee.com/sethrobinsw',
   locale: 'en-US',
   // Analytics - configure in Module 6

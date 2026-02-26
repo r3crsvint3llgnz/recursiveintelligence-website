@@ -26,9 +26,13 @@ export default function Page() {
             </Link>
           </div>
           <div className="glass border-l-[3px] border-[color:var(--ri-accent)] hover:bg-white/[0.06] transition-colors p-6">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[color:var(--ri-accent)] animate-pulse" />
+              <span className="text-xs font-medium text-[color:var(--ri-accent)] uppercase tracking-wide">Live Pipeline</span>
+            </div>
             <h3 className="text-xl font-bold mb-2">AI/ML Briefs</h3>
             <p className="text-gray-400 text-sm">
-              Twice-daily research summaries synthesized from ~50 sources.
+              Twice-daily synthesis from ~50 sources — autonomous Claude 4.6 agent, AM and PM runs.
             </p>
             <Link href="/briefs" className="ri-link inline-block mt-4 text-sm">
               View briefs →
@@ -45,7 +49,7 @@ export default function Page() {
               rel="noopener noreferrer"
               className="ri-link inline-block mt-4 text-sm"
             >
-              Explore the garden →
+              Enter the Recursive Garden →
             </a>
           </div>
         </div>

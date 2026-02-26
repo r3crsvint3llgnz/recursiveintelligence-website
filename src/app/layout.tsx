@@ -113,12 +113,12 @@ function Footer() {
           </a>
           {" | "}
           <a
-            href="https://hachyderm.io/@r3crsvint3llgnz"
-            rel="me"
+            href="https://bsky.app/profile/r3crsvint3llgnz.bsky.social"
+            rel="noopener noreferrer"
             className="ri-link"
             target="_blank"
           >
-            Mastodon
+            Bluesky
           </a>
         </p>
       </div>

@@ -81,28 +81,32 @@ const s = StyleSheet.create({
   section: {
     marginBottom: 10,
   },
-  // KPI — flat table rows, ATS-parseable
-  kpiRow: {
-    flexDirection: "row" as const,
-    marginBottom: 4,
-    alignItems: "flex-start" as const,
+  // KPI — two-line layout: "METRIC — Label" / description
+  kpiItem: {
+    marginBottom: 6,
   },
-  kpiLabel: {
-    fontFamily: "Helvetica-Bold",
-    fontSize: 8,
-    color: SLATE_700,
-    width: "28%",
+  kpiTopRow: {
+    flexDirection: "row" as const,
+    alignItems: "center" as const,
+    marginBottom: 2,
   },
   kpiMetric: {
     fontFamily: "Helvetica-Bold",
     fontSize: 10,
     color: EMERALD,
-    width: "14%",
+  },
+  kpiSep: {
+    fontSize: 9,
+    color: SLATE_500,
+  },
+  kpiLabel: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: 9,
+    color: SLATE_700,
   },
   kpiDescription: {
     fontSize: 8,
     color: SLATE_700,
-    flex: 1,
     lineHeight: 1.3,
   },
   // Experience
@@ -235,9 +239,14 @@ function ResumePDF({ data }: { data: any }) {
         ...kpi.map((k: any, i: number) =>
           React.createElement(
             View,
-            { key: i, style: s.kpiRow },
-            React.createElement(Text, { style: s.kpiLabel }, k.label),
-            React.createElement(Text, { style: s.kpiMetric }, k.metric),
+            { key: i, style: s.kpiItem },
+            React.createElement(
+              View,
+              { style: s.kpiTopRow },
+              React.createElement(Text, { style: s.kpiMetric }, k.metric),
+              React.createElement(Text, { style: s.kpiSep }, " \u2014 "),
+              React.createElement(Text, { style: s.kpiLabel }, k.label)
+            ),
             React.createElement(Text, { style: s.kpiDescription }, k.description)
           )
         )

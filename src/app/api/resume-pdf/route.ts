@@ -275,7 +275,7 @@ function ResumePDF({ data }: { data: any }) {
             ...job.highlights.map((h: string, j: number) =>
               React.createElement(
                 View,
-                { key: j, style: s.bulletItem },
+                { key: j, style: s.bulletItem, wrap: false },
                 React.createElement(Text, { style: s.bulletDot }, "\u2022"),
                 React.createElement(Text, { style: s.bulletText }, h)
               )
@@ -300,7 +300,7 @@ function ResumePDF({ data }: { data: any }) {
                   ...org.highlights.map((h: string, j: number) =>
                     React.createElement(
                       View,
-                      { key: j, style: s.bulletItem },
+                      { key: j, style: s.bulletItem, wrap: false },
                       React.createElement(Text, { style: s.bulletDot }, "\u2022"),
                       React.createElement(Text, { style: s.bulletText }, h)
                     )

@@ -73,6 +73,14 @@ experience:
       - "Designed and coordinated global capability development programs reaching ~250 direct and 2,000+ indirect personnel across international manufacturing sites, building qualification-based training infrastructure for process control functions."
       - "Partnered with operations and safety leadership to develop qualification-based training for safety-critical plant systems including DCS, APC, and Process Safety, ensuring operational competency in an environment where gaps have real consequences."
 
+  - company: Covestro / Bayer MaterialScience
+    role: MES Asset Engineer
+    period: Apr 2015 – Apr 2019
+    highlights:
+      - "Led the Baytown site transition from PI Historian to a structured data asset management system, building the tag contextualization layer and asset hierarchy that makes plant data legible for engineering systems and downstream analytics."
+      - "Delivered a portfolio of IT/OT infrastructure projects: network architecture upgrade, server hardening, IT security remediation, and a site-wide move to device-agnostic endpoints. Coordinated resources across multiple business units while adapting corporate global standards to local plant procedures."
+      - "Implemented condition-based maintenance (CBM) and energy efficiency operations programs, developing project cost analysis, use cases, and ROI assessments for each initiative. Trained and qualified local personnel on data asset management practices."
+
   - company: Bayer Technology Services / Material Science
     role: Process Control Technology Engineer / Production Technician
     period: Aug 2007 – Apr 2015

@@ -11,6 +11,13 @@ const SLATE_700 = "#334155";
 const SLATE_500 = "#64748b";
 const SLATE_200 = "#e2e8f0";
 
+const COMP_LABELS: Record<string, string> = {
+  industrial_stack:     "Industrial Stack",
+  systems_architecture: "Systems Architecture",
+  data_governance:      "Data Governance",
+  ai_tools:             "AI & Automation",
+};
+
 const s = StyleSheet.create({
   page: {
     fontFamily: "Helvetica",
@@ -332,7 +339,7 @@ function ResumePDF({ data }: { data: any }) {
             React.createElement(
               Text,
               { style: s.compCategory },
-              category.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())
+              COMP_LABELS[category] ?? category.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())
             ),
             React.createElement(
               View,

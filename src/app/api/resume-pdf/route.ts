@@ -194,7 +194,7 @@ const s = StyleSheet.create({
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ResumePDF({ data }: { data: any }) {
-  const { basics, key_performance_indicators: kpi, experience, independent_leadership, core_competencies: comp, education, case_study_workshop: cs } = data;
+  const { basics, key_performance_indicators: kpi, experience, independent_leadership, core_competencies: comp, education } = data;
 
   return React.createElement(
     Document,
@@ -240,31 +240,6 @@ function ResumePDF({ data }: { data: any }) {
             React.createElement(Text, { style: s.kpiMetric }, k.metric),
             React.createElement(Text, { style: s.kpiDescription }, k.description)
           )
-        )
-      ),
-
-      // Case Study
-      React.createElement(
-        View,
-        { style: s.section },
-        React.createElement(Text, { style: s.sectionTitle }, `Case Study: ${cs.title}`),
-        React.createElement(
-          View,
-          { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
-          React.createElement(Text, { style: s.bulletText }, `Methodology: ${cs.methodology}`)
-        ),
-        React.createElement(
-          View,
-          { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
-          React.createElement(Text, { style: s.bulletText }, `Role: ${cs.team_role}`)
-        ),
-        React.createElement(
-          View,
-          { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
-          React.createElement(Text, { style: s.bulletText }, `Impact: ${cs.impact}`)
         )
       ),
 

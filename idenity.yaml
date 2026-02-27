@@ -1,16 +1,22 @@
 # identity.yaml - Sovereign Source of Truth for recursiveintelligence.io/resume
+# Updated: 2026-02-27 | Review: Legal-cleared, ATS-optimized, recruiter-validated
+
 basics:
   name: Seth Robins
-  label: Industrial AI Architect | Manufacturing Optimization Specialist | Systems Thinker
+  label: Industrial AI Architect | OT/IT Convergence Leader | Co-Inventor & Team Lead
   email: seth.robins@recursiveintelligence.io
   url: https://recursiveintelligence.io
   location: Pasadena, Texas
   summary: >
-    Autistic systems thinker with a strong bias toward structure, pattern, and explicit reasoning.
-    Specialized in the intersection of industrial control, machine learning, and live manufacturing operations.
-    Proven track record of contributing architectural frameworks to global and regional cross-functional teams,
-    delivering constraint-aware, intelligent systems that run in live plants (not sandboxes)
-    and are measured strictly by operational and financial outcomes.
+    Autistic systems thinker with a strong bias toward structure, pattern, and explicit reasoning —
+    bringing a rare combination of 18+ years of industrial automation expertise and hands-on data science
+    leadership to the frontier of operational AI. Co-inventor on a pending patent for a deployed
+    ML-based process optimization system. Currently leading a cross-functional team of data scientists
+    and AI engineers delivering multi-million Euro EBITDA impact across live chemical manufacturing operations.
+    Specialized in the full stack from PI historian and ERP data ingestion to cloud model deployment and
+    validated DCS setpoint writeback — the domain translator, architectural backbone, and change leader
+    who bridges the gap between data science and production operations to deliver AI that performs in
+    live plants, not just sandboxes.
   links:
     website: https://recursiveintelligence.io
     resume: https://sethrobins.recursiveintelligence.io
@@ -22,81 +28,120 @@ basics:
 key_performance_indicators:
   - metric: "Multi-million €"
     label: "Recurring EBITDA Impact"
-    description: "Recurring annual impact through global and regional cross-functional architectural frameworks."
-  - metric: "Eight-figure €"
-    label: "EBITDA Opportunity Pipeline"
-    description: "Active pipeline — coordinating agentic AI optimization across Covestro sites."
+    description: "Delivered through patented ML optimization and AI/APC architectural frameworks across live chemical manufacturing operations."
+  - metric: "Multi-site"
+    label: "Agentic AI Program Scope"
+    description: "Leading active agentic AI optimization program spanning global chemical manufacturing sites — coordinating data access, architecture, and deployment across organizational boundaries."
   - metric: "6,000+"
     label: "Peak Concurrent Users"
-    description: "Active globally within 24 hours during a coordinated global AI adoption initiative."
+    description: "Reached globally within 24 hours of a coordinated enterprise AI adoption launch — driven by structured change management, capability development, and human-centered rollout design across international manufacturing sites."
   - metric: "Multi-million $"
-    label: "Workshop ROI"
-    description: "Potential annual EBITDA surfaced in a single rapid sprint — coordinating 5+ cross-functional teams."
+    label: "Workshop ROI Identified"
+    description: "Potential annual EBITDA surfaced in a single rapid value discovery sprint — coordinating 5+ cross-functional teams across Engineering, Commercial, and Operations."
   - metric: "3x+"
     label: "MAU Growth"
-    description: "Monthly active user growth with sustained plateaus — driven by global adoption programs."
+    description: "Monthly active user growth with sustained plateaus — driven by global AI adoption programs grounded in cognitive science methodology."
 
 case_study_workshop:
   title: "Rapid Cross-Functional Value Discovery Sprint"
   methodology: "Translating cognitive science into actionable methodology to bridge the 'reality gap' — applied across Engineering, Commercial, and Operations teams."
-  team_role: "Architect & Facilitator — coordinating 5+ cross-functional teams (Engineering, Commercial, Operations) across global and regional stakeholders."
-  impact: "Multi-million dollar EBITDA opportunities identified through constraint-aware system modeling with cross-functional team input."
+  team_role: "Architect & Facilitator — leading 5+ cross-functional teams (Engineering, Commercial, Operations) across global and regional stakeholders to surface and prioritize high-value AI opportunities."
+  impact: "Multi-million dollar EBITDA opportunities identified and roadmapped through constraint-aware system modeling and structured cross-functional engagement."
 
 experience:
   - company: Covestro
     role: Artificial Intelligence Adoption Consultant
     period: Jan 2025 – Present
     highlights:
-      - "Contributed architectural delivery frameworks to global and regional cross-functional initiatives, enabling multi-million Euro recurring EBITDA impact."
-      - "Collaborated with global engineering and operations teams to design end-to-end AI architectures spanning data ingestion, forecasting, and validated setpoint recommendations."
-      - "Co-developed reusable platforms and internal AI use case catalogs in partnership with regional teams to support scalable deployment across multiple sites."
-      - "Coordinated concurrent AI initiatives across global and regional stakeholders, targeting energy efficiency, throughput, and margin protection."
+      - "Co-inventor on a pending patent for a deployed ML-based Advanced Process Control (APC) optimization system — delivering measurable capacity increases and significant recurring annual EBITDA impact across live chemical manufacturing operations with zero capital investment required."
+      - "Leading a regional team of four data scientists and one GenAI engineer across multiple concurrent AI/APC optimization initiatives — providing guiding architectural framework, petrochemical domain translation, and hands-on mentorship for data scientists entering heavy industrial environments for the first time."
+      - "Architecting a serverless AWS data mesh to support multi-site AI/APC modeling at scale — coordinating globally to negotiate PI historian and ERP data access across organizational and site boundaries, and serving as de facto data engineer including industrial data contextualization, ETL pipeline design, and CI/CD platform coordination in the absence of dedicated data engineering resources."
+      - "Leading architecture and delivery of a full-lifecycle agentic AI system deployed in live petrochemical manufacturing operations — spanning automated notification generation, work order management, risk-based work prioritization, job package assembly, schedule optimization, and functional location resolution — powered by a knowledge graph knowledge base of plant procedures and technical documentation, with embedded operator guidance and human-in-the-loop interrupt capability throughout."
+      - "Owning end-to-end IT/OT integration across the full AI deployment stack — from cloud model output through multi-layer verification to validated DCS setpoint writeback — while driving UX/UI design informed by DCS graphic conventions to ensure adoption by operations teams trained on traditional control system interfaces."
+      - "Driving AI adoption strategy across engineering, operations, and maintenance functions — acting as the critical domain translator between data science, automation, and plant operations to break down organizational and technical barriers that typically prevent AI systems from reaching live production environments."
 
   - company: Covestro
     role: Industrial Mobility & Intelligent Operations Architect
     period: Apr 2022 – Jan 2025
     highlights:
-      - "Partnered with plant operations and safety teams to deploy intrinsically safe smart devices integrated with plant Wi-Fi for hazardous industrial environments."
-      - "Coordinated cross-functional delivery of 100+ mobile devices for emergency mustering, improving incident response readiness across site operations."
-      - "Collaborated with turnaround teams to equip operations with 80+ mobile devices for real-time task execution and data capture."
+      - "Architected and delivered intrinsically safe smart device infrastructure integrated with industrial plant Wi-Fi networks for hazardous chemical manufacturing environments — bridging IT, OT, and safety requirements across plant operations teams."
+      - "Led cross-functional deployment of 100+ mobile devices for emergency mustering and incident response, significantly improving site safety readiness and operational response times."
+      - "Equipped turnaround operations with 80+ mobile devices enabling real-time task execution, digital data capture, and live coordination — modernizing a historically paper-based, high-stakes operational process."
 
   - company: Covestro
     role: Process Control Capability Development Specialist
     period: Apr 2019 – Apr 2022
     highlights:
-      - "Coordinated global learning and capability development programs for ~250 direct and 2,000+ indirect personnel across sites."
-      - "Partnered with operations and safety leaders to design qualification-based training for safety-critical plant functions (DCS, APC, and Process Safety)."
+      - "Designed and coordinated global capability development programs reaching ~250 direct and 2,000+ indirect personnel across international manufacturing sites — establishing a scalable, qualification-based learning infrastructure for process control functions."
+      - "Partnered with operations and safety leadership to architect qualification-based training for safety-critical plant systems including DCS, APC, and Process Safety — ensuring operational competency across a high-consequence industrial environment."
 
   - company: Bayer Technology Services / Material Science
     role: Process Control Technology Engineer / Production Technician
     period: Aug 2007 – Apr 2015
     highlights:
-      - "Contributed to cross-functional DCS Migration Projects and supported system continuity through site acquisitions and mergers."
-      - "Provided production support within a multi-team effort for an enterprise-scale DCS Migration Project."
+      - "Served as process control subject matter expert through enterprise-scale DCS migration projects and complex system continuity challenges during major site acquisitions and organizational mergers — maintaining operational integrity across critical industrial transitions."
+      - "Progressed from production technician to process control technology engineer — deepening expertise across DCS platforms, APC systems, advanced instrumentation, and safety-critical control layer design in large-scale chemical manufacturing environments."
+      - "Provided hands-on DCS engineering, troubleshooting, and production support across multi-team chemical manufacturing operations — building the deep automation and control systems foundation that now underpins AI/APC optimization architecture work."
 
   - company: Dow Chemical
     role: Instrumentation Technician
     period: Oct 2006 – Aug 2007
     highlights:
-      - "Provided expert consultation on instrumentation design and Allen Bradley PLC systems in support of plant engineering teams."
+      - "Delivered expert-level consultation on instrumentation design and Allen Bradley PLC systems for plant engineering teams — establishing a foundational industrial automation skillset in one of the world's largest chemical manufacturing environments."
 
 independent_leadership:
   - organization: Recursive Intelligence
     role: Founder / Applied AI Researcher
     highlights:
-      - "Architected multi-agent AI research pipeline on AWS (Lambda, Bedrock, DynamoDB) analyzing 50+ AI/ML sources every 12 hours and synthesizing structured intelligence briefs via LLM."
-      - "Authors applied AI methodology research at recursiveintelligence.io — frameworks for constraint-aware, human-AI collaboration grounded in cognitive science."
+      - "Architected a production multi-agent AI research pipeline on AWS (Lambda, Bedrock, DynamoDB) — autonomously analyzing 50+ AI/ML sources every 12 hours and synthesizing structured intelligence briefs via LLM orchestration, running continuously without human intervention."
+      - "Authors applied industrial AI methodology research at recursiveintelligence.io — publishing constraint-aware, human-AI collaboration frameworks grounded in cognitive science and validated against live manufacturing environments."
 
 core_competencies:
-  industrial_stack: [DCS Control, Advanced Process Control (APC), Process Safety Layers, Instrumentation, SCADA, PLCs]
-  systems_architecture: [IT/OT Integration, Cloud-to-Edge Architecture, Agentic Workflows, RAG Pipelines, LLM Orchestration]
-  data_governance: [Historians, Industrial Data Pipelines, MES, Asset Management]
-  ai_tools: [Python, AWS Bedrock, AWS Lambda, DynamoDB, Prompt Engineering, Multi-Agent Systems, TypeScript]
+  industrial_stack:
+    - DCS Control
+    - Advanced Process Control (APC)
+    - Process Safety Layers
+    - Instrumentation & Controls
+    - SCADA
+    - PLCs (Allen Bradley)
+    - PI Historian (AVEVA OSIsoft)
+    - Hazardous Area Operations
+    - Emerson DeltaV
+    - Honeywell Experion
+  systems_architecture:
+    - IT/OT Integration
+    - Cloud-to-Edge Architecture
+    - Agentic Workflows
+    - RAG Pipelines
+    - LLM Orchestration
+    - Knowledge Graph Design
+    - Data Mesh Architecture
+    - Serverless AWS Architecture
+  data_governance:
+    - Industrial Data Pipelines
+    - ETL Design & Engineering
+    - CI/CD Pipeline Coordination
+    - ERP Data Integration
+    - MES
+    - Asset Management
+    - Data Lake Architecture
+    - Data Contextualization
+  ai_tools:
+    - Python
+    - AWS Bedrock
+    - AWS Lambda
+    - DynamoDB
+    - Prompt Engineering
+    - Multi-Agent Systems
+    - TypeScript
+    - ML Model Deployment
+    - Setpoint Optimization
+    - Change Management
 
 education:
-  - school: Texas McCombs School of Business
-    degree: Postgraduate Degree, AI (2024)
+  - school: Texas McCombs School of Business — University of Texas at Austin
+    degree: "Post Graduate Program, AI & Machine Learning (2024) — Certificate of Completion"
   - school: University of Phoenix
-    degree: BS, IT/Software Engineering
+    degree: BS, IT / Software Engineering
   - school: Lee College
     degree: AAS, Instrumentation Technology

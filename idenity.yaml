@@ -8,14 +8,14 @@ basics:
   url: https://recursiveintelligence.io
   location: Pasadena, Texas
   summary: >
-    Autistic systems thinker with a strong bias toward structure, pattern, and explicit reasoning —
-    bringing a rare combination of 18+ years of industrial automation expertise and hands-on data science
-    leadership to the frontier of operational AI. Co-inventor on a pending patent for a deployed
-    ML-based process optimization system. Currently leading a cross-functional team of data scientists
-    and AI engineers delivering multi-million Euro EBITDA impact across live chemical manufacturing operations.
-    Specialized in the full stack from PI historian and ERP data ingestion to cloud model deployment and
-    validated DCS setpoint writeback. The hardest part isn't building the model — it's getting it accepted
-    in environments where a wrong setpoint has real consequences. AI that performs in live plants, not just sandboxes.
+    Systems thinker with a strong bias toward structure, pattern, and explicit reasoning — 18+ years in
+    industrial automation and hands-on data science leadership in the same career is not a common profile.
+    Co-inventor on a pending patent for a deployed ML-based process optimization system, currently leading
+    a cross-functional team of data scientists and AI engineers delivering multi-million Euro EBITDA impact
+    across live chemical manufacturing operations. The full stack runs from PI historian and ERP data ingestion
+    to cloud model deployment and validated DCS setpoint writeback. The hardest part isn't building the model —
+    it's getting it accepted in environments where a wrong setpoint has real consequences.
+    AI that performs in live plants, not just sandboxes.
   links:
     website: https://recursiveintelligence.io
     resume: https://sethrobins.recursiveintelligence.io
@@ -53,8 +53,8 @@ experience:
     period: Jan 2025 – Present
     highlights:
       - "Co-inventor on a pending patent for a deployed ML-based APC optimization system delivering measurable capacity increases and significant recurring EBITDA impact across live chemical manufacturing operations. No capital investment required."
-      - "Leading a regional team of four data scientists and one GenAI engineer across multiple concurrent AI/APC optimization initiatives, providing architectural direction, petrochemical domain translation, and hands-on mentorship. Most of the team is entering heavy industrial environments for the first time."
-      - "Architecting a serverless AWS data mesh to support multi-site AI/APC modeling at scale, negotiating PI historian and ERP data access across organizational and site boundaries. Acting as de facto data engineer — covering industrial data contextualization, ETL pipeline design, and CI/CD coordination — in the absence of dedicated data engineering resources."
+      - "Leading a regional team of four data scientists and one GenAI engineer across multiple concurrent AI/APC optimization initiatives, providing architectural direction, hands-on mentorship, and the petrochemical domain knowledge that closes the gap between what data science produces and what live plant operations will accept."
+      - "Architecting a serverless AWS data mesh to support multi-site AI/APC modeling at scale, negotiating PI historian and ERP data access across organizational and site boundaries. Covering the industrial data engineering directly: PI historian tag contextualization, ETL pipeline design, and CI/CD coordination — work that requires plant-floor context to interpret what those data streams actually represent before they go into a model."
       - "Leading architecture and delivery of a full-lifecycle agentic AI system deployed in live petrochemical manufacturing operations: automated notification generation, work order management, risk-based work prioritization, job package assembly, schedule optimization, and functional location resolution. Built on a knowledge graph of plant procedures and technical documentation, with embedded operator guidance and human-in-the-loop interrupt capability throughout."
       - "Owning end-to-end IT/OT integration across the full AI deployment stack, from cloud model output through multi-layer verification to validated DCS setpoint writeback. Driving UX/UI design informed by DCS graphic conventions so that operations teams trained on traditional control system interfaces actually use it."
       - "Driving AI adoption strategy across engineering, operations, and maintenance functions. The barriers that keep AI out of live plants are mostly organizational and domain-based — closing them is most of the actual work."

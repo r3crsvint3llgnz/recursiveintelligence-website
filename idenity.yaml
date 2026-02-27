@@ -8,13 +8,14 @@ basics:
   url: https://recursiveintelligence.io
   location: Pasadena, Texas
   summary: >
-    Systems thinker with a strong bias toward structure, pattern, and explicit reasoning — 18+ years in
-    industrial automation and hands-on data science leadership in the same career is not a common profile.
-    Co-inventor on a pending patent for a deployed ML-based process optimization system, currently leading
-    a cross-functional team of data scientists and AI engineers delivering multi-million Euro EBITDA impact
-    across live chemical manufacturing operations. The full stack runs from PI historian and ERP data ingestion
-    to cloud model deployment and validated DCS setpoint writeback. The hardest part isn't building the model —
-    it's getting it accepted in environments where a wrong setpoint has real consequences.
+    The hardest part isn't building the model — it's getting it accepted in environments where a wrong
+    setpoint has real consequences. Systems thinker with a strong bias toward structure, pattern, and
+    explicit reasoning — and a career that started on the plant floor as an instrumentation technician,
+    ran through process control engineering, and arrived at data science leadership with 18+ years of
+    industrial context intact. Co-inventor on a pending patent for a deployed ML-based process optimization
+    system, currently leading a cross-functional team of data scientists and AI engineers delivering
+    multi-million Euro EBITDA impact across live chemical manufacturing operations. The full stack runs
+    from PI historian and ERP data ingestion to cloud model deployment and validated DCS setpoint writeback.
     AI that performs in live plants, not just sandboxes.
   links:
     website: https://recursiveintelligence.io

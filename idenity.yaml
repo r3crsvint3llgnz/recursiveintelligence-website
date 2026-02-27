@@ -27,7 +27,7 @@ basics:
 key_performance_indicators:
   - metric: "Multi-million €"
     label: "Recurring EBITDA Impact"
-    description: "Delivered through patented ML optimization and AI/APC architectural frameworks across live chemical manufacturing operations."
+    description: "Delivered through patent-pending ML optimization and AI/APC architectural frameworks across live chemical manufacturing operations."
   - metric: "Multi-site"
     label: "Agentic AI Program Scope"
     description: "Leading active agentic AI optimization program spanning global chemical manufacturing sites — coordinating data access, architecture, and deployment across organizational boundaries."

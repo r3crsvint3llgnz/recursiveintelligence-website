@@ -8,12 +8,12 @@ basics:
   url: https://recursiveintelligence.io
   location: Pasadena, Texas
   summary: >
-    The hardest part isn't building the model — it's getting it accepted in environments where a wrong
+    The hardest part isn't building the model, it's getting it accepted in environments where a wrong
     setpoint has real consequences. Systems thinker with a strong bias toward structure, pattern, and
-    explicit reasoning — and a career that started on the plant floor as an instrumentation technician,
+    explicit reasoning. A career forged in the high-stakes reality of the plant floor as an instrumentation technician,
     ran through process control engineering, and arrived at data science leadership with 18+ years of
-    industrial context intact. Co-inventor on a pending patent for a deployed ML-based process optimization
-    system, currently leading a cross-functional team of data scientists and AI engineers delivering
+    industrial context intact. Co-inventor on a pending patents for a deployed ML-based process optimization
+    systems, currently serving a cross-functional team of data scientists and AI engineers delivering
     multi-million Euro EBITDA impact across live chemical manufacturing operations. The full stack runs
     from PI historian and ERP data ingestion to cloud model deployment and validated DCS setpoint writeback.
     AI that performs in live plants, not just sandboxes.
@@ -31,21 +31,21 @@ key_performance_indicators:
     description: "Delivered through patent-pending ML optimization and AI/APC architectural frameworks across live chemical manufacturing operations."
   - metric: "Multi-site"
     label: "Agentic AI Program Scope"
-    description: "Leading active agentic AI optimization program spanning global chemical manufacturing sites — coordinating data access, architecture, and deployment across organizational boundaries."
+    description: "Leading active agentic AI optimization program spanning global chemical manufacturing sites, coordinating data access, architecture, and deployment across organizational boundaries."
   - metric: "6,000+"
     label: "Peak Concurrent Users"
-    description: "Reached globally within 24 hours of a coordinated enterprise AI adoption launch — driven by structured change management, capability development, and human-centered rollout design across international manufacturing sites."
+    description: "Reached globally within 24 hours of a coordinated enterprise AI adoption launch, driven by structured change management, capability development, and human-centered rollout design across international manufacturing sites."
   - metric: "Multi-million $"
     label: "Workshop ROI Identified"
-    description: "Potential annual EBITDA surfaced in a single rapid value discovery sprint — coordinating 5+ cross-functional teams across Engineering, Commercial, and Operations."
+    description: "Potential annual EBITDA surfaced in a single rapid value discovery sprint, coordinating 5+ cross-functional teams across Engineering, Commercial, and Operations."
   - metric: "3x+"
     label: "MAU Growth"
-    description: "Monthly active user growth with sustained plateaus — driven by global AI adoption programs grounded in cognitive science methodology."
+    description: "Monthly active user growth with sustained plateaus, driven by global AI adoption programs grounded in cognitive science methodology."
 
 case_study_workshop:
   title: "Rapid Cross-Functional Value Discovery Sprint"
-  methodology: "Translating cognitive science into actionable methodology to bridge the 'reality gap' — applied across Engineering, Commercial, and Operations teams."
-  team_role: "Architect & Facilitator — leading 5+ cross-functional teams (Engineering, Commercial, Operations) across global and regional stakeholders to surface and prioritize high-value AI opportunities."
+  methodology: "Translating cognitive science into actionable methodology to bridge the 'reality gap', applied across Engineering, Commercial, and Operations teams."
+  team_role: "Architect & Facilitator: leading 5+ cross-functional teams (Engineering, Commercial, Operations) across global and regional stakeholders to surface and prioritize high-value AI opportunities."
   impact: "Multi-million dollar EBITDA opportunities identified and roadmapped through constraint-aware system modeling and structured cross-functional engagement."
 
 experience:
@@ -55,10 +55,10 @@ experience:
     highlights:
       - "Co-inventor on a pending patent for a deployed ML-based APC optimization system delivering measurable capacity increases and significant recurring EBITDA impact across live chemical manufacturing operations. No capital investment required."
       - "Leading a regional team of four data scientists and one GenAI engineer across multiple concurrent AI/APC optimization initiatives, providing architectural direction, hands-on mentorship, and the petrochemical domain knowledge that closes the gap between what data science produces and what live plant operations will accept."
-      - "Architecting a serverless AWS data mesh to support multi-site AI/APC modeling at scale, negotiating PI historian and ERP data access across organizational and site boundaries. Covering the industrial data engineering directly: PI historian tag contextualization, ETL pipeline design, and CI/CD coordination — work that requires plant-floor context to interpret what those data streams actually represent before they go into a model."
-      - "Leading architecture and delivery of a full-lifecycle agentic AI system deployed in live petrochemical manufacturing operations: automated notification generation, work order management, risk-based work prioritization, job package assembly, schedule optimization, and functional location resolution. Built on a knowledge graph of plant procedures and technical documentation, with embedded operator guidance and human-in-the-loop interrupt capability throughout."
+      - "Architecting a serverless AWS data mesh to support multi-site AI/APC modeling at scale, negotiating PI historian and ERP data access across organizational and site boundaries. Covering the industrial data engineering directly: PI historian tag contextualization, ETL pipeline design, and CI/CD coordination. Plant-floor context is what makes those data streams interpretable before they go into a model."
+      - "Leading architecture and delivery of a full-lifecycle agentic AI system deployed in live petrochemical manufacturing operations: automated notification generation, work order management, risk-based work prioritization, job package assembly, schedule optimization, and functional location resolution. Built on a knowledge graph of plant procedures and technical documentation, with embedded operator guidance and human-in-the-loop interrupt capability."
       - "Owning end-to-end IT/OT integration across the full AI deployment stack, from cloud model output through multi-layer verification to validated DCS setpoint writeback. Driving UX/UI design informed by DCS graphic conventions so that operations teams trained on traditional control system interfaces actually use it."
-      - "Driving AI adoption strategy across engineering, operations, and maintenance functions. The barriers that keep AI out of live plants are mostly organizational and domain-based — closing them is most of the actual work."
+      - "Driving AI adoption strategy across engineering, operations, and maintenance functions. The barriers that keep AI out of live plants are mostly organizational and domain-based. Closing them is most of the actual work."
 
   - company: Covestro
     role: Industrial Mobility & Intelligent Operations Architect
@@ -81,20 +81,20 @@ experience:
     highlights:
       - "Served as process control subject matter expert through enterprise-scale DCS migration projects and complex system continuity challenges during major site acquisitions and organizational mergers, maintaining production systems through transitions where most of the surrounding organization was in flux."
       - "Started on the plant floor as a production technician and worked up into process control technology engineering, building hands-on expertise across DCS platforms, APC systems, advanced instrumentation, and safety-critical control layer design."
-      - "Provided hands-on DCS engineering, troubleshooting, and production support across multi-team chemical manufacturing operations — the unglamorous foundational work of commissioning tasks, control layer issues at odd hours, and problems nobody else wanted to touch."
+      - "Provided hands-on DCS engineering, troubleshooting, and production support across multi-team chemical manufacturing operations: commissioning tasks, control layer issues at odd hours, and problems nobody else wanted to touch."
 
   - company: Dow Chemical
     role: Instrumentation Technician
     period: Oct 2006 – Aug 2007
     highlights:
-      - "Provided instrumentation design and Allen Bradley PLC support to plant engineering teams at one of the world's largest chemical manufacturing facilities — first job in industrial automation, and where the stakes of a control system failure became immediately concrete."
+      - "Provided instrumentation design and Allen Bradley PLC support to plant engineering teams at one of the world's largest chemical manufacturing facilities. First job in industrial automation; the stakes of a control system failure were immediately concrete."
 
 independent_leadership:
   - organization: Recursive Intelligence
     role: Founder / Applied AI Researcher
     highlights:
       - "Architected a production multi-agent AI research pipeline on AWS (Lambda, Bedrock, DynamoDB) that autonomously analyzes 50+ AI/ML sources every 12 hours and synthesizes structured intelligence briefs via LLM orchestration."
-      - "Publishes applied industrial AI methodology research at recursiveintelligence.io — constraint-aware human-AI collaboration frameworks grounded in cognitive science and tested against the realities of live manufacturing."
+      - "Publishes applied industrial AI methodology research at recursiveintelligence.io: constraint-aware human-AI collaboration frameworks grounded in cognitive science and tested against live manufacturing realities."
 
 core_competencies:
   industrial_stack:

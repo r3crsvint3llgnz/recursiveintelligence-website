@@ -14,9 +14,8 @@ basics:
     ML-based process optimization system. Currently leading a cross-functional team of data scientists
     and AI engineers delivering multi-million Euro EBITDA impact across live chemical manufacturing operations.
     Specialized in the full stack from PI historian and ERP data ingestion to cloud model deployment and
-    validated DCS setpoint writeback — the domain translator, architectural backbone, and change leader
-    who bridges the gap between data science and production operations to deliver AI that performs in
-    live plants, not just sandboxes.
+    validated DCS setpoint writeback. The hardest part isn't building the model — it's getting it accepted
+    in environments where a wrong setpoint has real consequences. AI that performs in live plants, not just sandboxes.
   links:
     website: https://recursiveintelligence.io
     resume: https://sethrobins.recursiveintelligence.io
@@ -53,48 +52,48 @@ experience:
     role: Artificial Intelligence Adoption Consultant
     period: Jan 2025 – Present
     highlights:
-      - "Co-inventor on a pending patent for a deployed ML-based Advanced Process Control (APC) optimization system — delivering measurable capacity increases and significant recurring annual EBITDA impact across live chemical manufacturing operations with zero capital investment required."
-      - "Leading a regional team of four data scientists and one GenAI engineer across multiple concurrent AI/APC optimization initiatives — providing guiding architectural framework, petrochemical domain translation, and hands-on mentorship for data scientists entering heavy industrial environments for the first time."
-      - "Architecting a serverless AWS data mesh to support multi-site AI/APC modeling at scale — coordinating globally to negotiate PI historian and ERP data access across organizational and site boundaries, and serving as de facto data engineer including industrial data contextualization, ETL pipeline design, and CI/CD platform coordination in the absence of dedicated data engineering resources."
-      - "Leading architecture and delivery of a full-lifecycle agentic AI system deployed in live petrochemical manufacturing operations — spanning automated notification generation, work order management, risk-based work prioritization, job package assembly, schedule optimization, and functional location resolution — powered by a knowledge graph knowledge base of plant procedures and technical documentation, with embedded operator guidance and human-in-the-loop interrupt capability throughout."
-      - "Owning end-to-end IT/OT integration across the full AI deployment stack — from cloud model output through multi-layer verification to validated DCS setpoint writeback — while driving UX/UI design informed by DCS graphic conventions to ensure adoption by operations teams trained on traditional control system interfaces."
-      - "Driving AI adoption strategy across engineering, operations, and maintenance functions — acting as the critical domain translator between data science, automation, and plant operations to break down organizational and technical barriers that typically prevent AI systems from reaching live production environments."
+      - "Co-inventor on a pending patent for a deployed ML-based APC optimization system delivering measurable capacity increases and significant recurring EBITDA impact across live chemical manufacturing operations. No capital investment required."
+      - "Leading a regional team of four data scientists and one GenAI engineer across multiple concurrent AI/APC optimization initiatives, providing architectural direction, petrochemical domain translation, and hands-on mentorship. Most of the team is entering heavy industrial environments for the first time."
+      - "Architecting a serverless AWS data mesh to support multi-site AI/APC modeling at scale, negotiating PI historian and ERP data access across organizational and site boundaries. Acting as de facto data engineer — covering industrial data contextualization, ETL pipeline design, and CI/CD coordination — in the absence of dedicated data engineering resources."
+      - "Leading architecture and delivery of a full-lifecycle agentic AI system deployed in live petrochemical manufacturing operations: automated notification generation, work order management, risk-based work prioritization, job package assembly, schedule optimization, and functional location resolution. Built on a knowledge graph of plant procedures and technical documentation, with embedded operator guidance and human-in-the-loop interrupt capability throughout."
+      - "Owning end-to-end IT/OT integration across the full AI deployment stack, from cloud model output through multi-layer verification to validated DCS setpoint writeback. Driving UX/UI design informed by DCS graphic conventions so that operations teams trained on traditional control system interfaces actually use it."
+      - "Driving AI adoption strategy across engineering, operations, and maintenance functions. The barriers that keep AI out of live plants are mostly organizational and domain-based — closing them is most of the actual work."
 
   - company: Covestro
     role: Industrial Mobility & Intelligent Operations Architect
     period: Apr 2022 – Jan 2025
     highlights:
-      - "Architected and delivered intrinsically safe smart device infrastructure integrated with industrial plant Wi-Fi networks for hazardous chemical manufacturing environments — bridging IT, OT, and safety requirements across plant operations teams."
+      - "Architected and delivered intrinsically safe smart device infrastructure integrated with industrial plant Wi-Fi networks for hazardous chemical manufacturing environments, bridging IT, OT, and safety requirements across plant operations teams."
       - "Led cross-functional deployment of 100+ mobile devices for emergency mustering and incident response, significantly improving site safety readiness and operational response times."
-      - "Equipped turnaround operations with 80+ mobile devices enabling real-time task execution, digital data capture, and live coordination — modernizing a historically paper-based, high-stakes operational process."
+      - "Equipped turnaround operations with 80+ mobile devices, replacing paper work packages with real-time task execution and live field coordination in an environment where every hour of unplanned delay has a direct production cost."
 
   - company: Covestro
     role: Process Control Capability Development Specialist
     period: Apr 2019 – Apr 2022
     highlights:
-      - "Designed and coordinated global capability development programs reaching ~250 direct and 2,000+ indirect personnel across international manufacturing sites — establishing a scalable, qualification-based learning infrastructure for process control functions."
-      - "Partnered with operations and safety leadership to architect qualification-based training for safety-critical plant systems including DCS, APC, and Process Safety — ensuring operational competency across a high-consequence industrial environment."
+      - "Designed and coordinated global capability development programs reaching ~250 direct and 2,000+ indirect personnel across international manufacturing sites, building qualification-based training infrastructure for process control functions."
+      - "Partnered with operations and safety leadership to develop qualification-based training for safety-critical plant systems including DCS, APC, and Process Safety, ensuring operational competency in an environment where gaps have real consequences."
 
   - company: Bayer Technology Services / Material Science
     role: Process Control Technology Engineer / Production Technician
     period: Aug 2007 – Apr 2015
     highlights:
-      - "Served as process control subject matter expert through enterprise-scale DCS migration projects and complex system continuity challenges during major site acquisitions and organizational mergers — maintaining operational integrity across critical industrial transitions."
-      - "Progressed from production technician to process control technology engineer — deepening expertise across DCS platforms, APC systems, advanced instrumentation, and safety-critical control layer design in large-scale chemical manufacturing environments."
-      - "Provided hands-on DCS engineering, troubleshooting, and production support across multi-team chemical manufacturing operations — building the deep automation and control systems foundation that now underpins AI/APC optimization architecture work."
+      - "Served as process control subject matter expert through enterprise-scale DCS migration projects and complex system continuity challenges during major site acquisitions and organizational mergers, maintaining production systems through transitions where most of the surrounding organization was in flux."
+      - "Started on the plant floor as a production technician and worked up into process control technology engineering, building hands-on expertise across DCS platforms, APC systems, advanced instrumentation, and safety-critical control layer design."
+      - "Provided hands-on DCS engineering, troubleshooting, and production support across multi-team chemical manufacturing operations — the unglamorous foundational work of commissioning tasks, control layer issues at odd hours, and problems nobody else wanted to touch."
 
   - company: Dow Chemical
     role: Instrumentation Technician
     period: Oct 2006 – Aug 2007
     highlights:
-      - "Delivered expert-level consultation on instrumentation design and Allen Bradley PLC systems for plant engineering teams — establishing a foundational industrial automation skillset in one of the world's largest chemical manufacturing environments."
+      - "Provided instrumentation design and Allen Bradley PLC support to plant engineering teams at one of the world's largest chemical manufacturing facilities — first job in industrial automation, and where the stakes of a control system failure became immediately concrete."
 
 independent_leadership:
   - organization: Recursive Intelligence
     role: Founder / Applied AI Researcher
     highlights:
-      - "Architected a production multi-agent AI research pipeline on AWS (Lambda, Bedrock, DynamoDB) — autonomously analyzing 50+ AI/ML sources every 12 hours and synthesizing structured intelligence briefs via LLM orchestration, running continuously without human intervention."
-      - "Authors applied industrial AI methodology research at recursiveintelligence.io — publishing constraint-aware, human-AI collaboration frameworks grounded in cognitive science and validated against live manufacturing environments."
+      - "Architected a production multi-agent AI research pipeline on AWS (Lambda, Bedrock, DynamoDB) that autonomously analyzes 50+ AI/ML sources every 12 hours and synthesizes structured intelligence briefs via LLM orchestration."
+      - "Publishes applied industrial AI methodology research at recursiveintelligence.io — constraint-aware human-AI collaboration frameworks grounded in cognitive science and tested against the realities of live manufacturing."
 
 core_competencies:
   industrial_stack:

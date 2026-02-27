@@ -10,9 +10,7 @@ basics:
   summary: >
     The hardest part isn't building the model, it's getting it accepted in environments where a wrong
     setpoint has real consequences. Systems thinker with a strong bias toward structure, pattern, and
-    explicit reasoning. A career forged in the high-stakes reality of the plant floor as an instrumentation technician,
-    ran through process control engineering, and arrived at data science leadership with 18+ years of
-    industrial context intact. Co-inventor on a pending patents for a deployed ML-based process optimization
+    explicit reasoning. A career forged as an instrumentation technician, refined through process control engineering, and proven in data science leadership while keeping 18+ years of grounded industrial context intact. Co-inventor on a pending patents for a deployed ML-based process optimization
     systems, currently serving a cross-functional team of data scientists and AI engineers delivering
     multi-million Euro EBITDA impact across live chemical manufacturing operations. The full stack runs
     from PI historian and ERP data ingestion to cloud model deployment and validated DCS setpoint writeback.

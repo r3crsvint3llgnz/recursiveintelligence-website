@@ -319,7 +319,7 @@ function ResumePDF({ data }: { data: any }) {
         ...Object.entries(comp).map(([category, items]) =>
           React.createElement(
             View,
-            { key: category },
+            { key: category, wrap: false },
             React.createElement(
               Text,
               { style: s.compCategory },

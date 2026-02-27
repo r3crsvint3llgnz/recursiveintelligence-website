@@ -108,6 +108,7 @@ core_competencies:
     - Hazardous Area Operations
     - Emerson DeltaV
     - Honeywell Experion
+    - Process Optimization
   systems_architecture:
     - IT/OT Integration
     - Cloud-to-Edge Architecture
@@ -117,6 +118,7 @@ core_competencies:
     - Knowledge Graph Design
     - Data Mesh Architecture
     - Serverless AWS Architecture
+    - Cross-Functional Leadership
   data_governance:
     - Industrial Data Pipelines
     - ETL Design & Engineering

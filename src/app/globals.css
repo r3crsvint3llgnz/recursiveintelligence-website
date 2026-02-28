@@ -381,13 +381,9 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 
 /* Bold stripe — hazard stripe at full opacity for structural chrome */
 .ri-stripe-bold {
-  height: 12px;
-  background: repeating-linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--ri-accent) 92%, white) 0 8px,
-    transparent 8px 16px
-  );
-  opacity: 1;
+  height: 1px;
+  background: rgba(255, 102, 0, 0.35);
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.2);
 }
 
 /* Editorial grid — homepage breakout, wider than max-w-3xl */
@@ -550,8 +546,10 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   background: rgba(0, 0, 0, 0.6);
   z-index: 44;
 }
-.ri-nav-scrim--visible {
-  display: block;
+@media (max-width: 767px) {
+  .ri-nav-scrim--visible {
+    display: block;
+  }
 }
 
 @keyframes ri-pulse {

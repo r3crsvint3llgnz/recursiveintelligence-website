@@ -10,9 +10,8 @@ basics:
   summary: >
     The hardest part isn't building the model, it's getting it accepted in environments where a wrong
     setpoint has real consequences. Systems thinker with a strong bias toward structure, pattern, and
-    explicit reasoning. A career forged as an instrumentation technician, refined through process control engineering, and proven in data science leadership while keeping 18+ years of grounded industrial context intact. Co-inventor on a pending patents for production-deployed AI optimization systems, currently serving a cross-functional team of data scientists and AI engineers delivering
-    multi-million Euro EBITDA impact across live manufacturing operations. The full stack runs
-    from plant data ingestion to cloud model deployment and validated control system integration.
+    explicit reasoning. A career forged as an instrumentation technician, refined through process control engineering, and proven in data science leadership while keeping 18+ years of grounded industrial context intact. Co-inventor on pending patents for production-deployed AI optimization systems, currently serving a cross-functional team of data scientists and AI engineers delivering
+    significant recurring EBITDA impact across live manufacturing operations.
     AI that performs in live plants, not just sandboxes.
   links:
     website: https://recursiveintelligence.io
@@ -23,15 +22,15 @@ basics:
     linkedin: https://www.linkedin.com/in/sethrobins1010/
 
 key_performance_indicators:
-  - metric: "Multi-million €"
+  - metric: "Multi-million"
     label: "Recurring EBITDA Impact"
     description: "Delivered through patent-pending AI optimization and architectural frameworks across live manufacturing operations."
   - metric: "Multi-site"
     label: "Agentic AI Program Scope"
     description: "Leading active agentic AI optimization program spanning global chemical manufacturing sites, coordinating data access, architecture, and deployment across organizational boundaries."
-  - metric: "6,000+"
-    label: "Peak Concurrent Users"
-    description: "Reached globally within 24 hours of a coordinated enterprise AI adoption launch, driven by structured change management, capability development, and human-centered rollout design across international manufacturing sites."
+  - metric: "Enterprise-scale"
+    label: "AI Adoption Reach"
+    description: "Driven by structured change management, capability development, and human-centered rollout design across international manufacturing sites."
   - metric: "Multi-million $"
     label: "Workshop ROI Identified"
     description: "Potential annual EBITDA surfaced in a single rapid value discovery sprint, coordinating 5+ cross-functional teams across Engineering, Commercial, and Operations."
@@ -50,11 +49,11 @@ experience:
     role: Industrial AI Architect
     period: Jan 2025 – Present
     highlights:
-      - "Co-inventor on pending patents for a production-deployed AI optimization system delivering measurable capacity increases and significant recurring EBITDA impact. No capital investment required."
+      - "Co-inventor on pending patents for a production-deployed AI optimization system delivering measurable capacity increases and significant recurring EBITDA impact."
       - "Leading a regional team of four data scientists and one GenAI engineer across multiple concurrent AI/APC optimization initiatives, providing architectural direction, hands-on mentorship, and the petrochemical domain knowledge that closes the gap between what data science produces and what live plant operations will accept."
       - "Architecting a serverless AWS data mesh to support multi-site AI modeling at scale, negotiating plant data and ERP access across organizational and site boundaries. Covering the industrial data engineering directly: plant data tag contextualization, ETL pipeline design, and CI/CD coordination. Plant-floor context is what makes those data streams interpretable before they go into a model."
       - "Leading architecture and delivery of a full-lifecycle agentic AI system deployed in live manufacturing operations: automated notifications, work management, risk-based scheduling, and operator guidance. Built on structured plant knowledge with human-in-the-loop capability."
-      - "Owning end-to-end IT/OT integration across the full AI deployment stack, from cloud model output through multi-layer verification to validated control system integration. Driving UX/UI design informed by existing control system conventions so that operations teams trained on traditional interfaces actually use it."
+      - "Owning end-to-end IT/OT integration across the full AI deployment stack. Driving UX/UI design informed by existing control system conventions so that operations teams trained on traditional interfaces actually use it."
       - "Driving AI adoption strategy across engineering, operations, and maintenance functions. The barriers that keep AI out of live plants are mostly organizational and domain-based. Closing them is most of the actual work."
 
   - company: Covestro

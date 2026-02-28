@@ -342,7 +342,7 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 .ri-category-label {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  font-variant: small-caps;
+  font-variant-caps: all-small-caps;
   letter-spacing: 0.12em;
   color: var(--ri-accent);
   display: inline-flex;

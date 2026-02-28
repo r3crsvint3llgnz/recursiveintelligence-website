@@ -109,7 +109,7 @@ export default function SideNav({ isExpanded, onToggle }: Props) {
             const content = (
               <>
                 <Icon />
-                {isExpanded && <span>{label}</span>}
+                <span className={isExpanded ? undefined : "sr-only"}>{label}</span>
                 {isExpanded && badge && (
                   <span className="ri-live-badge">live</span>
                 )}

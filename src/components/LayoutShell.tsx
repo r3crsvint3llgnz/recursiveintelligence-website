@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SideNav from "./SideNav";
 
 function HamburgerIcon() {
@@ -20,13 +20,22 @@ export default function LayoutShell({
   const [isExpanded, setIsExpanded] = useState(false);
   const toggle = () => setIsExpanded((v) => !v);
 
+  useEffect(() => {
+    if (!isExpanded) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") toggle();
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [isExpanded]);
+
   return (
     <>
       {/* Mobile hamburger — overlaid on top bar left, only shown on mobile */}
       <button
         onClick={toggle}
         className="md:hidden fixed top-0 left-0 z-[51] h-12 w-12 flex items-center justify-center text-[color:var(--ri-muted)] hover:text-[color:var(--ri-fg)] transition-colors"
-        aria-label="Open navigation"
+        aria-label={isExpanded ? "Close navigation" : "Open navigation"}
       >
         <HamburgerIcon />
       </button>

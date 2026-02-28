@@ -10,6 +10,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = genPageMetadata({
   title: 'Briefs',
   description: 'Bi-daily AI/ML research summaries.',
+  canonical: '/briefs',
 })
 
 function formatDate(dateString: string): string {

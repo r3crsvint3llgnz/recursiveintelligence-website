@@ -9,6 +9,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = genPageMetadata({
   title: 'Support',
   description: 'Fund the research pipeline — direct patronage supporting the autonomous Claude 4.6 agent and independent API costs.',
+  canonical: '/support',
 })
 
 interface PriceInfo {

@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = genPageMetadata({
   title: 'Subscribe',
   description: 'Access the full AI/ML briefings archive.',
+  canonical: '/subscribe',
 })
 
 interface PriceInfo {

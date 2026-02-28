@@ -6,6 +6,7 @@ interface PageSEOProps {
   title: string
   description?: string
   image?: string
+  canonical?: string
   // Allow any additional metadata fields
   [key: string]: unknown
 }
@@ -14,10 +15,11 @@ export function genPageMetadata({
   title,
   description,
   image,
+  canonical,
   ...rest
 }: PageSEOProps): Metadata {
-  const imageArray = image 
-    ? [image] 
+  const imageArray = image
+    ? [image]
     : (siteMetadata.socialBanner ? [siteMetadata.socialBanner] : [])
 
   const resolvedDescription = description || siteMetadata.description
@@ -38,6 +40,7 @@ export function genPageMetadata({
       card: 'summary_large_image',
       images: imageArray,
     },
+    ...(canonical ? { alternates: { canonical } } : {}),
     ...rest,
   }
 }

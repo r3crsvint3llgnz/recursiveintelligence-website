@@ -5,6 +5,7 @@ export const metadata = genPageMetadata({
   title: 'About',
   description:
     'Seth Robins — translating cognitive science and AI research into practical frameworks for human-AI collaboration.',
+  canonical: '/about',
 })
 
 export const dynamic = "force-static";

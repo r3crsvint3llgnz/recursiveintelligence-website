@@ -13,20 +13,23 @@ export default function HomeHero() {
         className="ri-fade-up mt-4 text-2xl md:text-3xl font-normal text-[color:var(--ri-fg)] opacity-90"
         style={{ animationDelay: "80ms" }}
       >
-        Practical AI Methodology Meets Cognitive Science
+        Stop Being an AI User. Become an AI Architect.
       </p>
       <p
         className="ri-fade-up mt-4 text-lg md:text-xl text-gray-900 dark:text-gray-300 max-w-2xl leading-relaxed"
         style={{ animationDelay: "160ms" }}
       >
-        Turning peer-reviewed research into frameworks for human-AI collaboration
-        that enhance thinking rather than replace it.
+        Research keeps confirming the same pattern: passive AI use atrophies
+        the thinking it replaces. I&apos;ve been building cognitive scaffolding
+        tools my entire life as a neurodivergent thinker. AI is just the new
+        terrain. I teach you to use it as a thinking partner, not a thinking
+        replacement.
       </p>
       <p
         className="ri-fade-up mt-2 text-base text-gray-800 dark:text-gray-400"
         style={{ animationDelay: "240ms" }}
       >
-        Tools and weekly implementation guides.
+        Frameworks, briefs, and the Recursive Prompting Handbook.
       </p>
       <div
         className="ri-fade-up flex flex-col sm:flex-row gap-3 mt-8"

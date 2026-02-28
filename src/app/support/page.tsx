@@ -51,9 +51,9 @@ export default async function SupportPage({ searchParams }: SupportPageProps) {
   return (
     <div className="py-12">
       <div className="mb-10 ri-fade-up">
-        <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Fund the Research Pipeline</h1>
+        <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Fund What Gets Built Next</h1>
         <p className="text-[color:var(--ri-muted)] text-lg max-w-xl">
-          Direct contributions to support the autonomous Claude 4.6 agent and independent API costs.
+          The briefs and frameworks are free. Courses, tools, and training programs aren&apos;t built yet. Reader support is what builds them.
         </p>
       </div>
 
@@ -72,7 +72,7 @@ export default async function SupportPage({ searchParams }: SupportPageProps) {
           Fund the Lab
         </h2>
         <p className="text-[color:var(--ri-muted)] text-sm mb-6 max-w-lg">
-          A one-time contribution of any amount. No subscription, no commitment — just direct support for the work.
+          Direct support for the lab. No subscription, no commitment. Just keeping independent research independent.
         </p>
         <form
           action="/api/stripe/contribute"
@@ -102,7 +102,7 @@ export default async function SupportPage({ searchParams }: SupportPageProps) {
             type="submit"
             className="font-semibold py-2 px-4 rounded bg-[color:var(--ri-accent)] text-[color:var(--ri-bg)] hover:bg-[color:var(--ri-accent-700)] transition-colors ri-accent-ring whitespace-nowrap"
           >
-            Give →
+            Support the Work →
           </button>
         </form>
       </section>
@@ -115,7 +115,7 @@ export default async function SupportPage({ searchParams }: SupportPageProps) {
           Become a Patron
         </h2>
         <p className="text-[color:var(--ri-muted)] text-sm mb-6 max-w-lg">
-          Monthly support for the lab. Includes full access to the AI/ML briefs archive.
+          Monthly support with full brief archive access. You fund the research; I build the tools, courses, and training that come out of it.
         </p>
 
         {!patronPrice ? (

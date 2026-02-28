@@ -75,7 +75,7 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
       <div className="mb-10 ri-fade-up">
         <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Subscribe</h1>
         <p className="text-[color:var(--ri-muted)] text-lg max-w-xl">
-          The latest brief is always free. Subscribe for access to the full archive.
+          The latest brief is always free. The archive is where the patterns become visible: dozens of research cycles showing how the same cognitive principles play out across AI developments.
         </p>
       </div>
 
@@ -113,12 +113,14 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
             </form>
           </div>
 
-          <div className="glass border-l-[3px] border-[color:var(--ri-accent)]">
+          <div className="glass border-l-[3px] border-[color:var(--ri-accent)] relative">
+            <p className="text-[color:var(--ri-accent)] text-xs font-semibold uppercase tracking-wide mb-1">Recommended</p>
             <p className="text-[color:var(--ri-muted)] text-sm mb-1">Annual</p>
             <p className="font-space-grotesk text-3xl font-bold text-[color:var(--ri-fg)] mb-1">
               {formatAmount(prices.annual.amount, prices.annual.currency)}
             </p>
-            <p className="text-[color:var(--ri-muted)] text-xs mb-6">per year · best value</p>
+            <p className="text-[color:var(--ri-muted)] text-xs mb-1">per year · best value</p>
+            <p className="text-[color:var(--ri-accent)] text-xs font-medium mb-6">Save $20 vs monthly</p>
             <form action="/api/stripe/checkout" method="POST">
               <input type="hidden" name="priceId" value={prices.annual.id} />
               <button

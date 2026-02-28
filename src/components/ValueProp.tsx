@@ -7,9 +7,12 @@ export default function ValueProp() {
 
       <div className="space-y-4">
         <p className="text-xl font-light text-gray-900 dark:text-gray-300">
-          Most people missed what the MIT brain study actually proved.
+          Study after study is confirming the same thing: passive AI use
+          atrophies the thinking it replaces.
         </p>
-        <p className="text-xl font-light text-gray-900 dark:text-gray-300">I didn&apos;t.</p>
+        <p className="text-xl font-light text-gray-900 dark:text-gray-300">
+          I&apos;ve been building the antidote.
+        </p>
 
         <p className="text-base text-gray-800 dark:text-gray-400 leading-relaxed">
           I take research from cognitive science, neuroscience, and AI—the

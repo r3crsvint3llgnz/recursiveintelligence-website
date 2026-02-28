@@ -44,24 +44,6 @@ function SupportIcon() {
     </svg>
   );
 }
-function ExpandIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <path d="M9 3v18" />
-      <path d="M14 9l3 3-3 3" />
-    </svg>
-  );
-}
-function CollapseIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <path d="M9 3v18" />
-      <path d="M15 15l-3-3 3-3" />
-    </svg>
-  );
-}
 
 const NAV_ITEMS = [
   { href: "/",        label: "Home",    Icon: HomeIcon,    external: false, badge: false },
@@ -92,14 +74,6 @@ export default function SideNav({ isExpanded, onToggle }: Props) {
         className={`ri-sidenav${isExpanded ? " ri-sidenav--expanded" : ""}`}
         aria-label="Primary navigation"
       >
-        <button
-          onClick={onToggle}
-          className="ri-sidenav-toggle"
-          aria-label={isExpanded ? "Collapse navigation" : "Expand navigation"}
-        >
-          {isExpanded ? <CollapseIcon /> : <ExpandIcon />}
-        </button>
-
         <ul>
           {NAV_ITEMS.map(({ href, label, Icon, external, badge }) => {
             const active =

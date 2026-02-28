@@ -34,14 +34,14 @@ export default function Page() {
               href="https://store.recursiveintelligence.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] text-base font-semibold bg-[color:var(--ri-accent)] text-black hover:bg-[color:var(--ri-accent-700)] transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-base font-semibold bg-[color:var(--ri-accent)] text-black hover:bg-[color:var(--ri-accent-700)] transition-colors"
               aria-label="Get the Recursive Prompting Handbook"
             >
               Get the Handbook
             </a>
             <Link
               href="/briefs"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] text-base font-semibold border-2 border-[color:var(--ri-accent)] text-[color:var(--ri-accent)] hover:bg-[color:var(--ri-accent)] hover:text-black transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-base font-semibold border border-[color:var(--ri-accent)]/60 text-[color:var(--ri-accent)] hover:border-[color:var(--ri-accent)] hover:bg-[rgba(255,102,0,0.08)] transition-colors"
             >
               Latest Brief
             </Link>
@@ -110,18 +110,18 @@ export default function Page() {
         </div>
 
         <div className="glass p-5">
-          <span className="ri-category-label mb-3 block">Store</span>
-          <h3 className="text-lg font-bold mb-2">Recursive Prompting Handbook</h3>
+          <span className="ri-category-label mb-3 block">Follow</span>
+          <h3 className="text-lg font-bold mb-2">Substack</h3>
           <p className="text-sm text-[color:var(--ri-muted)] mb-4">
-            The framework for building Cognitive Firmware, not prompt libraries.
+            Articles, methodology updates, and thinking in progress — delivered directly.
           </p>
           <a
-            href="https://store.recursiveintelligence.io"
+            href="https://substack.recursiveintelligence.io"
             target="_blank"
             rel="noopener noreferrer"
             className="ri-link text-sm"
           >
-            Get the Handbook →
+            Follow on Substack →
           </a>
         </div>
       </div>

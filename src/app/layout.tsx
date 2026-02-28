@@ -100,9 +100,6 @@ function Footer() {
     <footer className="mt-16">
       <div className="ri-stripe-bold" aria-hidden="true" />
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <p className="font-mono text-xs uppercase tracking-widest text-[color:var(--ri-muted)] mb-4">
-          {'// Navigate'}
-        </p>
         <p className="text-center text-sm text-[color:var(--ri-muted)]">
           © {currentYear} Recursive Intelligence —{" "}
           <Link href="/privacy" className="ri-link">

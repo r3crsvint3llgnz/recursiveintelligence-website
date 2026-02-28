@@ -1,36 +1,23 @@
 export default function ValueProp() {
   return (
-    <section className="py-12 space-y-6">
+    <section className="py-10 space-y-5">
       <h2 className="text-3xl font-bold text-[color:var(--ri-fg)]">
         What I Do
       </h2>
-
-      <div className="space-y-4">
-        <p className="text-xl font-light text-gray-900 dark:text-gray-300">
-          Study after study is confirming the same thing: passive AI use
-          atrophies the thinking it replaces.
+      <p className="text-base text-[color:var(--ri-muted)] leading-relaxed">
+        Practical frameworks from real research — cognitive science, neuroscience,
+        and AI — built to be used immediately, not archived.
+      </p>
+      <div className="glass space-y-3">
+        <p className="text-[color:var(--ri-accent)] font-medium">
+          → No theory without practice.
         </p>
-        <p className="text-xl font-light text-gray-900 dark:text-gray-300">
-          I&apos;ve been building the antidote.
+        <p className="text-[color:var(--ri-accent)] font-medium">
+          → No recommendations without evidence.
         </p>
-
-        <p className="text-base text-gray-800 dark:text-gray-400 leading-relaxed">
-          I take research from cognitive science, neuroscience, and AI—the
-          studies everyone&apos;s arguing about but few understand—and build
-          practical frameworks you can use immediately.
+        <p className="text-[color:var(--ri-accent)] font-medium">
+          → No tools without teaching you why they work.
         </p>
-
-        <div className="glass mt-6 space-y-3">
-          <p className="text-[color:var(--ri-accent)] font-medium">
-            → No theory without practice.
-          </p>
-          <p className="text-[color:var(--ri-accent)] font-medium">
-            → No recommendations without evidence.
-          </p>
-          <p className="text-[color:var(--ri-accent)] font-medium">
-            → No tools without teaching you why they work.
-          </p>
-        </div>
       </div>
     </section>
   );

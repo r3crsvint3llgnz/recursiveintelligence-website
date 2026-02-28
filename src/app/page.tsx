@@ -83,13 +83,13 @@ export default function Page() {
       {/* 3-col secondary grid */}
       <div className="grid md:grid-cols-3 gap-4 py-8">
         <div className="glass p-5">
-          <span className="ri-category-label mb-3 block">Articles</span>
-          <h3 className="text-lg font-bold mb-2">Long-form Writing</h3>
+          <span className="ri-category-label mb-3 block">Dispatches</span>
+          <h3 className="text-lg font-bold mb-2">Field Reports</h3>
           <p className="text-sm text-[color:var(--ri-muted)] mb-4">
-            Deep dives on AI systems, cognitive science, and applied methodology.
+            Applied cognitive science, industrial AI, and methodology from practice.
           </p>
           <Link href="/blog" className="ri-link text-sm">
-            Read articles →
+            Read dispatches →
           </Link>
         </div>
 

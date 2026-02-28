@@ -128,13 +128,13 @@ export default function Page() {
 
       {/* Section marker: Methodology */}
       <div className="ri-section-marker">
-        <span className="ri-section-marker-label">// Methodology</span>
+        <span className="ri-section-marker-label">{'// Methodology'}</span>
       </div>
       <ValueProp />
 
       {/* Section marker: Research Applied */}
       <div className="ri-section-marker">
-        <span className="ri-section-marker-label">// Research Applied</span>
+        <span className="ri-section-marker-label">{'// Research Applied'}</span>
       </div>
       <ResearchApplied />
 

@@ -116,7 +116,7 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 
 @theme inline {
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 /* Font utilities for Space Grotesk headings */
@@ -344,7 +344,6 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   font-size: 0.68rem;
   font-variant: small-caps;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--ri-accent);
   display: inline-flex;
   align-items: center;
@@ -512,7 +511,7 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   height: 4px;
   border-radius: 50%;
   background: var(--ri-accent);
-  animation: ind-pulse 2s ease-in-out infinite;
+  animation: ri-pulse 2s ease-in-out infinite;
   flex-shrink: 0;
 }
 
@@ -569,4 +568,9 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 }
 .ri-nav-scrim--visible {
   display: block;
+}
+
+@keyframes ri-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
 }

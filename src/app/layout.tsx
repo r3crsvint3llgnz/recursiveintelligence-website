@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { getBaseUrl } from "../lib/baseUrl";
 import FooterCTA from "../components/FooterCTA";
 import AccentBar from "../components/AccentBar";
@@ -23,6 +23,12 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -214,7 +220,7 @@ export default function RootLayout({
           )}
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-inter antialiased min-h-screen`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-inter antialiased min-h-screen`}
       >
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
           <Header />

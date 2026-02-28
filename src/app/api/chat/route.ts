@@ -260,7 +260,10 @@ export async function POST(req: NextRequest) {
 
     // Log this turn async — fire and forget; errors must not affect the response
     const userMsg = sanitized[sanitized.length - 1]?.content ?? "";
-    const turnNum = count + 1;
+    // Derive turn number from message history: count of user messages in the full
+    // conversation. This is stable across cookie resets (session cookie lives 90
+    // days; rate-limit cookie resets every 24h, so count+1 would restart at 1).
+    const turnNum = sanitized.filter((m) => m.role === "user").length;
     void logTurn(sessionId, turnNum, userMsg, botMsg);
 
     return result;

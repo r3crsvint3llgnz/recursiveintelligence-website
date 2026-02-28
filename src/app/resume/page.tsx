@@ -8,6 +8,7 @@ import EducationSection from "../../components/portfolio/EducationSection";
 import SystemHealthWidget from "../../components/portfolio/SystemHealthWidget";
 import ChatWidget from "../../components/portfolio/ChatWidget";
 import { genPageMetadata } from '../seo';
+import ContentWrapper from "../../components/ContentWrapper";
 
 export const metadata = genPageMetadata({
   title: 'Seth Robins — Industrial AI Architect',
@@ -22,6 +23,7 @@ export default function ResumePage() {
   const identity = getIdentity();
 
   return (
+    <ContentWrapper>
     <div className="industrial min-h-screen">
       {/* Person structured data — safe: JSON.stringify of static identity.yaml, not user input */}
       <script
@@ -91,5 +93,6 @@ export default function ResumePage() {
 
       <ChatWidget />
     </div>
+    </ContentWrapper>
   );
 }

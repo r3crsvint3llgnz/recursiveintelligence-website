@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import MDXContent from "../../../components/MDXContent";
 import { genPageMetadata } from '../../seo'
+import ContentWrapper from "../../../components/ContentWrapper"
 
 export function generateStaticParams() {
   return allPosts
@@ -43,6 +44,7 @@ export default async function BlogPostPage({
   }
 
   return (
+    <ContentWrapper>
     <article className="py-12">
       {/* Back link */}
       <div className="mb-8 ri-fade-up">
@@ -118,5 +120,6 @@ export default async function BlogPostPage({
         }}
       />
     </article>
+    </ContentWrapper>
   );
 }

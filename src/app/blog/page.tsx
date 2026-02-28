@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { allPosts } from "contentlayer/generated";
 import { genPageMetadata } from '../seo'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const metadata = genPageMetadata({
   title: 'Blog',
@@ -22,6 +23,7 @@ export default function BlogPage() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
+    <ContentWrapper>
     <div className="py-12">
       {/* Page header */}
       <div className="mb-10 ri-fade-up">
@@ -100,5 +102,6 @@ export default function BlogPage() {
         </ol>
       )}
     </div>
+    </ContentWrapper>
   );
 }

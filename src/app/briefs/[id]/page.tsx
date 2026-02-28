@@ -8,6 +8,7 @@ import { BriefBody } from '@/components/BriefBody'
 import { genPageMetadata } from '../../seo'
 import { isSafeUrl } from '@/lib/isSafeUrl'
 import type { BriefItem } from '@/types/brief'
+import ContentWrapper from "../../../components/ContentWrapper"
 
 export const dynamic = 'force-dynamic'
 
@@ -63,6 +64,7 @@ export default async function BriefDetailPage({
   }
 
   return (
+    <ContentWrapper>
     <div className="py-12">
       <div className="mb-8">
         <Link href="/briefs" className="ri-link ri-accent-ring text-sm">
@@ -141,5 +143,6 @@ export default async function BriefDetailPage({
         </ol>
       </section>
     </div>
+    </ContentWrapper>
   )
 }

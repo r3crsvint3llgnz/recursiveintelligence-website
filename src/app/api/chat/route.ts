@@ -2,6 +2,8 @@ import {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { NextRequest, NextResponse } from "next/server";
 import { getRawIdentity } from "@/lib/identity";
 import { cookies } from "next/headers";
@@ -15,6 +17,8 @@ const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 4000;
 const SESSION_LIMIT = 15;
 const COOKIE_NAME = "resume-chat-usage";
+const SESSION_COOKIE_NAME = "resume-chat-session";
+const SESSION_COOKIE_MAX_AGE = 60 * 60 * 24 * 90; // 90 days
 
 // Runs once at module load — Next.js bundles knowledge-base.json at compile time
 // so the static import works in Amplify SSR Lambda (process.cwd() does not).
@@ -93,6 +97,47 @@ interface ChatMessage {
   content: string;
 }
 
+async function logTurn(
+  sessionId: string,
+  turnNum: number,
+  userMsg: string,
+  botMsg: string
+): Promise<void> {
+  const tableName = process.env.CHAT_LOGS_TABLE_NAME;
+  if (!tableName) return;
+
+  const accessKeyId = process.env.RESUME_CHAT_AWS_ACCESS_KEY_ID ?? "";
+  const secretAccessKey = process.env.RESUME_CHAT_AWS_SECRET_ACCESS_KEY ?? "";
+  if (!accessKeyId || !secretAccessKey) return;
+
+  try {
+    const dynamo = DynamoDBDocumentClient.from(
+      new DynamoDBClient({
+        region: "us-east-1",
+        credentials: { accessKeyId, secretAccessKey },
+      })
+    );
+
+    const ttl = Math.floor(Date.now() / 1000) + 90 * 24 * 60 * 60;
+
+    await dynamo.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          session_id: sessionId,
+          turn_num: turnNum,
+          ts: new Date().toISOString(),
+          user_msg: userMsg,
+          bot_msg: botMsg,
+          ttl,
+        },
+      })
+    );
+  } catch (e) {
+    console.error("chat log write failed:", e);
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const cookieStore = await cookies();
@@ -119,6 +164,13 @@ export async function POST(req: NextRequest) {
         },
         { status: 429 }
       );
+    }
+
+    // Read or generate session ID
+    let sessionId = cookieStore.get(SESSION_COOKIE_NAME)?.value ?? "";
+    const isNewSession = !sessionId;
+    if (isNewSession) {
+      sessionId = crypto.randomUUID();
     }
 
     const { messages } = (await req.json()) as { messages: ChatMessage[] };
@@ -181,10 +233,18 @@ export async function POST(req: NextRequest) {
     const response = await client.send(command);
     const responseBody = JSON.parse(new TextDecoder().decode(response.body));
 
-    const result = NextResponse.json({
-      content:
-        responseBody.content?.[0]?.text ??
-        "I wasn't able to generate a response. Please try again.",
+    const botMsg =
+      responseBody.content?.[0]?.text ??
+      "I wasn't able to generate a response. Please try again.";
+
+    const result = NextResponse.json({ content: botMsg });
+
+    // Set session cookie
+    result.cookies.set(SESSION_COOKIE_NAME, sessionId, {
+      maxAge: SESSION_COOKIE_MAX_AGE,
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
     });
 
     // Update usage cookie
@@ -197,6 +257,11 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       sameSite: "strict",
     });
+
+    // Log this turn async — fire and forget; errors must not affect the response
+    const userMsg = sanitized[sanitized.length - 1]?.content ?? "";
+    const turnNum = count + 1;
+    void logTurn(sessionId, turnNum, userMsg, botMsg);
 
     return result;
   } catch (error: unknown) {

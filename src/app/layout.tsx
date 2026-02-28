@@ -4,10 +4,8 @@ import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { getBaseUrl } from "../lib/baseUrl";
 import FooterCTA from "../components/FooterCTA";
-import AccentBar from "../components/AccentBar";
 import DisambiguationBanner from "../components/DisambiguationBanner";
-import NavTabs from "../components/NavTabs";
-import R3IMarkFinal from "../components/brand/R3IMarkFinal";
+import LayoutShell from "../components/LayoutShell";
 import BrandLink from "../components/brand/BrandLink";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
@@ -80,16 +78,14 @@ export const metadata: Metadata = {
   },
 };
 
-function Header() {
+function TopBar() {
   return (
-    <header className="fixed top-0 left-0 right-0 bg-[color:var(--ri-bg)] z-50 px-4 py-3 border-b border-[color:var(--ri-border)]">
-      <div className="max-w-3xl mx-auto flex items-center justify-between">
+    <header className="ri-topbar">
+      {/* Space reserved for mobile hamburger rendered by LayoutShell at z-[51] */}
+      <div className="pl-10 md:pl-0">
         <BrandLink />
-        <div className="flex items-center gap-2">
-          <NavTabs />
-          <ThemeToggle />
-        </div>
       </div>
+      <ThemeToggle />
     </header>
   );
 }
@@ -99,11 +95,15 @@ function Footer() {
   const gardenUrl =
     process.env.NEXT_PUBLIC_GARDEN_URL ??
     "https://recursiveintelligence.xyz/";
-  
+
   return (
-    <footer className="mt-16 py-8 border-t border-[color:var(--ri-border)]">
-      <div className="max-w-3xl mx-auto px-4 text-center text-sm text-[color:var(--ri-muted)]">
-        <p>
+    <footer className="mt-16">
+      <div className="ri-stripe-bold" aria-hidden="true" />
+      <div className="max-w-3xl mx-auto px-4 py-8">
+        <p className="font-mono text-xs uppercase tracking-widest text-[color:var(--ri-muted)] mb-4">
+          // Navigate
+        </p>
+        <p className="text-center text-sm text-[color:var(--ri-muted)]">
           © {currentYear} Recursive Intelligence —{" "}
           <Link href="/privacy" className="ri-link">
             Privacy
@@ -115,7 +115,7 @@ function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            Recursive Garden (Lab)
+            Recursive Garden
           </a>
           {" | "}
           <a
@@ -219,20 +219,17 @@ export default function RootLayout({
             />
           )}
       </head>
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-inter antialiased min-h-screen`}
-      >
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-inter antialiased min-h-screen`}>
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
-          <Header />
-          <AccentBar />
-          <main className="pt-16 min-h-screen">
-            <DisambiguationBanner />
-            <div className="max-w-3xl mx-auto px-4">
+          <TopBar />
+          <LayoutShell>
+            <main className="pt-12 min-h-screen">
+              <DisambiguationBanner />
               {children}
               <FooterCTA />
-            </div>
-          </main>
-          <Footer />
+            </main>
+            <Footer />
+          </LayoutShell>
         </ThemeProvider>
       </body>
     </html>

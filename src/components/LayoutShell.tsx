@@ -31,10 +31,10 @@ export default function LayoutShell({
 
   return (
     <>
-      {/* Mobile hamburger — overlaid on top bar left, only shown on mobile */}
+      {/* Nav toggle — overlaid on top bar left, all screen sizes */}
       <button
         onClick={toggle}
-        className="md:hidden fixed top-0 left-0 z-[51] h-12 w-12 flex items-center justify-center text-[color:var(--ri-muted)] hover:text-[color:var(--ri-fg)] transition-colors"
+        className="fixed top-0 left-0 z-[51] h-12 w-12 flex items-center justify-center text-[color:var(--ri-muted)] hover:text-[color:var(--ri-fg)] transition-colors"
         aria-label={isExpanded ? "Close navigation" : "Open navigation"}
       >
         <HamburgerIcon />

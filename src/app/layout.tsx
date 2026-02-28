@@ -82,7 +82,7 @@ function TopBar() {
   return (
     <header className="ri-topbar">
       {/* Space reserved for mobile hamburger rendered by LayoutShell at z-[51] */}
-      <div className="pl-10 md:pl-0">
+      <div className="pl-10">
         <BrandLink />
       </div>
       <ThemeToggle />

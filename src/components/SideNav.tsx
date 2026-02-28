@@ -109,7 +109,7 @@ export default function SideNav({ isExpanded, onToggle }: Props) {
             const content = (
               <>
                 <Icon />
-                <span className={isExpanded ? undefined : "sr-only"}>{label}</span>
+                <span>{label}</span>
                 {isExpanded && badge && (
                   <span className="ri-live-badge">live</span>
                 )}
@@ -134,13 +134,6 @@ export default function SideNav({ isExpanded, onToggle }: Props) {
           })}
         </ul>
       </nav>
-
-      {/* Seam stripe — sibling to nav (NOT child) so overflow:hidden on nav does not clip it.
-          Uses position:fixed with explicit left coordinate that transitions with sidebar width. */}
-      <div
-        className={`ri-sidenav-seam${isExpanded ? " ri-sidenav-seam--expanded" : ""}`}
-        aria-hidden="true"
-      />
     </>
   );
 }

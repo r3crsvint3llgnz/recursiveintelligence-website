@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import SideNav from "./SideNav";
+import ParticleField from "./ParticleField";
 
 function PanelOpenIcon() {
   return (
@@ -41,6 +42,13 @@ export default function LayoutShell({
 
   return (
     <>
+      {/* Global particle field — fixed behind all page content (z-index: 0) */}
+      <ParticleField
+        count={160}
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
+      />
+
       {/* Sidebar panel toggle — always visible, all screen sizes */}
       <button
         onClick={toggle}

@@ -1,12 +1,10 @@
 /*
   Dispatches — editorial listing for long-form articles.
-  Static: server component. ParticleField imported as client child.
+  Static: server component. Wide editorial grid (1100px), no local particle field.
 */
 import Link from "next/link";
 import { allPosts } from "contentlayer/generated";
 import { genPageMetadata } from '../seo';
-import ContentWrapper from "../../components/ContentWrapper";
-import ParticleField from "../../components/ParticleField";
 
 export const metadata = genPageMetadata({
   title: 'Dispatches',
@@ -27,36 +25,23 @@ export default function BlogPage() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <ContentWrapper>
+    <div className="ri-grid-editorial py-8">
 
-      {/* Hero — particle field behind page title */}
-      <div className="relative overflow-hidden" style={{ height: "230px" }}>
-        <ParticleField
-          count={90}
-          className="absolute inset-0"
-        />
-        {/* Bottom fade to merge particle field with page background */}
-        <div
-          className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{
-            height: "60%",
-            background: "linear-gradient(to bottom, transparent, var(--ri-bg))",
-          }}
-          aria-hidden="true"
-        />
-        {/* Title block sits over the canvas */}
-        <div className="relative z-10 h-full flex flex-col justify-end pb-6">
-          <span className="ri-category-label mb-2 block">{'// Dispatches'}</span>
-          <h1 className="text-4xl font-extrabold font-space-grotesk tracking-tight leading-[1.05]">
-            Field Reports
-          </h1>
-          <p className="text-[color:var(--ri-muted)] text-sm mt-2 max-w-md">
-            Applied cognitive science, industrial AI, and systems methodology — from practice, not theory.
-          </p>
-        </div>
+      {/* Hero — typographic header, global particle field shows through */}
+      <div className="py-12">
+        <span className="ri-category-label mb-2 block">{'// Dispatches'}</span>
+        <h1 className="text-4xl font-extrabold font-space-grotesk tracking-tight leading-[1.05]">
+          Field Reports
+        </h1>
+        <p className="text-[color:var(--ri-muted)] text-sm mt-2 max-w-md">
+          Applied cognitive science, industrial AI, and systems methodology — from practice, not theory.
+        </p>
       </div>
 
-      {/* Article list — editorial rows, no glass cards */}
+      {/* Bold stripe divider */}
+      <div className="ri-stripe-bold" aria-hidden="true" />
+
+      {/* Article list — editorial rows */}
       <div className="mt-2">
         {posts.length === 0 ? (
           <p className="py-12 text-[color:var(--ri-muted)]">No dispatches yet. Check back soon.</p>
@@ -70,6 +55,19 @@ export default function BlogPage() {
                 )}
 
                 <article className="py-8 group">
+                  {/* Cover image strip when present */}
+                  {post.coverImage && (
+                    <div className="mb-5 overflow-hidden rounded-sm" style={{ maxHeight: "220px" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={post.coverImage}
+                        alt=""
+                        className="w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+
                   {/* Meta row: tags + reading time */}
                   <div className="flex items-center gap-2 mb-3 flex-wrap">
                     {post.featured && (
@@ -132,6 +130,6 @@ export default function BlogPage() {
         )}
       </div>
 
-    </ContentWrapper>
+    </div>
   );
 }

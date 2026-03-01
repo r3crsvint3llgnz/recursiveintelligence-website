@@ -57,12 +57,12 @@ function LinkBtn({ href, label, rel, children }: LinkBtnProps) {
     "inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold text-base transition-colors";
   const ghost =
     "bg-transparent text-[color:var(--ri-fg)] ring-1 ring-[color:var(--ri-accent)]/40 hover:ring-[color:var(--ri-accent)] hover:bg-[rgba(255,102,0,0.06)]";
+  const isMailto = href.startsWith("mailto:");
 
   return (
     <a
       href={href}
-      target="_blank"
-      rel={rel ?? "noopener noreferrer"}
+      {...(!isMailto && { target: "_blank", rel: rel ?? "noopener noreferrer" })}
       className={`${base} ${ghost}`}
       style={{ textDecoration: "none" }}
       aria-label={label}
@@ -93,7 +93,7 @@ export default function FooterCTA() {
       </LinkBtn>
 
       <LinkBtn
-        href="https://github.com/r3crsvint3llgnz/recursive-prompting"
+        href="https://github.com/r3crsvint3llgnz"
         label="GitHub"
       >
         <GitHubIcon className="w-4 h-4" />

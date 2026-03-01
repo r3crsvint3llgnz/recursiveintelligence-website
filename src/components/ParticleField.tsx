@@ -94,7 +94,10 @@ export default function ParticleField({ count = 85, className, style }: Props) {
       raf.current = requestAnimationFrame(tick);
     };
 
-    tick();
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reducedMotion) {
+      tick();
+    }
 
     return () => {
       cancelAnimationFrame(raf.current);

@@ -430,10 +430,12 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   z-index: 40;
   transition: width 0.25s ease;
   overflow: hidden;
+  visibility: hidden;
 }
 .ri-sidenav--expanded {
   width: 220px;
   overflow-y: auto;
+  visibility: visible;
 }
 .ri-sidenav ul {
   list-style: none;
@@ -546,6 +548,10 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 44;
+  border: none;
+  padding: 0;
+  cursor: default;
+  width: 100%;
 }
 @media (max-width: 767px) {
   .ri-nav-scrim--visible {

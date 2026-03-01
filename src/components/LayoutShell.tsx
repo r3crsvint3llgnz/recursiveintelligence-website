@@ -34,7 +34,7 @@ export default function LayoutShell({
   useEffect(() => {
     if (!isExpanded) return;
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") toggle();
+      if (e.key === "Escape") setIsExpanded(false);
     };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);

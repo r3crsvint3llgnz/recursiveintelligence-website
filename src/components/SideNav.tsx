@@ -159,10 +159,11 @@ export default function SideNav({ isExpanded, onToggle }: Props) {
   return (
     <>
       {/* Mobile scrim */}
-      <div
+      <button
+        type="button"
         className={`ri-nav-scrim${isExpanded ? " ri-nav-scrim--visible" : ""} md:hidden`}
         onClick={onToggle}
-        aria-hidden="true"
+        aria-label="Close navigation menu"
       />
 
       <nav
@@ -210,7 +211,7 @@ export default function SideNav({ isExpanded, onToggle }: Props) {
                 }
                 return (
                   <li key={href}>
-                    <Link href={href} className={cls} title={label}>
+                    <Link href={href} className={cls} title={label} onClick={onToggle}>
                       {content}
                     </Link>
                   </li>

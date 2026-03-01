@@ -3,6 +3,7 @@ import { unstable_cache } from 'next/cache'
 import Link from 'next/link'
 import { genPageMetadata } from '../seo'
 import { getStripe } from '@/lib/stripeClient'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const dynamic = 'force-dynamic'
 
@@ -50,6 +51,7 @@ export default async function SupportPage({ searchParams }: SupportPageProps) {
   const patronPrice = await getPatronPrice().catch(() => null)
 
   return (
+    <ContentWrapper>
     <div className="py-12">
       <div className="mb-10 ri-fade-up">
         <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Fund What Gets Built Next</h1>
@@ -154,5 +156,6 @@ export default async function SupportPage({ searchParams }: SupportPageProps) {
         </Link>
       </div>
     </div>
+    </ContentWrapper>
   )
 }

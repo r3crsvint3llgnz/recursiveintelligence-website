@@ -2,6 +2,7 @@ import { unstable_cache } from 'next/cache'
 import { genPageMetadata } from '../seo'
 import { getStripe } from '@/lib/stripeClient'
 import Link from 'next/link'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const dynamic = 'force-dynamic'
 
@@ -72,6 +73,7 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
   const prices = stripeReady ? await getPrices() : null
 
   return (
+    <ContentWrapper>
     <div className="py-12">
       <div className="mb-10 ri-fade-up">
         <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Subscribe</h1>
@@ -142,5 +144,6 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
         </Link>
       </p>
     </div>
+    </ContentWrapper>
   )
 }

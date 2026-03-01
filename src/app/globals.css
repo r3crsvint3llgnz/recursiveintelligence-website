@@ -85,10 +85,10 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 .glass{
   background: rgba(255,255,255,0.03);
   border:1px solid rgba(255,255,255,0.12);
-  border-radius:16px;
+  border-radius:6px;
   padding:24px;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 .glass:hover{ background: rgba(255,255,255,0.06); }
 [data-theme="light"] .glass{
@@ -116,7 +116,7 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 
 @theme inline {
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 /* Font utilities for Space Grotesk headings */
@@ -332,4 +332,234 @@ body{ background-color:var(--ri-bg); color:var(--ri-fg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .ind-animate { animation: none; opacity: 1; transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Instrument Editorial — new design primitives
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Category label — monospace, small-caps, orange, separator dot */
+.ri-category-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  color: var(--ri-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ri-category-label::after {
+  content: "·";
+  opacity: 0.5;
+}
+
+/* Section marker — LCARS eyebrow: 3px left-bar + monospace label */
+.ri-section-marker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2.5rem 0 1.5rem;
+  border-top: 1px solid var(--ri-border);
+  padding-top: 1.5rem;
+}
+.ri-section-marker::before {
+  content: "";
+  display: block;
+  width: 3px;
+  height: 1.1em;
+  background: var(--ri-accent);
+  flex-shrink: 0;
+}
+.ri-section-marker-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ri-muted);
+}
+
+/* Bold stripe — hazard stripe at full opacity for structural chrome */
+.ri-stripe-bold {
+  height: 1px;
+  background: rgba(255, 102, 0, 0.35);
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.2);
+}
+
+/* Editorial grid — homepage breakout, wider than max-w-3xl */
+.ri-grid-editorial {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Content wrapper — narrow reading width for non-homepage pages */
+.ri-content-wrapper {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Top bar */
+.ri-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: var(--ri-bg);
+  border-bottom: 1px solid var(--ri-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 50;
+}
+
+/* Sidebar */
+.ri-sidenav {
+  position: fixed;
+  top: 48px;
+  left: 0;
+  height: calc(100vh - 48px);
+  width: 0;
+  background: var(--ri-bg);
+  border-right: 1px solid var(--ri-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+  transition: width 0.25s ease;
+  overflow: hidden;
+  visibility: hidden;
+}
+.ri-sidenav--expanded {
+  width: 220px;
+  overflow-y: auto;
+  visibility: visible;
+}
+.ri-sidenav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Nav section labels (// Explore, // Connect) */
+.ri-sidenav-section {
+  padding: 20px 16px 4px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(165, 173, 187, 0.45);
+  white-space: nowrap;
+  border-top: 1px solid var(--ri-border);
+  margin-top: 8px;
+}
+
+/* LCARS pill nav items */
+.ri-sidenav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  margin: 2px 8px;
+  color: var(--ri-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 9999px;
+  transition: color 0.15s, background 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.ri-sidenav-item:hover {
+  color: var(--ri-fg);
+  background: rgba(255, 255, 255, 0.04);
+}
+.ri-sidenav-item.active {
+  background: rgba(255, 102, 0, 0.12);
+  color: var(--ri-accent);
+  box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.28);
+}
+[data-theme="light"] .ri-sidenav-item.active {
+  background: rgba(255, 102, 0, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.2);
+}
+
+/* Live badge for Briefs nav item */
+.ri-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.58rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ri-accent);
+  border: 1px solid rgba(255, 102, 0, 0.35);
+  border-radius: 2px;
+  padding: 1px 4px;
+  margin-left: auto;
+}
+.ri-live-badge::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ri-accent);
+  animation: ri-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Layout content — offset for sidebar, sits above fixed particle canvas */
+.ri-layout-content {
+  transition: margin-left 0.25s ease;
+  margin-left: 0;
+  position: relative;
+  z-index: 1;
+}
+.ri-layout-content--expanded {
+  margin-left: 220px;
+}
+
+/* Mobile: sidebar is an overlay drawer */
+@media (max-width: 767px) {
+  .ri-sidenav {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease, width 0.2s ease;
+    width: 220px;
+    z-index: 45;
+  }
+  .ri-sidenav--expanded {
+    transform: translateX(0);
+    width: 220px;
+  }
+  .ri-layout-content,
+  .ri-layout-content--expanded {
+    margin-left: 0;
+  }
+}
+
+/* Mobile scrim */
+.ri-nav-scrim {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 44;
+  border: none;
+  padding: 0;
+  cursor: default;
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .ri-nav-scrim--visible {
+    display: block;
+  }
+}
+
+@keyframes ri-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
 }

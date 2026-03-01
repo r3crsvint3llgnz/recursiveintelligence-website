@@ -1,5 +1,6 @@
 import { fetchReadingList } from '@/lib/raindrop'
 import { genPageMetadata } from '../seo'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const dynamic = 'force-dynamic'
 
@@ -13,7 +14,7 @@ export default async function ReadingListPage() {
   const items = await fetchReadingList()
 
   return (
-    <>
+    <ContentWrapper>
       <div className="mb-8">
         <h1 className="ri-heading text-4xl font-extrabold tracking-tight mb-3">
           AI/ML Reading List
@@ -69,6 +70,6 @@ export default async function ReadingListPage() {
           </li>
         ))}
       </ul>
-    </>
+    </ContentWrapper>
   )
 }

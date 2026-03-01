@@ -27,7 +27,7 @@ export default function BlogPage() {
 
   // Hero: first featured post that has a cover image
   const hero = posts.find((p) => p.featured && p.coverImage) ?? null;
-  // Remaining: all other posts in date order
+  // Remaining: all other posts in date order (no hero duplicate)
   const remaining = hero ? posts.filter((p) => p !== hero) : posts;
 
   return (
@@ -44,26 +44,15 @@ export default function BlogPage() {
         </p>
       </div>
 
+      {/* Structural divider — signals content begins */}
+      <div className="ri-stripe-bold mb-8" aria-hidden="true" />
+
       {/* ── Featured hero ─────────────────────────────────────────────── */}
       {hero && (
         <>
           <article className="mb-10 group">
-            {/* Cover image — full editorial-grid width, fixed height */}
-            <div
-              className="w-full overflow-hidden mb-5"
-              style={{ height: "380px" }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={hero.coverImage!}
-                alt=""
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                loading="eager"
-              />
-            </div>
-
-            {/* Meta row */}
-            <div className="flex items-center gap-2 mb-4 flex-wrap">
+            {/* Eyebrow: "Featured" badge above the image so reader has context first */}
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
               <span
                 className="font-mono text-[0.62rem] uppercase tracking-widest text-black bg-[color:var(--ri-accent)] px-2 py-0.5 rounded-full"
                 aria-label="Featured article"
@@ -83,7 +72,30 @@ export default function BlogPage() {
               </span>
             </div>
 
-            {/* Title — larger than regular rows */}
+            {/* Cover image with bottom-fade to blend light images into dark bg */}
+            <div
+              className="relative w-full overflow-hidden mb-6 border border-[color:var(--ri-border)]"
+              style={{ height: "380px" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={hero.coverImage!}
+                alt=""
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                loading="eager"
+              />
+              {/* Gradient fade — integrates bright images into dark page */}
+              <div
+                className="absolute bottom-0 left-0 right-0 pointer-events-none"
+                style={{
+                  height: "45%",
+                  background: "linear-gradient(to bottom, transparent, var(--ri-bg))",
+                }}
+                aria-hidden="true"
+              />
+            </div>
+
+            {/* Title */}
             <h2 className="text-3xl font-bold font-space-grotesk leading-snug mb-3">
               <Link
                 href={`/blog/${hero.slug}`}
@@ -93,10 +105,12 @@ export default function BlogPage() {
               </Link>
             </h2>
 
-            <p className="text-[color:var(--ri-muted)] leading-relaxed mb-5 max-w-2xl">
+            {/* Description — unconstrained width to match image */}
+            <p className="text-[color:var(--ri-muted)] leading-relaxed mb-6">
               {hero.description}
             </p>
 
+            {/* Footer row: date + proper CTA (always visible on hero) */}
             <div className="flex items-center justify-between">
               <time
                 dateTime={hero.date}
@@ -106,7 +120,7 @@ export default function BlogPage() {
               </time>
               <Link
                 href={`/blog/${hero.slug}`}
-                className="font-mono text-xs text-[color:var(--ri-accent)] tracking-wide"
+                className="inline-flex items-center gap-1 font-mono text-xs text-[color:var(--ri-accent)] tracking-wide border border-[color:var(--ri-accent)]/40 rounded-full px-3 py-1 hover:border-[color:var(--ri-accent)] hover:bg-[rgba(255,102,0,0.08)] transition-colors"
               >
                 Read dispatch →
               </Link>
@@ -128,16 +142,8 @@ export default function BlogPage() {
               {i > 0 && <div className="ri-stripe-bold" aria-hidden="true" />}
 
               <article className="py-8 group">
-                {/* Meta row */}
+                {/* Tags + reading time — no "Featured" badge in list rows */}
                 <div className="flex items-center gap-2 mb-3 flex-wrap">
-                  {post.featured && (
-                    <span
-                      className="font-mono text-[0.62rem] uppercase tracking-widest text-black bg-[color:var(--ri-accent)] px-2 py-0.5 rounded-full"
-                      aria-label="Featured article"
-                    >
-                      Featured
-                    </span>
-                  )}
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}

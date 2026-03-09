@@ -38,9 +38,11 @@ Pass credentials explicitly: `new DynamoDBClient({ credentials: { accessKeyId, s
 AI agents on Node 22+/npm 11+ silently add lock file fields npm 10 rejects.
 Always fix in ONE shell invocation from within the project dir:
 ```bash
-. ~/.nvm/nvm.sh && nvm use v20 && rm -f package-lock.json && npm install && npm ci
+. ~/.nvm/nvm.sh && nvm use v20 && rm -f package-lock.json && npm install --prefer-online && npm ci
 ```
-Do NOT use `npm install --prefix` from parent dir — produces incomplete lock file.
+- `--prefer-online` is required — without it, packages served from local cache omit the `resolved` URL field, which causes Amplify to fail with `ETARGET: No matching version found`
+- Do NOT use `npm install --prefix` from parent dir — produces incomplete lock file
+- Always verify with `npm ci` before committing — if it passes locally it will pass on Amplify
 
 ## Triggering builds
 - Prefer `git push` (webhook) — most reliable

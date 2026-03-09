@@ -5,10 +5,17 @@ updates:
     schedule:
       interval: "weekly"
     groups:
+      # Patch + minor: auto-merge candidates once CI passes
       dependencies:
         patterns:
           - "*"
         update-types:
           - "minor"
           - "patch"
+      # Major versions: separate PRs, require manual review
+      major-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
     open-pull-requests-limit: 5

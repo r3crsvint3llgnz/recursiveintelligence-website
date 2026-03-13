@@ -26,7 +26,8 @@ export async function GET(request: NextRequest) {
     return new NextResponse(null, { status: 404 })
   }
 
-  return NextResponse.redirect(
-    new URL(`/briefs/${latest.id}?t=${ownerToken}`, request.url)
-  )
+  const url = request.nextUrl.clone()
+  url.pathname = `/briefs/${latest.id}`
+  url.search = `?t=${ownerToken}`
+  return NextResponse.redirect(url)
 }

@@ -44,57 +44,7 @@ acceptable; lint errors and build errors must be fixed.
 
 ## Project Structure
 
-```
-src/
-  app/
-    layout.tsx          # Root layout: Header, Footer, AccentBar, DisambiguationBanner, fonts, metadata, JSON-LD
-    page.tsx            # Homepage (static — do NOT add data fetching here, no <main> wrapper)
-    about/page.tsx      # About page
-    seo.tsx             # genPageMetadata() helper — use for all page metadata
-    globals.css         # CSS variables + utility classes (ri-* prefix)
-    _archived/          # Dead routes — Next.js excludes _ dirs from routing
-    robots.txt/         # Route handler (static)
-    sitemap.xml/        # Route handler (update when new routes are added)
-  components/
-    HomeHero.tsx        # Homepage hero: headline, tagline, Substack + GitHub CTAs
-    ValueProp.tsx       # Homepage: "What We Do" section with three principles
-    ResearchApplied.tsx # Homepage: "Recent Research Applied" section
-    DisambiguationBanner.tsx  # Full-width Ricursive redirect notice (in layout)
-    NavTabs.tsx         # Client component — primary nav
-    AccentBar.tsx       # Orange stripe below header
-    FooterCTA.tsx       # Footer call-to-action (injected in layout)
-    EmailCTA.tsx        # Email CTA component
-    brand/              # SVG brand mark components
-  lib/
-    baseUrl.ts          # NEXT_PUBLIC_SITE_URL → localhost fallback (set in Amplify env vars)
-    email.ts            # mailto: URI builder
-
-data/
-  siteMetadata.js       # SINGLE SOURCE OF TRUTH for site config, URLs, social handles
-                        # Uses CommonJS (module.exports) for RSS script compatibility
-docs/
-  plans/                # Implementation plan markdown files
-  sessions/             # Session logs and post-mortems
-```
-
----
-
-## Homepage Architecture
-
-Current section order in `src/app/page.tsx`:
-
-1. `<HomeHero />` — headline, tagline, Substack + GitHub CTA buttons
-2. `<hr className="ri-divider my-8" />` — gradient divider
-3. Cards grid — Articles / AI/ML Briefs / Recursive Garden (navigation)
-4. `<hr className="ri-divider my-8" />`
-5. `<ValueProp />` — "What We Do" + three principles
-6. `<hr className="ri-divider my-8" />`
-7. `<ResearchApplied />` — four research items with accent borders
-
-**`page.tsx` must:**
-- Be a sync function (no `async`) — no data fetching
-- Use a React fragment `<>` as root (NOT `<main>`) — layout already provides `<main>`
-- Stay static — content only, no API calls
+See `.claude/rules/structure.md` for full file tree, homepage section order, module roadmap, and env var reference.
 
 ---
 
@@ -192,20 +142,17 @@ Note: In some files (e.g. `layout.tsx`) the ESLint rule doesn't trigger and the
 
 ---
 
-## Content Architecture (Planned)
+## Content Architecture
 
-Module 2 adds MDX content via `contentlayer2` + `next-contentlayer2` (the maintained
-fork — do NOT use the original `contentlayer` package which is unmaintained).
+MDX content via `contentlayer2` (the maintained fork — do NOT use the original
+`contentlayer` package which is unmaintained).
 
-Two content types are planned:
-- `Blog` — long-form articles at `data/blog/**/*.mdx` → route `/blog/[slug]`
-- `Brief` — twice-daily AI/ML research summaries at `data/briefs/**/*.mdx` → route `/briefs/[slug]`
+Two content types:
+- `Blog` — long-form articles at `content/blog/**/*.mdx` → route `/blog/[slug]`
+- `Brief` — twice-daily AI/ML research summaries (DynamoDB-backed) → route `/briefs/[slug]`
 
-Both types share computed fields (slug, readingTime, toc) and use layout selection
-via frontmatter. RSS will be generated as postbuild scripts (not Next.js route handlers).
-
-**Placeholder links** in `src/app/page.tsx` (`/blog`, `/briefs`) are intentional
-stubs — convert `<a>` to `<Link>` when those routes are built.
+Both types use computed fields (slug, readingTime, toc) and layout selection via frontmatter.
+RSS is served via a Next.js route handler at `src/app/feed.xml/`.
 
 ---
 
@@ -226,145 +173,8 @@ stubs — convert `<a>` to `<Link>` when those routes are built.
 
 ---
 
-## Environment Variables
+## Deployment & Environment Variables
 
-| Variable | Purpose | Required |
-|----------|---------|----------|
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL | prod only |
-| `NEXT_PUBLIC_GARDEN_URL` | Link to Recursive Garden | optional |
-| `NEXT_PUBLIC_AWS_RUM_APPLICATION_ID` | CloudWatch RUM app ID | prod only |
-| `NEXT_PUBLIC_AWS_RUM_IDENTITY_POOL_ID` | CloudWatch RUM identity pool | prod only |
-| `NEXT_PUBLIC_AWS_RUM_REGION` | CloudWatch RUM region | prod only |
-| `BRIEF_API_KEY` | Shared secret for `/api/briefs/ingest` auth | prod only |
-| `APP_REGION` | AWS region for DynamoDB (`us-east-1`) | prod only |
-| `BRIEFS_TABLE_NAME` | DynamoDB table name (`briefs`) | prod only |
-| `BRIEFS_AWS_ACCESS_KEY_ID` | IAM user `amplify-briefs-writer` access key | prod only |
-| `BRIEFS_AWS_SECRET_ACCESS_KEY` | IAM user `amplify-briefs-writer` secret key | prod only |
-| `OWNER_ACCESS_TOKEN` | Secret token gating World brief detail pages (`?t=`) | prod only |
-
-See `.env.example` for documentation. Create `.env.local` for local dev (gitignored).
-
-**IMPORTANT:** Non-`NEXT_PUBLIC_` vars set in Amplify console are NOT auto-injected
-into the SSR Lambda runtime. All server-side vars must also be listed in
-`next.config.ts` → `env` section. See Deployment Notes below.
-
----
-
-## Deployment Notes
-
-### Amplify build environment
-
-- **App ID:** `YOUR_AMPLIFY_APP_ID`
-- **Region:** `us-east-2`
-- **Branch env var:** `NODE_VERSION=20` (npm 10.x)
-- **Build spec:** `npm ci --cache .npm --prefer-offline` → `npm run build`
-- **Artifacts:** `.next/` directory
-
-Amplify runs `npm ci` which is strict — lock file must exactly match `package.json`.
-
-### Regenerating package-lock.json (REQUIRED after any AI-assisted PR)
-
-AI agents (Copilot, etc.) running on Node 22+/npm 11+ will silently regenerate
-`package-lock.json` with format fields (e.g. `"peer": true`) that npm 10 rejects.
-Always check `git diff package-lock.json` after AI-assisted PRs.
-
-**Always run all commands in a single shell invocation from within the project directory:**
-
-```bash
-cd /path/to/recursiveintelligence-website
-. ~/.nvm/nvm.sh && nvm use v20 && \
-  rm -f package-lock.json && \
-  npm install && \
-  npm ci    # must pass before committing
-git add package-lock.json && git commit -m "fix: regenerate package-lock.json under Node 20"
-```
-
-**Critical pitfalls:**
-- Do NOT use `npm install --prefix /path` from a parent directory — produces incomplete
-  lock file missing transitive deps like `@swc/helpers@0.5.18`
-- Do NOT run `nvm use` in a separate shell call — it won't persist; chain everything
-
-### Intermittent GitHub auth failures
-
-Amplify occasionally loses its GitHub App connection and fails with:
-```
-fatal: repository not found / CustomerError: Unable to clone repository
-```
-This is not a code issue. Retry the job:
-```bash
-aws amplify start-job \
-  --app-id YOUR_AMPLIFY_APP_ID \
-  --branch-name main \
-  --job-type RETRY \
-  --job-id <N> \
-  --region us-east-2 \
-  --profile seth-dev
-```
-If retries keep failing, reconnect GitHub in the Amplify console → App settings → Repository.
-
-### Critical: Amplify SSR env vars must be embedded at build time
-
-Amplify Hosting does NOT inject non-`NEXT_PUBLIC_` env vars into the SSR Lambda runtime.
-All server-side env vars must be listed in `next.config.ts` → `env` section so Next.js
-embeds them as literals at compile time.
-
-```typescript
-// next.config.ts
-env: {
-  BRIEF_API_KEY:               process.env.BRIEF_API_KEY               ?? '',
-  APP_REGION:                  process.env.APP_REGION                  ?? 'us-east-1',
-  BRIEFS_TABLE_NAME:           process.env.BRIEFS_TABLE_NAME           ?? 'briefs',
-  BRIEFS_AWS_ACCESS_KEY_ID:    process.env.BRIEFS_AWS_ACCESS_KEY_ID    ?? '',
-  BRIEFS_AWS_SECRET_ACCESS_KEY: process.env.BRIEFS_AWS_SECRET_ACCESS_KEY ?? '',
-},
-```
-
-Workflow for a new server-side var: (1) add to Amplify console, (2) add to `next.config.ts env`, (3) push.
-
-### Critical: DynamoDB access from Amplify SSR Lambda
-
-The Amplify SSR Lambda runs in Amplify's managed account. Customer IAM roles do nothing.
-IAM user `amplify-briefs-writer` holds minimal DynamoDB credentials, embedded at build time.
-
-- **Credentials rotation:** update IAM access key → update Amplify env vars → push empty commit
-- **`AmplifySSRLoggingRole`** in customer IAM = Amplify service role for CloudWatch only,
-  NOT the Lambda execution role. Adding DynamoDB policies to it has no effect.
-
-### CloudWatch logs for the SSR Lambda
-
-Log group: `/aws/amplify/YOUR_AMPLIFY_APP_ID` in `us-east-2`. Multiple concurrent streams per day.
-
-```bash
-aws logs describe-log-streams \
-  --log-group-name /aws/amplify/YOUR_AMPLIFY_APP_ID \
-  --region us-east-2 --profile seth-dev \
-  --order-by LastEventTime --descending \
-  --query 'logStreams[0:3].logStreamName'
-```
-
-### Benign build warnings
-
-These appear in every build log and can be ignored:
-- `Unable to write cache: ERR_BAD_REQUEST` — Amplify cache backend glitch, doesn't affect build
-- `Failed to set up process.env.secrets` — SSM path `/amplify/YOUR_AMPLIFY_APP_ID/main/` has no secrets; expected
-
----
-
-## Module Roadmap
-
-| Module | Status | Scope |
-|--------|--------|-------|
-| 1 — Security & Foundation | ✅ Complete | Next.js upgrade, Notion removal, copy update, siteMetadata, seo helper |
-| 1.5 — Homepage Repositioning | ✅ Complete | New positioning, DisambiguationBanner, ValueProp, ResearchApplied, JSON-LD, CTAs |
-| 2 — MDX Content System | Planned | contentlayer2, Blog + Brief document types, reading time, TOC |
-| 3 — Blog pages | Planned | Listing + detail pages, RSS feed |
-| 4 — Briefs pages (DynamoDB-backed) | 🔄 In Progress | `/api/briefs/ingest` live; listing + detail pages pending |
-| 5 — Brief ingestion API | ✅ Complete | `/api/briefs/ingest` endpoint, DynamoDB integration, IAM |
-| 6 — AWS Amplify + Analytics | 🔄 Partial | Amplify configured and deploying; CloudWatch RUM activation pending |
-| 7 — Content migration | Planned | Migrate Substack articles to MDX |
-
-### Brief ID format
-
-`route.ts` produces IDs like `2026-02-19-am-ai-ml` and `2026-02-19-pm-ai-ml`.
-The period (`am`/`pm`) is derived from `new Date(data.date).getUTCHours() < 12`.
-AM = 06:00 UTC, PM = 18:00 UTC as set by `_briefing_date_to_iso()` in the Lambda.
+See `.claude/rules/deployment.md` — Amplify SSR env var embedding, DynamoDB cross-account
+access, npm lock file fix, build retry commands, CloudWatch log commands.
+See `.claude/rules/structure.md` — full env var table, module roadmap, brief ID format.

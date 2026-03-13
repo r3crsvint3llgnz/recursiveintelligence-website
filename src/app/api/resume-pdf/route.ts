@@ -11,6 +11,13 @@ const SLATE_700 = "#334155";
 const SLATE_500 = "#64748b";
 const SLATE_200 = "#e2e8f0";
 
+const COMP_LABELS: Record<string, string> = {
+  industrial_stack:     "Industrial Stack",
+  systems_architecture: "Systems Architecture",
+  data_governance:      "Data Governance",
+  ai_tools:             "AI & Automation",
+};
+
 const s = StyleSheet.create({
   page: {
     fontFamily: "Helvetica",
@@ -74,28 +81,32 @@ const s = StyleSheet.create({
   section: {
     marginBottom: 10,
   },
-  // KPI — flat table rows, ATS-parseable
-  kpiRow: {
-    flexDirection: "row" as const,
-    marginBottom: 4,
-    alignItems: "flex-start" as const,
+  // KPI — two-line layout: "METRIC — Label" / description
+  kpiItem: {
+    marginBottom: 6,
   },
-  kpiLabel: {
-    fontFamily: "Helvetica-Bold",
-    fontSize: 8,
-    color: SLATE_700,
-    width: "28%",
+  kpiTopRow: {
+    flexDirection: "row" as const,
+    alignItems: "center" as const,
+    marginBottom: 2,
   },
   kpiMetric: {
     fontFamily: "Helvetica-Bold",
     fontSize: 10,
     color: EMERALD,
-    width: "14%",
+  },
+  kpiSep: {
+    fontSize: 9,
+    color: SLATE_500,
+  },
+  kpiLabel: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: 9,
+    color: SLATE_700,
   },
   kpiDescription: {
     fontSize: 8,
     color: SLATE_700,
-    flex: 1,
     lineHeight: 1.3,
   },
   // Experience
@@ -187,7 +198,7 @@ const s = StyleSheet.create({
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ResumePDF({ data }: { data: any }) {
-  const { basics, key_performance_indicators: kpi, experience, independent_leadership, core_competencies: comp, education, case_study_workshop: cs } = data;
+  const { basics, key_performance_indicators: kpi, experience, independent_leadership, core_competencies: comp, education } = data;
 
   return React.createElement(
     Document,
@@ -228,36 +239,16 @@ function ResumePDF({ data }: { data: any }) {
         ...kpi.map((k: any, i: number) =>
           React.createElement(
             View,
-            { key: i, style: s.kpiRow },
-            React.createElement(Text, { style: s.kpiLabel }, k.label),
-            React.createElement(Text, { style: s.kpiMetric }, k.metric),
+            { key: i, style: s.kpiItem },
+            React.createElement(
+              View,
+              { style: s.kpiTopRow },
+              React.createElement(Text, { style: s.kpiMetric }, k.metric),
+              React.createElement(Text, { style: s.kpiSep }, " \u2014 "),
+              React.createElement(Text, { style: s.kpiLabel }, k.label)
+            ),
             React.createElement(Text, { style: s.kpiDescription }, k.description)
           )
-        )
-      ),
-
-      // Case Study
-      React.createElement(
-        View,
-        { style: s.section },
-        React.createElement(Text, { style: s.sectionTitle }, `Case Study: ${cs.title}`),
-        React.createElement(
-          View,
-          { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
-          React.createElement(Text, { style: s.bulletText }, `Methodology: ${cs.methodology}`)
-        ),
-        React.createElement(
-          View,
-          { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
-          React.createElement(Text, { style: s.bulletText }, `Role: ${cs.team_role}`)
-        ),
-        React.createElement(
-          View,
-          { style: s.bulletItem },
-          React.createElement(Text, { style: s.bulletDot }, "\u2022"),
-          React.createElement(Text, { style: s.bulletText }, `Impact: ${cs.impact}`)
         )
       ),
 
@@ -284,7 +275,7 @@ function ResumePDF({ data }: { data: any }) {
             ...job.highlights.map((h: string, j: number) =>
               React.createElement(
                 View,
-                { key: j, style: s.bulletItem },
+                { key: j, style: s.bulletItem, wrap: false },
                 React.createElement(Text, { style: s.bulletDot }, "\u2022"),
                 React.createElement(Text, { style: s.bulletText }, h)
               )
@@ -309,7 +300,7 @@ function ResumePDF({ data }: { data: any }) {
                   ...org.highlights.map((h: string, j: number) =>
                     React.createElement(
                       View,
-                      { key: j, style: s.bulletItem },
+                      { key: j, style: s.bulletItem, wrap: false },
                       React.createElement(Text, { style: s.bulletDot }, "\u2022"),
                       React.createElement(Text, { style: s.bulletText }, h)
                     )
@@ -328,11 +319,11 @@ function ResumePDF({ data }: { data: any }) {
         ...Object.entries(comp).map(([category, items]) =>
           React.createElement(
             View,
-            { key: category },
+            { key: category, wrap: false },
             React.createElement(
               Text,
               { style: s.compCategory },
-              category.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())
+              COMP_LABELS[category] ?? category.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())
             ),
             React.createElement(
               View,

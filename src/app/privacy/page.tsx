@@ -1,4 +1,5 @@
 import { genPageMetadata } from '../seo'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const metadata = genPageMetadata({
   title: 'Privacy Policy',
@@ -10,6 +11,7 @@ export const revalidate = false
 
 export default function PrivacyPage() {
   return (
+    <ContentWrapper>
     <div className="py-12 max-w-2xl">
       <h1 className="ri-heading text-4xl font-bold mb-8">Privacy Policy</h1>
 
@@ -57,5 +59,6 @@ export default function PrivacyPage() {
         </section>
       </div>
     </div>
+    </ContentWrapper>
   )
 }

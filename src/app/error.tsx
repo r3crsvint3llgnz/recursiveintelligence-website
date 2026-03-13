@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ContentWrapper from "../components/ContentWrapper";
 
 export default function Error({
   reset,
@@ -8,6 +9,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
+    <ContentWrapper>
     <div className="py-20 text-center">
       <h1 className="font-space-grotesk text-4xl font-bold tracking-tight mb-4 text-gray-100">
         Something went wrong
@@ -30,5 +32,6 @@ export default function Error({
         </Link>
       </div>
     </div>
+    </ContentWrapper>
   );
 }

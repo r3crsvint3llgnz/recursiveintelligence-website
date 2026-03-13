@@ -4,12 +4,14 @@ import { getBriefs, isTableNotProvisionedError } from '@/lib/briefs'
 import { getActiveSession } from '@/lib/sessions'
 import { genPageMetadata } from '../seo'
 import type { Brief } from '@/types/brief'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const dynamic = 'force-dynamic'
 
 export const metadata = genPageMetadata({
   title: 'Briefs',
   description: 'Bi-daily AI/ML research summaries.',
+  canonical: '/briefs',
 })
 
 function formatDate(dateString: string): string {
@@ -131,6 +133,7 @@ export default async function BriefsPage() {
   const [latestBrief, ...archiveBriefs] = publicBriefs
 
   return (
+    <ContentWrapper>
     <div className="py-12">
       <div className="mb-10 ri-fade-up">
         <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Briefs</h1>
@@ -161,5 +164,6 @@ export default async function BriefsPage() {
         </div>
       )}
     </div>
+    </ContentWrapper>
   )
 }

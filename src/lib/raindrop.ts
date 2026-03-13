@@ -5,6 +5,7 @@ export interface RaindropItem {
   note: string
   created: string
   tags: string[]
+  cover?: string
 }
 
 const COLLECTION_ID = '67035667'

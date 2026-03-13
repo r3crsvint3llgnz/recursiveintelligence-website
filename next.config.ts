@@ -33,6 +33,7 @@ const nextConfig: NextConfig = {
     RAINDROP_TOKEN: process.env.RAINDROP_TOKEN ?? '',
     RESUME_CHAT_AWS_ACCESS_KEY_ID: process.env.RESUME_CHAT_AWS_ACCESS_KEY_ID ?? '',
     RESUME_CHAT_AWS_SECRET_ACCESS_KEY: process.env.RESUME_CHAT_AWS_SECRET_ACCESS_KEY ?? '',
+    CHAT_LOGS_TABLE_NAME: process.env.CHAT_LOGS_TABLE_NAME ?? '',
   },
 }
 

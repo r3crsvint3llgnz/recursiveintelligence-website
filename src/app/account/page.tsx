@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { getSessionRecord } from '@/lib/sessions'
 import { genPageMetadata } from '../seo'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const metadata = {
   ...genPageMetadata({ title: 'Account', description: 'Manage your subscription.' }),
@@ -27,6 +28,7 @@ export default async function AccountPage() {
   }
 
   return (
+    <ContentWrapper>
     <div className="py-12">
       <div className="mb-10 ri-fade-up">
         <h1 className="ri-heading font-space-grotesk text-4xl font-bold mb-4">Account</h1>
@@ -68,5 +70,6 @@ export default async function AccountPage() {
         </Link>
       </div>
     </div>
+    </ContentWrapper>
   )
 }

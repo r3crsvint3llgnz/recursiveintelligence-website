@@ -1,5 +1,4 @@
 "use client";
-import { buildMailto } from "../lib/email";
 
 // Icons
 function MailIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -45,7 +44,7 @@ function StoreIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-// Shared button
+// Shared button — LCARS pill shape
 type LinkBtnProps = {
   href: string;
   label: string;
@@ -55,15 +54,15 @@ type LinkBtnProps = {
 
 function LinkBtn({ href, label, rel, children }: LinkBtnProps) {
   const base =
-    "inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold text-base transition-colors ri-accent-ring";
+    "inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold text-base transition-colors";
   const ghost =
-    "bg-transparent text-gray-900 dark:text-white ring-1 ring-[color:var(--ri-accent-700)]/60 hover:bg-gray-100 dark:hover:bg-white/5 hover:ring-[color:var(--ri-accent)]";
+    "bg-transparent text-[color:var(--ri-fg)] ring-1 ring-[color:var(--ri-accent)]/40 hover:ring-[color:var(--ri-accent)] hover:bg-[rgba(255,102,0,0.06)]";
+  const isMailto = href.startsWith("mailto:");
 
   return (
     <a
       href={href}
-      target="_blank"
-      rel={rel ?? "noopener noreferrer"}
+      {...(!isMailto && { target: "_blank", rel: rel ?? "noopener noreferrer" })}
       className={`${base} ${ghost}`}
       style={{ textDecoration: "none" }}
       aria-label={label}
@@ -76,11 +75,9 @@ function LinkBtn({ href, label, rel, children }: LinkBtnProps) {
 }
 
 export default function FooterCTA() {
-  const emailHref = buildMailto();
-
   return (
     <div className="mt-16 flex flex-wrap justify-center gap-3">
-      <LinkBtn href={emailHref} label="Email">
+      <LinkBtn href="mailto:seth.robins@recursiveintelligence.io" label="Email">
         <MailIcon className="w-4 h-4" />
       </LinkBtn>
 
@@ -96,7 +93,7 @@ export default function FooterCTA() {
       </LinkBtn>
 
       <LinkBtn
-        href="https://github.com/r3crsvint3llgnz/recursive-prompting"
+        href="https://github.com/r3crsvint3llgnz"
         label="GitHub"
       >
         <GitHubIcon className="w-4 h-4" />

@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { genPageMetadata } from '../seo'
+import ContentWrapper from "../../components/ContentWrapper"
 
 export const metadata = genPageMetadata({
   title: 'About',
   description:
     'Seth Robins — translating cognitive science and AI research into practical frameworks for human-AI collaboration.',
+  canonical: '/about',
 })
 
 export const dynamic = "force-static";
@@ -12,6 +14,7 @@ export const revalidate = false;
 
 export default function AboutPage() {
   return (
+    <ContentWrapper>
     <div className="py-12">
       <h1 className="text-4xl font-extrabold tracking-tight mb-8">About</h1>
 
@@ -170,5 +173,6 @@ export default function AboutPage() {
         </section>
       </div>
     </div>
+    </ContentWrapper>
   );
 }

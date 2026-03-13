@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import MDXContent from "../../../components/MDXContent";
 import { genPageMetadata } from '../../seo'
+import ContentWrapper from "../../../components/ContentWrapper"
 
 export function generateStaticParams() {
   return allPosts
@@ -43,11 +44,25 @@ export default async function BlogPostPage({
   }
 
   return (
+    <>
+      {/* Full-bleed cover image — spans full content width, outside reading column */}
+      {post.coverImage && (
+        <div className="w-full overflow-hidden" style={{ maxHeight: "480px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+      )}
+    <ContentWrapper>
     <article className="py-12">
       {/* Back link */}
       <div className="mb-8 ri-fade-up">
         <Link href="/blog" className="ri-link text-sm ri-accent-ring">
-          &larr; Back to Blog
+          &larr; Back to Dispatches
         </Link>
       </div>
 
@@ -89,7 +104,7 @@ export default async function BlogPostPage({
       {/* Footer back link */}
       <div className="mt-12 pt-8 border-t border-[color:var(--ri-border)]">
         <Link href="/blog" className="ri-link text-sm ri-accent-ring">
-          &larr; Back to Blog
+          &larr; Back to Dispatches
         </Link>
       </div>
 
@@ -118,5 +133,7 @@ export default async function BlogPostPage({
         }}
       />
     </article>
+    </ContentWrapper>
+    </>
   );
 }

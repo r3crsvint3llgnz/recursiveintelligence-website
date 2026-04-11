@@ -20,9 +20,9 @@ describe('sitemap GET', () => {
     vi.mocked(getBriefs).mockResolvedValue([])
   })
 
-  it('includes /resume', async () => {
+  it('excludes /resume', async () => {
     const res = await GET()
-    expect(await res.text()).toContain('/resume')
+    expect(await res.text()).not.toContain('/resume')
   })
 
   it('includes /privacy', async () => {
@@ -35,14 +35,14 @@ describe('sitemap GET', () => {
     expect(await res.text()).toContain('/blog/test-post')
   })
 
-  it('includes the latest brief URL', async () => {
+  it('includes all public briefs', async () => {
     vi.mocked(getBriefs).mockResolvedValue([
       { id: '2026-02-23-am-ai-ml', is_latest: true, category: 'AI/ML' } as never,
       { id: '2026-02-22-pm-ai-ml', is_latest: false, category: 'AI/ML' } as never,
     ])
     const text = await (await GET()).text()
     expect(text).toContain('/briefs/2026-02-23-am-ai-ml')
-    expect(text).not.toContain('/briefs/2026-02-22-pm-ai-ml')
+    expect(text).toContain('/briefs/2026-02-22-pm-ai-ml')
   })
 
   it('does not throw when getBriefs fails', async () => {

@@ -39,6 +39,7 @@
     "minimatch": "^10.0.0"
   },
   "devDependencies": {
+    "@eslint/compat": "^2.0.5",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^25",
@@ -47,7 +48,7 @@
     "@vitejs/plugin-react-swc": "^4.2.3",
     "@vitest/coverage-v8": "^4.0.18",
     "concurrently": "^9.2.1",
-    "eslint": "^9.39.2",
+    "eslint": "^10.2.0",
     "eslint-config-next": "^16.1.6",
     "tailwindcss": "^4",
     "typescript": "^6",

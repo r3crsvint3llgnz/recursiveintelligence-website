@@ -33,7 +33,7 @@
     "rehype-pretty-code": "^0.14.3",
     "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "stripe": "^20.4.0"
+    "stripe": "^22.0.1"
   },
   "overrides": {
     "minimatch": "^10.0.0"

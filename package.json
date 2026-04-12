@@ -39,6 +39,7 @@
     "minimatch": "^10.0.0"
   },
   "devDependencies": {
+    "@eslint/compat": "^2.0.5",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^25",

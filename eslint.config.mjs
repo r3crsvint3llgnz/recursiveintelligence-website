@@ -1,7 +1,8 @@
+import { fixupConfigRules } from "@eslint/compat";
 import nextConfig from "eslint-config-next";
 
 export default [
-  ...nextConfig,
+  ...fixupConfigRules(nextConfig),
   {
     ignores: ["src/notion-backup/**"],
   },
